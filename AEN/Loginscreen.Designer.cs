@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.minimize_button = new System.Windows.Forms.PictureBox();
+            this.exit_button = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exit_button)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // minimize_button
             // 
-            this.pictureBox1.Image = global::AEN.Properties.Resources.exit_button;
-            this.pictureBox1.Location = new System.Drawing.Point(418, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.minimize_button.Image = global::AEN.Properties.Resources.minimize_button;
+            this.minimize_button.Location = new System.Drawing.Point(380, 12);
+            this.minimize_button.Name = "minimize_button";
+            this.minimize_button.Size = new System.Drawing.Size(32, 32);
+            this.minimize_button.TabIndex = 1;
+            this.minimize_button.TabStop = false;
+            this.minimize_button.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // pictureBox2
+            // exit_button
             // 
-            this.pictureBox2.Image = global::AEN.Properties.Resources.minimize_button;
-            this.pictureBox2.Location = new System.Drawing.Point(380, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.exit_button.Image = global::AEN.Properties.Resources.exit_button;
+            this.exit_button.Location = new System.Drawing.Point(418, 12);
+            this.exit_button.Name = "exit_button";
+            this.exit_button.Size = new System.Drawing.Size(32, 32);
+            this.exit_button.TabIndex = 0;
+            this.exit_button.TabStop = false;
+            this.exit_button.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Loginscreen
             // 
@@ -59,21 +60,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.ClientSize = new System.Drawing.Size(462, 441);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.minimize_button);
+            this.Controls.Add(this.exit_button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Loginscreen";
             this.Text = "AEN Login";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exit_button)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox exit_button;
+        private System.Windows.Forms.PictureBox minimize_button;
     }
 }
 
