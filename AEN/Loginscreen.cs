@@ -19,7 +19,7 @@ namespace AEN
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -51,8 +51,23 @@ namespace AEN
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 logInButton.PerformClick();
-                
+
             }
         }
+        #region borderless form movable
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+
+            base.WndProc(ref m);
+        }
+        #endregion
     }
 }
