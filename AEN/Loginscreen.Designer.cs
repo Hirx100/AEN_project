@@ -60,11 +60,13 @@
             // 
             resources.ApplyResources(this.userNameLabel, "userNameLabel");
             this.userNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
+            this.userNameLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.userNameLabel.Name = "userNameLabel";
             // 
             // passwordLabel
             // 
             resources.ApplyResources(this.passwordLabel, "passwordLabel");
+            this.passwordLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.passwordLabel.Name = "passwordLabel";
             // 
             // userNameTextBox
@@ -91,7 +93,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.BackColor = System.Drawing.Color.SeaGreen;
             this.Controls.Add(this.logInButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userNameTextBox);
