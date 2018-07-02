@@ -29,6 +29,8 @@ namespace AEN
         //login process trigger
         private void button1_Click(object sender, EventArgs e)
         {
+            DBConnect cc = new DBConnect();
+            cc.Initialize();
             string a = "a";
             string b = "1";
 

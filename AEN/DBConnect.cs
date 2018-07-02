@@ -23,12 +23,12 @@ namespace AEN
         }
 
         //Initialize values
-        private void Initialize()
+        public void Initialize()
         {
             server = "localhost";
-            database = "connectcsharptomysql";
-            uid = "username";
-            password = "password";
+            database = "aen_database";
+            uid = "root";
+            password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -78,7 +78,7 @@ namespace AEN
                 return false;
             }
         }
-
+/*
         //Insert statement
         public void Insert()
         {
@@ -113,5 +113,6 @@ namespace AEN
         public void Restore()
         {
         }
+*/
     }
 }
