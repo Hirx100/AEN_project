@@ -16,7 +16,7 @@ namespace AEN
         {
             InitializeComponent();
         }
-
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -26,7 +26,7 @@ namespace AEN
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
+        //login process trigger
         private void button1_Click(object sender, EventArgs e)
         {
             string a = "a";
@@ -43,7 +43,7 @@ namespace AEN
                 MessageBox.Show("Hibás felhasználó név vagy jelszó.");
             }
         }
-
+        //login process start with enter key press(just works when the passwordtextbox active)
         private void passwordTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

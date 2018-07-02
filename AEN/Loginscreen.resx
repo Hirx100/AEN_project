@@ -178,7 +178,7 @@
     <value>NoControl</value>
   </data>
   <data name="userNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 110</value>
+    <value>159, 110</value>
   </data>
   <data name="userNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 25</value>
@@ -211,7 +211,7 @@
     <value>NoControl</value>
   </data>
   <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 171</value>
+    <value>194, 171</value>
   </data>
   <data name="passwordLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 25</value>
@@ -283,7 +283,7 @@
     <value>NoControl</value>
   </data>
   <data name="logInButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 268</value>
+    <value>142, 266</value>
   </data>
   <data name="logInButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 42</value>
