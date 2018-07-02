@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace AEN
 {
     public partial class Loginscreen : Form
     {
+       
+        
         public Loginscreen()
         {
             InitializeComponent();
+
         }
         
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -29,12 +33,13 @@ namespace AEN
         //login process trigger
         private void button1_Click(object sender, EventArgs e)
         {
-            DBConnect cc = new DBConnect();
-            cc.Initialize();
+            
+            DBConnect pass= new DBConnect();
+            
             string a = "a";
             string b = "1";
 
-            if (userNameTextBox.Text.Equals(a) && passwordTextBox.Text.Equals(b))
+            if (pass.Password(userNameTextBox.Text, passwordTextBox.Text) ==true)
             {
                 this.Hide();
                 Main jump = new Main();

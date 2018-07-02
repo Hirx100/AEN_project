@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,11 +32,21 @@ namespace AEN
             password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";"+ "SslMode = none"+";";
 
             connection = new MySqlConnection(connectionString);
         }
 
+        public bool Password(string username, string password)
+        {
+            string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + password + "'";
+            MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
+                return true;
+            else return false;
+        }
         private bool OpenConnection()
         {
             try
