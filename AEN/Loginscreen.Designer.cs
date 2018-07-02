@@ -46,7 +46,7 @@
             resources.ApplyResources(this.minimizeButton, "minimizeButton");
             this.minimizeButton.Name = "minimizeButton";
             this.minimizeButton.TabStop = false;
-            this.minimizeButton.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // exitButton
             // 
@@ -54,7 +54,7 @@
             resources.ApplyResources(this.exitButton, "exitButton");
             this.exitButton.Name = "exitButton";
             this.exitButton.TabStop = false;
-            this.exitButton.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // userNameLabel
             // 
@@ -87,7 +87,7 @@
             resources.ApplyResources(this.logInButton, "logInButton");
             this.logInButton.Name = "logInButton";
             this.logInButton.UseVisualStyleBackColor = true;
-            this.logInButton.Click += new System.EventHandler(this.button1_Click);
+            this.logInButton.Click += new System.EventHandler(this.logInbutton_Click);
             // 
             // Loginscreen
             // 

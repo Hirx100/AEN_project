@@ -21,17 +21,17 @@ namespace AEN
 
         }
         
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
         //login process trigger
-        private void button1_Click(object sender, EventArgs e)
+        private void logInbutton_Click(object sender, EventArgs e)
         {
             
             DBConnect pass= new DBConnect();
@@ -47,7 +47,7 @@ namespace AEN
             }
             else
             {
-                MessageBox.Show("Hibás felhasználó név vagy jelszó.");
+                MessageBox.Show("Hibás felhasználónév vagy jelszó.");
             }
         }
         //login process start with enter key press(just works when the passwordtextbox active)
