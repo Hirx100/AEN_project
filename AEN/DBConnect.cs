@@ -37,15 +37,58 @@ namespace AEN
             connection = new MySqlConnection(connectionString);
         }
 
-        public bool Password(string username, string password)
+        public bool Password(string username, string password, int permission)
         {
-            string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + password + "'";
-            MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows[0][0].ToString() == "1")
-                return true;
-            else return false;
+
+
+
+
+            switch (permission)
+            {   case 1:
+                    {
+                        string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + password + "'";
+                        MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        if (dt.Rows[0][0].ToString() == "1")
+                            return true;
+                        break;
+                    }
+                case 2:
+                    {
+                        MySqlDataAdapter sqlDa = new MySqlDataAdapter("teacher_passCheak", connection);
+                        sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        //string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + password + "'" ;
+                        //MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
+                        DataTable dt = new DataTable();
+                        sqlDa.Fill(dt);
+                        if (dt.Rows[0][0].ToString() == "1")
+                            return true;
+                        break;
+                    }
+                case 3:
+                    {
+                        string sqlCmd = "Select Count(*) From parent where user_name = '" + username + "' and password = '" + password + "'";
+                        MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        if (dt.Rows[0][0].ToString() == "1")
+                            return true;
+                        break;
+                    }
+                case 4:
+                    {
+                        string sqlCmd = "Select Count(*) From student where user_name = '" + username + "' and password = '" + password + "'";
+                        MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        if (dt.Rows[0][0].ToString() == "1")
+                            return true;
+                        break;
+                    }
+            }
+                    return false;
+            
         }
         private bool OpenConnection()
         {

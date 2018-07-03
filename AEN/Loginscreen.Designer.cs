@@ -36,6 +36,8 @@
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.logInButton = new System.Windows.Forms.Button();
+            this.permissionSelecterComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
@@ -89,11 +91,28 @@
             this.logInButton.UseVisualStyleBackColor = true;
             this.logInButton.Click += new System.EventHandler(this.logInbutton_Click);
             // 
+            // permissionSelecterComboBox
+            // 
+            this.permissionSelecterComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.permissionSelecterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.permissionSelecterComboBox, "permissionSelecterComboBox");
+            this.permissionSelecterComboBox.FormattingEnabled = true;
+            this.permissionSelecterComboBox.Name = "permissionSelecterComboBox";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Name = "label1";
+            // 
             // Loginscreen
             // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.SeaGreen;
+            resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.permissionSelecterComboBox);
             this.Controls.Add(this.logInButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userNameTextBox);
@@ -102,7 +121,9 @@
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "Loginscreen";
+            this.Load += new System.EventHandler(this.Loginscreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             this.ResumeLayout(false);
@@ -119,6 +140,8 @@
         private System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button logInButton;
+        private System.Windows.Forms.ComboBox permissionSelecterComboBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 
