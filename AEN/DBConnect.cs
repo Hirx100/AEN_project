@@ -37,7 +37,7 @@ namespace AEN
             connection = new MySqlConnection(connectionString);
         }
 
-        public bool Password(string username, string password, int permission)
+        public bool Password(string username, string pass, int permission)
         {
 
 
@@ -56,8 +56,13 @@ namespace AEN
                     }
                 case 2:
                     {
+                        
+                        MySqlCommand cmd = new MySqlCommand(nset2, connection);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         MySqlDataAdapter sqlDa = new MySqlDataAdapter("teacher_passCheak", connection);
                         sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+
                         //string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + password + "'" ;
                         //MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
                         DataTable dt = new DataTable();
