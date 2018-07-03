@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2018. Jún 26. 11:00
--- Kiszolgáló verziója: 10.1.33-MariaDB
--- PHP verzió: 7.2.6
+-- Létrehozás ideje: 2018. Júl 03. 13:12
+-- Kiszolgáló verziója: 10.1.32-MariaDB
+-- PHP verzió: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,6 +22,16 @@ SET time_zone = "+00:00";
 -- Adatbázis: `aen_database`
 --
 
+DELIMITER $$
+--
+-- Eljárások
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `teacher_passCheak` (IN `_username` VARCHAR(50), IN `_password` VARCHAR(50), OUT `_count` INT(1))  BEGIN
+Select Count(*) From `teacher` where `user_name` = _username and `password` = _password into _count; 
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -35,6 +45,13 @@ CREATE TABLE `class` (
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
   ` class_year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `class`
+--
+
+INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, ` class_year`) VALUES
+(1, '2010-09-01', 1, 'A', 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +117,13 @@ CREATE TABLE `parent` (
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
+--
+-- A tábla adatainak kiíratása `parent`
+--
+
+INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`, `active`) VALUES
+(1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1, b'1');
+
 -- --------------------------------------------------------
 
 --
@@ -117,6 +141,13 @@ CREATE TABLE `student` (
   `class_ID` int(11) NOT NULL,
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `student`
+--
+
+INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`, `active`) VALUES
+(3, ' Jhon Snow', '1996-04-08', 'JhSn', 'nem', 1, 1, 1, b'1');
 
 -- --------------------------------------------------------
 
@@ -143,6 +174,13 @@ CREATE TABLE `teacher` (
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `active` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `teacher`
+--
+
+INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`, `active`) VALUES
+(1, 'Teszt Elek', '1987-05-15', 'TeEl', '1234', b'1');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -216,7 +254,7 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT a táblához `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `lesson`
@@ -240,13 +278,13 @@ ALTER TABLE `omission`
 -- AUTO_INCREMENT a táblához `parent`
 --
 ALTER TABLE `parent`
-  MODIFY `parent_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `parent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `student`
 --
 ALTER TABLE `student`
-  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `subject`
@@ -258,7 +296,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT a táblához `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Megkötések a kiírt táblákhoz
