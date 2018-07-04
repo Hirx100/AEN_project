@@ -73,9 +73,29 @@ namespace AEN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap log_out_button {
+            get {
+                object obj = ResourceManager.GetObject("log_out_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minimize_button {
             get {
                 object obj = ResourceManager.GetObject("minimize_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_data_button {
+            get {
+                object obj = ResourceManager.GetObject("user_data_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

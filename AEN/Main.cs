@@ -43,5 +43,11 @@ namespace AEN
         }
         #endregion
 
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Loginscreen logJump = new Loginscreen();
+            logJump.Show();
+        }
     }
 }

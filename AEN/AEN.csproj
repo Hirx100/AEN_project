@@ -62,6 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBConnect.cs" />
+    <Compile Include="UserDataChangeScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserDataChangeScreen.Designer.cs">
+      <DependentUpon>UserDataChangeScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loginscreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UserDataChangeScreen.resx">
+      <DependentUpon>UserDataChangeScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Loginscreen.resx">
       <DependentUpon>Loginscreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +131,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log_out_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_data_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
