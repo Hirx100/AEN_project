@@ -124,6 +124,7 @@
             this.MaximizeBox = false;
             this.Name = "Loginscreen";
             this.Load += new System.EventHandler(this.Loginscreen_Load);
+            this.DoubleClick += new System.EventHandler(this.minimizeButton_Click);
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             this.ResumeLayout(false);

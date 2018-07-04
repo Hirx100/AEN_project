@@ -178,7 +178,7 @@
     <value>NoControl</value>
   </data>
   <data name="userNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 110</value>
+    <value>160, 129</value>
   </data>
   <data name="userNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>143, 25</value>
@@ -211,7 +211,7 @@
     <value>NoControl</value>
   </data>
   <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 171</value>
+    <value>195, 190</value>
   </data>
   <data name="passwordLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 25</value>
@@ -235,7 +235,7 @@
     <value>5</value>
   </data>
   <data name="userNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 148</value>
+    <value>143, 167</value>
   </data>
   <data name="userNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 20</value>
@@ -256,10 +256,7 @@
     <value>4</value>
   </data>
   <data name="passwordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 199</value>
-  </data>
-  <data name="passwordTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
-    <value>*</value>
+    <value>143, 218</value>
   </data>
   <data name="passwordTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 20</value>
@@ -313,10 +310,10 @@
     <value>Arial Narrow, 11.25pt</value>
   </data>
   <data name="permissionSelecterComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 69</value>
+    <value>165, 88</value>
   </data>
   <data name="permissionSelecterComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 28</value>
+    <value>138, 28</value>
   </data>
   <data name="permissionSelecterComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -343,7 +340,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 41</value>
+    <value>152, 60</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 25</value>
@@ -371,6 +368,18 @@
   </metadata>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>462, 441</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>462, 441</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>462, 441</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AEN Login</value>

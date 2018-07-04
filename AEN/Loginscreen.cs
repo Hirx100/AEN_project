@@ -13,14 +13,15 @@ namespace AEN
 {
     public partial class Loginscreen : Form
     {
+        public int permValue; 
         private void Loginscreen_Load(object sender, EventArgs e)
         {
             
             permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("-Válaszzon jogosúltságot-", 0));
-            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Rendszergazda", 1));
-            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Tanár", 2));
-            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Szülő", 3));
-            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Diák", 4));
+            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Rendszergazda", 101));
+            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Tanár", 102));
+            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Szülő", 103));
+            permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Diák", 104));
 
             permissionSelecterComboBox.SelectedIndex = 0;
 
@@ -30,11 +31,12 @@ namespace AEN
 
 
 
-
         }
         public Loginscreen()
         {
             InitializeComponent();
+
+          
 
         }
         
@@ -53,7 +55,7 @@ namespace AEN
             
             DBConnect pass= new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
-            int permValue = perm.Value;
+            permValue = perm.Value;
 
             if (pass.Password(userNameTextBox.Text, passwordTextBox.Text,permValue) ==true)
             {
@@ -90,7 +92,10 @@ namespace AEN
             }
 
             base.WndProc(ref m);
+
         }
+
+
         #endregion
 
 
