@@ -44,11 +44,13 @@ namespace AEN
             cmd.ExecuteNonQuery();
             DataTable dt = new DataTable();
             da.Fill(dt);
-            DataRow row = dt.Rows[0];
+            userDataArray[1] = da.ToString();
+           /* DataRow row = dt.Rows[0];
             userDataArray[0] = row["name"].ToString();
             userDataArray[1] = row["born_date"].ToString();
             userDataArray[2] = row["user_name"].ToString();
             userDataArray[3] = row["password"].ToString();
+            */
 
             return userDataArray;
         }
