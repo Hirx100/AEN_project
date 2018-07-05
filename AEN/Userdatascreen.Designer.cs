@@ -69,9 +69,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 139);
+            this.textBox1.Location = new System.Drawing.Point(84, 144);
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(104, 20);
             this.textBox1.TabIndex = 6;
             // 
@@ -131,6 +130,7 @@
             this.userDataScreenNameTextBox.Name = "userDataScreenNameTextBox";
             this.userDataScreenNameTextBox.Size = new System.Drawing.Size(104, 20);
             this.userDataScreenNameTextBox.TabIndex = 12;
+            this.userDataScreenNameTextBox.Enter += new System.EventHandler(this.userDataScreenNameTextBox_Enter);
             // 
             // label4
             // 

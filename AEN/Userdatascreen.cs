@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace AEN
 {
     public partial class Userdatascreen : Form
-    {
+    {       DBConnect dataConnect = new DBConnect ();
+            Class1 userData = new Class1();
         public Userdatascreen()
         {
             InitializeComponent();
-            DBConnect userData = new DBConnect ();
+
+
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -28,6 +31,7 @@ namespace AEN
             this.WindowState = FormWindowState.Minimized;
         }
 
+        
         #region borderless form movable
         protected override void WndProc(ref Message m)
         {
@@ -42,6 +46,12 @@ namespace AEN
 
             base.WndProc(ref m);
         }
+
+        private void userDataScreenNameTextBox_Enter(object sender, EventArgs e)
+        {
+            userDataScreenNameTextBox.Text = userData.userDataArray[1];
+        }
         #endregion
+
     }
 }

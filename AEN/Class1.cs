@@ -15,15 +15,18 @@ namespace AEN
         private string username;
         private string permName;
         private int permNummber;
-        private string[] userDataArray = new string[4];
+        public string[] userDataArray = new string[4];
          
         
         
 
         public string[] Valami()
         {
+            dataUse.OpenConnection();
+
             username=dataIn.userName;
             permNummber= dataIn.permValue;
+
             switch(permNummber)
             {
                 case 101: { permName = "administrator"; break;}
