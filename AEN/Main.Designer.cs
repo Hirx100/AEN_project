@@ -193,6 +193,7 @@
             this.userDataButton.Size = new System.Drawing.Size(65, 65);
             this.userDataButton.TabIndex = 15;
             this.userDataButton.TabStop = false;
+            this.userDataButton.Click += new System.EventHandler(this.userDataButton_Click);
             // 
             // pictureBox9
             // 
@@ -315,6 +316,7 @@
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

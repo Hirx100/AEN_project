@@ -27,8 +27,9 @@ namespace AEN
 
         }
 
+
         //Initialize values
-        private void Initialize()
+        private void Initialize()  
         {
             server = "localhost";
             database = "aen_database";
@@ -40,7 +41,7 @@ namespace AEN
 
             connection = new MySqlConnection(connectionString);
         }
-
+       
         public bool LoginPasswordCheck (string username, string loginpassword, int permission)
         {
 
@@ -49,7 +50,7 @@ namespace AEN
             switch (permission)
             {
                 case 101: //admin login check
-                    {   
+                    {   //TODO: admin belépést megcsinálni.
                         string sqlCmd = "Select Count(*) From teacher where user_name = '" + username + "' and password = '" + loginpassword + "'";
                         MySqlDataAdapter sda = new MySqlDataAdapter(sqlCmd, connection);
                         DataTable dt = new DataTable();
@@ -110,7 +111,7 @@ namespace AEN
             
         }
         //Open connection
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             try
             {

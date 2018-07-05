@@ -61,13 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="DBConnect.cs" />
-    <Compile Include="UserDataChangeScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserDataChangeScreen.Designer.cs">
-      <DependentUpon>UserDataChangeScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Loginscreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,9 +77,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UserDataChangeScreen.resx">
-      <DependentUpon>UserDataChangeScreen.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Userdatascreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Userdatascreen.Designer.cs">
+      <DependentUpon>Userdatascreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Loginscreen.resx">
       <DependentUpon>Loginscreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +99,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Userdatascreen.resx">
+      <DependentUpon>Userdatascreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -10,21 +10,22 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    public partial class Main : Form
+    public partial class Userdatascreen : Form
     {
-        public Main()
+        public Userdatascreen()
         {
             InitializeComponent();
+            DBConnect userData = new DBConnect ();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         #region borderless form movable
@@ -42,18 +43,5 @@ namespace AEN
             base.WndProc(ref m);
         }
         #endregion
-
-        private void logOutButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Loginscreen logJump = new Loginscreen();
-            logJump.Show();
-        }
-
-        private void userDataButton_Click(object sender, EventArgs e)
-        {
-            Userdatascreen jump = new Userdatascreen();
-            jump.Show();
-        }
     }
 }

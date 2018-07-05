@@ -13,11 +13,12 @@ namespace AEN
 {
     public partial class Loginscreen : Form
     {
-        public int permValue; 
+        public int permValue;
+        public string userName;
         private void Loginscreen_Load(object sender, EventArgs e)
         {
 
-        #region ComboBox list
+            #region ComboBox list
             {
                 permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("-Válaszzon jogosúltságot-", 100));
                 permissionSelecterComboBox.Items.Add(new KeyValuePair<string, int>("Rendszergazda", 101));
@@ -30,7 +31,7 @@ namespace AEN
                 permissionSelecterComboBox.DisplayMember = "key";
                 permissionSelecterComboBox.ValueMember = "value";
             }
-        #endregion
+            #endregion
 
 
         }
@@ -38,13 +39,13 @@ namespace AEN
         {
             InitializeComponent();
         }
-        
+
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        
+
         private void minimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
@@ -53,8 +54,8 @@ namespace AEN
         //login process trigger
         private void logInbutton_Click(object sender, EventArgs e)
         {
-            
-            DBConnect pass= new DBConnect();
+            userName = userNameTextBox.Text;
+            DBConnect pass = new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
             permValue = perm.Value;
 
@@ -68,7 +69,7 @@ namespace AEN
                     this.Hide();
                     Main mainJump = new Main();
                     mainJump.Show();
-                
+
                 }
                 else
                 {   // TODO: csinálni hiba ablakot.(hibás login)
@@ -108,6 +109,6 @@ namespace AEN
         }
         #endregion
 
-
+        
     }
 }
