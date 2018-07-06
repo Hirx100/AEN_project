@@ -130,7 +130,6 @@
             this.userDataScreenNameTextBox.Name = "userDataScreenNameTextBox";
             this.userDataScreenNameTextBox.Size = new System.Drawing.Size(104, 20);
             this.userDataScreenNameTextBox.TabIndex = 12;
-            this.userDataScreenNameTextBox.Enter += new System.EventHandler(this.userDataScreenNameTextBox_Enter);
             // 
             // label4
             // 

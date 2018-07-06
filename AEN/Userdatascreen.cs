@@ -47,10 +47,6 @@ namespace AEN
             base.WndProc(ref m);
         }
 
-        private void userDataScreenNameTextBox_Enter(object sender, EventArgs e)
-        {
-            userDataScreenNameTextBox.Text = userData.userDataArray[1];
-        }
         #endregion
 
     }

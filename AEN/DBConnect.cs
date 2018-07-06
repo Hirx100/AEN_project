@@ -140,7 +140,7 @@ namespace AEN
         }
         
         //Close connection
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {
@@ -153,5 +153,6 @@ namespace AEN
                 return false;
             }
         }
+
     }
 }

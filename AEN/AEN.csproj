@@ -63,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DBConnect.cs" />
+    <Compile Include="Testform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Testform.Designer.cs">
+      <DependentUpon>Testform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loginscreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Testform.resx">
+      <DependentUpon>Testform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Userdatascreen.resx">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
     </EmbeddedResource>
