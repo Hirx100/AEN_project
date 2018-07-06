@@ -13,18 +13,17 @@ namespace AEN
 {
     public partial class Userdatascreen : Form
     {       DBConnect dataConnect = new DBConnect ();
-           Class1 userDataClaim= new Class1();
-            
+            Class1 userDataClaim= new Class1();
+        string test;
  
         public Userdatascreen()
         {
             InitializeComponent();
-
             userDataClaim.Valami();
             userDataScreenNameTextBox.Text = userDataClaim.dataOut;
-            MessageBox.Show(userDataClaim.dataOut);
+           MessageBox.Show(userDataClaim.dataOut);
         }
-
+ 
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -54,10 +53,5 @@ namespace AEN
 
         #endregion
 
-        public string UserDataScreenNameTextBox
-        {
-            get { return userDataScreenNameTextBox.Text; }
-            set{ userDataScreenNameTextBox.Text = value; }
-        }
     }
 }

@@ -54,7 +54,7 @@ namespace AEN
         //login process trigger
         private void logInbutton_Click(object sender, EventArgs e)
         {
-            
+
             DBConnect pass = new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
             userName = userNameTextBox.Text;
@@ -92,7 +92,7 @@ namespace AEN
 
             }
         }
-        
+
         #region borderless form movable
         protected override void WndProc(ref Message m)
         {
@@ -110,6 +110,10 @@ namespace AEN
         }
         #endregion
 
-        
+        public string Username
+        {
+            get { return userNameTextBox.Text; }
+            set { userNameTextBox.Text = value; }
+        }
     }
 }
