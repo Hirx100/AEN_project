@@ -16,9 +16,9 @@ namespace AEN
         private string username;
         private string permName;
         private int permNummber;
-        
+        private string truename;
         List<string> dataList = new List<string>();
-        
+
 
 
 
@@ -39,9 +39,11 @@ namespace AEN
             }
             
             
-            MySqlCommand cmd = new MySqlCommand("aenUserDataSelect");
+            MySqlCommand cmd = new MySqlCommand("aenUserDataSelect", dataUse.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_username", username);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
 
 
             /*MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -50,7 +52,11 @@ namespace AEN
             da.Fill(dt);
             */
 
-            dataOut.userDataScreenNameTextBox.text= ()
+
+
+            string truename = dataOut.UserDataScreenNameTextBox;
+            dataOut.UserDataScreenNameTextBox = (dr["name"].ToString());
+
 
 
 

@@ -11,7 +11,7 @@ namespace AEN
 {
     class DBConnect
     {
-        private MySqlConnection connection;
+        public MySqlConnection connection;
         private string server;
         private string database;
         private string uid;

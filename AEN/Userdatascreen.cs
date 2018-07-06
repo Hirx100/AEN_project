@@ -30,7 +30,6 @@ namespace AEN
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
         
         #region borderless form movable
         protected override void WndProc(ref Message m)
@@ -47,7 +46,14 @@ namespace AEN
             base.WndProc(ref m);
         }
 
+
+
         #endregion
 
+        public string UserDataScreenNameTextBox
+        {
+            get { return userDataScreenNameTextBox.Text; }
+            set{ userDataScreenNameTextBox.Text = value; }
+        }
     }
 }
