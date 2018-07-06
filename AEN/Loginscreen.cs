@@ -54,9 +54,10 @@ namespace AEN
         //login process trigger
         private void logInbutton_Click(object sender, EventArgs e)
         {
-            userName = userNameTextBox.Text;
+            
             DBConnect pass = new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
+            userName = userNameTextBox.Text;
             permValue = perm.Value;
 
 

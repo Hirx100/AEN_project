@@ -48,9 +48,9 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.minimizeButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).BeginInit();
@@ -61,8 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             this.SuspendLayout();
             // 
             // menuButtonLabel1
@@ -266,17 +266,6 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
-            // minimizeButton
-            // 
-            this.minimizeButton.Image = global::AEN.Properties.Resources.minimize_button;
-            this.minimizeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.minimizeButton.Location = new System.Drawing.Point(718, 12);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(32, 32);
-            this.minimizeButton.TabIndex = 3;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
-            // 
             // exitButton
             // 
             this.exitButton.Image = global::AEN.Properties.Resources.exit_button;
@@ -297,6 +286,17 @@
             this.button2.Text = "testform";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Image = global::AEN.Properties.Resources.minimize_button;
+            this.minimizeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.minimizeButton.Location = new System.Drawing.Point(718, 12);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(32, 32);
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.TabStop = false;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // Main
             // 
@@ -340,16 +340,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox minimizeButton;
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -371,5 +369,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox logOutButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox minimizeButton;
     }
 }

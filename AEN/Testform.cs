@@ -19,8 +19,8 @@ namespace AEN
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Class1 test = new Class1();
-            test.Valami();
+            Class1 test;
+            //test.Valami();
             string[] testarray = new string[5];
             MessageBox.Show(testarray[2]);
         }

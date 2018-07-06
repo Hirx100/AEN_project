@@ -13,12 +13,16 @@ namespace AEN
 {
     public partial class Userdatascreen : Form
     {       DBConnect dataConnect = new DBConnect ();
-            Class1 userData = new Class1();
+           Class1 userDataClaim= new Class1();
+            
+ 
         public Userdatascreen()
         {
             InitializeComponent();
 
-
+            userDataClaim.Valami();
+            userDataScreenNameTextBox.Text = userDataClaim.dataOut;
+            MessageBox.Show(userDataClaim.dataOut);
         }
 
         private void exitButton_Click(object sender, EventArgs e)

@@ -11,16 +11,18 @@ namespace AEN
     class Class1
     {   Loginscreen dataIn = new Loginscreen();
         DBConnect dataUse = new DBConnect();
-        Userdatascreen dataOut = new Userdatascreen();
+        public string dataOut; 
 
-        private string username;
+        public string username;
         private string permName;
         private int permNummber;
         private string truename;
-        List<string> dataList = new List<string>();
 
 
 
+        
+
+        
 
 
         public void Valami()
@@ -37,11 +39,11 @@ namespace AEN
                 case 103: { permName = "parent";break; }
                 case 104: { permName = "student";break; }
             }
-            
-            
-            MySqlCommand cmd = new MySqlCommand("aenUserDataSelect", dataUse.connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_username", username);
+
+            string mysqlquery = "Select * From `teacher` where `user_name` = '" + username+"'";
+            MySqlCommand cmd = new MySqlCommand(mysqlquery, dataUse.connection);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("_username", username);
             MySqlDataReader dr = cmd.ExecuteReader();
 
 
@@ -52,10 +54,8 @@ namespace AEN
             da.Fill(dt);
             */
 
-
-
-            string truename = dataOut.UserDataScreenNameTextBox;
-            dataOut.UserDataScreenNameTextBox = (dr["name"].ToString());
+            if (dr.Read())
+                dataOut = (dr["name"].ToString());
 
 
 
