@@ -52,14 +52,21 @@ namespace AEN
 
         private void userDataButton_Click(object sender, EventArgs e)
         {
-            Userdatascreen jump = new Userdatascreen();
-            jump.Show();
+            Userdatascreen userJump = new Userdatascreen();
+            userJump.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Testform jump = new Testform();
             jump.Show();
+        }
+
+        private void markOperatorButton_Click(object sender, EventArgs e)
+        {
+            Markoperator markJump = new Markoperator();
+            markJump.Show();
+            this.Close();
         }
     }
 }

@@ -38,40 +38,41 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.userDataButton = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.markOperatorButton = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.exitButton = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
+            this.exitButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
             // 
             // menuButtonLabel1
             // 
             this.menuButtonLabel1.AutoSize = true;
+            this.menuButtonLabel1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.menuButtonLabel1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.menuButtonLabel1.Location = new System.Drawing.Point(211, 173);
+            this.menuButtonLabel1.Location = new System.Drawing.Point(208, 173);
             this.menuButtonLabel1.Name = "menuButtonLabel1";
-            this.menuButtonLabel1.Size = new System.Drawing.Size(47, 13);
+            this.menuButtonLabel1.Size = new System.Drawing.Size(56, 20);
             this.menuButtonLabel1.TabIndex = 7;
             this.menuButtonLabel1.Text = "Tanárok";
             this.menuButtonLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -79,10 +80,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(211, 285);
+            this.label1.Location = new System.Drawing.Point(200, 285);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(68, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Osztályok";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -90,10 +92,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(365, 285);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(54, 20);
             this.label2.TabIndex = 13;
             this.label2.Text = "Jegyek";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,10 +104,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.Location = new System.Drawing.Point(365, 173);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 13);
+            this.label3.Size = new System.Drawing.Size(50, 20);
             this.label3.TabIndex = 12;
             this.label3.Text = "Szülők";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,10 +127,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(519, 173);
+            this.label5.Location = new System.Drawing.Point(517, 173);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.Size = new System.Drawing.Size(50, 20);
             this.label5.TabIndex = 17;
             this.label5.Text = "Diákok";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,10 +139,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.Location = new System.Drawing.Point(219, 397);
+            this.label6.Location = new System.Drawing.Point(216, 397);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
+            this.label6.Size = new System.Drawing.Size(37, 20);
             this.label6.TabIndex = 19;
             this.label6.Text = "Órák";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,10 +151,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label7.Location = new System.Drawing.Point(358, 397);
+            this.label7.Location = new System.Drawing.Point(352, 397);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.Size = new System.Drawing.Size(73, 20);
             this.label7.TabIndex = 20;
             this.label7.Text = "Tantárgyak";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -156,13 +163,24 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label8.Location = new System.Drawing.Point(495, 397);
+            this.label8.Location = new System.Drawing.Point(482, 397);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(95, 13);
+            this.label8.Size = new System.Drawing.Size(120, 20);
             this.label8.TabIndex = 21;
             this.label8.Text = "Felhasználó adatai";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(680, 231);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "testform";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // logOutButton
             // 
@@ -206,15 +224,16 @@
             this.pictureBox9.TabIndex = 14;
             this.pictureBox9.TabStop = false;
             // 
-            // pictureBox4
+            // markOperatorButton
             // 
-            this.pictureBox4.Image = global::AEN.Properties.Resources.exit_button;
-            this.pictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox4.Location = new System.Drawing.Point(356, 203);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox4.TabIndex = 11;
-            this.pictureBox4.TabStop = false;
+            this.markOperatorButton.Image = global::AEN.Properties.Resources.control_book_button;
+            this.markOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.markOperatorButton.Location = new System.Drawing.Point(356, 203);
+            this.markOperatorButton.Name = "markOperatorButton";
+            this.markOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.markOperatorButton.TabIndex = 11;
+            this.markOperatorButton.TabStop = false;
+            this.markOperatorButton.Click += new System.EventHandler(this.markOperatorButton_Click);
             // 
             // pictureBox5
             // 
@@ -260,32 +279,11 @@
             // 
             this.pictureBox2.Image = global::AEN.Properties.Resources.exit_button;
             this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox2.Location = new System.Drawing.Point(202, 91);
+            this.pictureBox2.Location = new System.Drawing.Point(204, 91);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(65, 65);
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
-            // 
-            // exitButton
-            // 
-            this.exitButton.Image = global::AEN.Properties.Resources.exit_button;
-            this.exitButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.exitButton.Location = new System.Drawing.Point(756, 12);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(32, 32);
-            this.exitButton.TabIndex = 2;
-            this.exitButton.TabStop = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(680, 163);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "testform";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // minimizeButton
             // 
@@ -297,6 +295,17 @@
             this.minimizeButton.TabIndex = 3;
             this.minimizeButton.TabStop = false;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Image = global::AEN.Properties.Resources.exit_button;
+            this.exitButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.exitButton.Location = new System.Drawing.Point(756, 12);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(32, 32);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.TabStop = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Main
             // 
@@ -316,7 +325,7 @@
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.markOperatorButton);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.label1);
@@ -334,14 +343,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,7 +365,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox markOperatorButton;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label4;
