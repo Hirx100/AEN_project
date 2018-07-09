@@ -32,15 +32,15 @@
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.userDataScreenUserNameTextBox = new System.Windows.Forms.TextBox();
             this.userDataScreenNewPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.userDataScreenBornDateTextBox = new System.Windows.Forms.DateTimePicker();
+            this.userDataScreenBornDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.userDataScreenNameTextBox = new System.Windows.Forms.TextBox();
+            this.userDataScreenFullNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.userDataScreenNewPasswordAgainTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.userDataScreenCurrentPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.userDataScreenDataChangeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +69,8 @@
             // 
             // userDataScreenUserNameTextBox
             // 
+            this.userDataScreenUserNameTextBox.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.userDataScreenUserNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.userDataScreenUserNameTextBox.Location = new System.Drawing.Point(84, 144);
             this.userDataScreenUserNameTextBox.Name = "userDataScreenUserNameTextBox";
             this.userDataScreenUserNameTextBox.ReadOnly = true;
@@ -79,15 +81,17 @@
             // 
             this.userDataScreenNewPasswordTextBox.Location = new System.Drawing.Point(84, 251);
             this.userDataScreenNewPasswordTextBox.Name = "userDataScreenNewPasswordTextBox";
+            this.userDataScreenNewPasswordTextBox.PasswordChar = '*';
             this.userDataScreenNewPasswordTextBox.Size = new System.Drawing.Size(104, 20);
             this.userDataScreenNewPasswordTextBox.TabIndex = 7;
+            this.userDataScreenNewPasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userDataScreenNewPasswordTextBox_KeyDown);
             // 
-            // userDataScreenBornDateTextBox
+            // userDataScreenBornDatePicker
             // 
-            this.userDataScreenBornDateTextBox.Location = new System.Drawing.Point(68, 195);
-            this.userDataScreenBornDateTextBox.Name = "userDataScreenBornDateTextBox";
-            this.userDataScreenBornDateTextBox.Size = new System.Drawing.Size(136, 20);
-            this.userDataScreenBornDateTextBox.TabIndex = 8;
+            this.userDataScreenBornDatePicker.Location = new System.Drawing.Point(68, 195);
+            this.userDataScreenBornDatePicker.Name = "userDataScreenBornDatePicker";
+            this.userDataScreenBornDatePicker.Size = new System.Drawing.Size(136, 20);
+            this.userDataScreenBornDatePicker.TabIndex = 8;
             // 
             // label1
             // 
@@ -125,12 +129,12 @@
             this.label3.Text = "Születési dátum:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // userDataScreenNameTextBox
+            // userDataScreenFullNameTextBox
             // 
-            this.userDataScreenNameTextBox.Location = new System.Drawing.Point(84, 83);
-            this.userDataScreenNameTextBox.Name = "userDataScreenNameTextBox";
-            this.userDataScreenNameTextBox.Size = new System.Drawing.Size(104, 20);
-            this.userDataScreenNameTextBox.TabIndex = 12;
+            this.userDataScreenFullNameTextBox.Location = new System.Drawing.Point(84, 83);
+            this.userDataScreenFullNameTextBox.Name = "userDataScreenFullNameTextBox";
+            this.userDataScreenFullNameTextBox.Size = new System.Drawing.Size(104, 20);
+            this.userDataScreenFullNameTextBox.TabIndex = 12;
             // 
             // label4
             // 
@@ -151,26 +155,29 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label5.Location = new System.Drawing.Point(76, 274);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 20);
+            this.label5.Size = new System.Drawing.Size(124, 20);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Jelszó ismétlés:";
+            this.label5.Text = "Jelenlegi Jelszó:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // userDataScreenNewPasswordAgainTextBox
+            // userDataScreenCurrentPasswordTextBox
             // 
-            this.userDataScreenNewPasswordAgainTextBox.Location = new System.Drawing.Point(84, 302);
-            this.userDataScreenNewPasswordAgainTextBox.Name = "userDataScreenNewPasswordAgainTextBox";
-            this.userDataScreenNewPasswordAgainTextBox.Size = new System.Drawing.Size(104, 20);
-            this.userDataScreenNewPasswordAgainTextBox.TabIndex = 14;
+            this.userDataScreenCurrentPasswordTextBox.Location = new System.Drawing.Point(84, 302);
+            this.userDataScreenCurrentPasswordTextBox.Name = "userDataScreenCurrentPasswordTextBox";
+            this.userDataScreenCurrentPasswordTextBox.PasswordChar = '*';
+            this.userDataScreenCurrentPasswordTextBox.Size = new System.Drawing.Size(104, 20);
+            this.userDataScreenCurrentPasswordTextBox.TabIndex = 14;
+            this.userDataScreenCurrentPasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userDataScreenCurrentPasswordTextBox_KeyDown);
             // 
-            // button1
+            // userDataScreenDataChangeButton
             // 
-            this.button1.Location = new System.Drawing.Point(67, 338);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 34);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.userDataScreenDataChangeButton.Location = new System.Drawing.Point(67, 338);
+            this.userDataScreenDataChangeButton.Name = "userDataScreenDataChangeButton";
+            this.userDataScreenDataChangeButton.Size = new System.Drawing.Size(137, 34);
+            this.userDataScreenDataChangeButton.TabIndex = 16;
+            this.userDataScreenDataChangeButton.Text = "Módosítás";
+            this.userDataScreenDataChangeButton.UseVisualStyleBackColor = true;
+            this.userDataScreenDataChangeButton.Click += new System.EventHandler(this.userDataScreenDataChangeButton_Click);
             // 
             // Userdatascreen
             // 
@@ -178,15 +185,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(263, 393);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.userDataScreenDataChangeButton);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.userDataScreenNewPasswordAgainTextBox);
+            this.Controls.Add(this.userDataScreenCurrentPasswordTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.userDataScreenNameTextBox);
+            this.Controls.Add(this.userDataScreenFullNameTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.userDataScreenBornDateTextBox);
+            this.Controls.Add(this.userDataScreenBornDatePicker);
             this.Controls.Add(this.userDataScreenNewPasswordTextBox);
             this.Controls.Add(this.userDataScreenUserNameTextBox);
             this.Controls.Add(this.minimizeButton);
@@ -208,14 +215,14 @@
         private System.Windows.Forms.PictureBox minimizeButton;
         private System.Windows.Forms.TextBox userDataScreenUserNameTextBox;
         private System.Windows.Forms.TextBox userDataScreenNewPasswordTextBox;
-        private System.Windows.Forms.DateTimePicker userDataScreenBornDateTextBox;
+        private System.Windows.Forms.DateTimePicker userDataScreenBornDatePicker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox userDataScreenNameTextBox;
+        private System.Windows.Forms.TextBox userDataScreenFullNameTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox userDataScreenNewPasswordAgainTextBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox userDataScreenCurrentPasswordTextBox;
+        private System.Windows.Forms.Button userDataScreenDataChangeButton;
     }
 }

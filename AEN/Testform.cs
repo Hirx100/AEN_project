@@ -20,7 +20,7 @@ namespace AEN
         private void button1_Click(object sender, EventArgs e)
         {
             Class1 test;
-            //test.Valami();
+            //test.UserDataSelecter();
             string[] testarray = new string[5];
             MessageBox.Show(testarray[2]);
         }

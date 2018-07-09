@@ -26,7 +26,7 @@ namespace AEN
 
 
 
-        public void Valami()
+        public void UserDataSelecter()
         {
             dataUse.OpenConnection();
 
@@ -114,6 +114,57 @@ namespace AEN
   
             dataUse.CloseConnection();
 
+        }
+
+        public void UserDataupdater()
+        {
+            dataUse.OpenConnection();
+
+            switch (Loginscreen.permValue)
+            {
+                case 101: { break; }
+
+                case 102:   //Teacher data update.
+                    {
+                            MySqlCommand cmd = new MySqlCommand("aenTeacherDataUpdate", dataUse.connection);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("_username", username);
+                            cmd.Parameters.AddWithValue("_name", dataOut[1]);
+                            cmd.Parameters.AddWithValue("_borndate", dataOut[2]);
+                            cmd.Parameters.AddWithValue("_password", dataOut[4]);
+                            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                            cmd.ExecuteNonQuery();
+                        break;
+                    }
+                case 103:   //Parent data update.
+                    {
+                        MySqlCommand cmd = new MySqlCommand("aenParentDataUpdate", dataUse.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+                        cmd.Parameters.AddWithValue("_name", dataOut[1]);
+                        cmd.Parameters.AddWithValue("_borndate", dataOut[2]);
+                        cmd.Parameters.AddWithValue("_password", dataOut[4]);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+                        break;
+                    }
+                case 104:   //Student data update.
+                    {
+                        MySqlCommand cmd = new MySqlCommand("aenStudentDataUpdate", dataUse.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+                        cmd.Parameters.AddWithValue("_name", dataOut[1]);
+                        cmd.Parameters.AddWithValue("_borndate", dataOut[2]);
+                        cmd.Parameters.AddWithValue("_password", dataOut[4]);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+                        break;
+                    }
+            }
+
+
+
+            dataUse.CloseConnection();
         }
     }
 }

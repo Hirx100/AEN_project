@@ -20,12 +20,12 @@ namespace AEN
         public Userdatascreen()
         {   
             InitializeComponent();
-            userDataClaim.Valami();
+            userDataClaim.UserDataSelecter();
             DateTime parsedDate = DateTime.Parse(userDataClaim.dataOut[2]);
 
-            userDataScreenNameTextBox.Text = userDataClaim.dataOut[1];
+            userDataScreenFullNameTextBox.Text = userDataClaim.dataOut[1];
             userDataScreenUserNameTextBox.Text = userDataClaim.dataOut[3];
-            userDataScreenBornDateTextBox.Value = parsedDate;
+            userDataScreenBornDatePicker.Value = parsedDate;
            
         }
  
@@ -58,5 +58,47 @@ namespace AEN
 
         #endregion
 
+        private void userDataScreenDataChangeButton_Click(object sender, EventArgs e)
+        {
+            DateTime PickedDateCheck = DateTime.Parse(userDataClaim.dataOut[2]);
+            string parsedString;
+
+            if (userDataScreenFullNameTextBox.Text != userDataClaim.dataOut[1] ||
+                userDataScreenBornDatePicker.Value != PickedDateCheck ||
+                userDataScreenNewPasswordTextBox.Text != userDataClaim.dataOut[4] &&
+                userDataScreenCurrentPasswordTextBox.Text == userDataClaim.dataOut[4])
+            {
+                userDataClaim.dataOut[1] = userDataScreenFullNameTextBox.Text;
+                parsedString = userDataScreenBornDatePicker.Value.ToString();
+                userDataClaim.dataOut[2] = parsedString;
+                userDataClaim.dataOut[4]= userDataScreenNewPasswordTextBox.Text;
+
+                userDataClaim.UserDataupdater();
+                this.Hide();
+            }
+            else
+            {                   //TODO: csinálni hiba ablakot.(adatmodosítás megerősítés)
+                MessageBox.Show("Hibás jelenlegi jelszó vagy nem történt változás az adatokban");
+            }
+        }
+
+        private void userDataScreenCurrentPasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                userDataScreenDataChangeButton.PerformClick();
+
+            }
+        }
+
+        private void userDataScreenNewPasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (userDataScreenCurrentPasswordTextBox.Text != null)
+                userDataScreenDataChangeButton.PerformClick();
+                //TODO csinálni hiba ablakot.(userdatapass check) 
+            else MessageBox.Show("Nem adtad meg az aktuális jelszabad");
+        }
     }
 }

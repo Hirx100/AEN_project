@@ -66,7 +66,7 @@ namespace AEN
             else
             {
                 if (pass.LoginPasswordCheck(userNameTextBox.Text, passwordTextBox.Text, permValue) == true)
-                {   datastore.Valami();
+                {   datastore.UserDataSelecter();
                     this.Hide();
                     Main mainJump = new Main();
                     mainJump.Show();
