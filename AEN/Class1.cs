@@ -17,9 +17,8 @@ namespace AEN
         
 
         public string username;
-        private string permName;
-        private int permNummber;
-        //public ArrayList dataOut = new ArrayList();
+        private static string permName;
+        //private int permNummber= Loginscreen.permValue;
         public List<string> dataOut = new List<string>();
 
 
@@ -32,40 +31,86 @@ namespace AEN
             dataUse.OpenConnection();
 
             TextBox temporaryTextBox = Application.OpenForms["Loginscreen"].Controls["userNameTextBox"] as TextBox;
-
-            
-            permNummber = dataIn.permValue;
             username = temporaryTextBox.Text;
 
-            switch(permNummber)
+            switch(Loginscreen.permValue)
             {
                 case 101:
-                    { permName = "administrator"; break;
-
+                    { permName = "administrator";
+                        break;
                     }
-                case 102: { permName = "teacher";break; }
-                case 103: { permName = "parent";break; }
-                case 104: { permName = "student";break; }
+                case 102:   //teacher data 
+                    { permName = "teacher";
+                        MySqlCommand cmd = new MySqlCommand("aenTeacherDataSelect", dataUse.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            dataOut.Add(row["teacher_id"].ToString());  //0
+                            dataOut.Add(row["name"].ToString());        //1.
+                            dataOut.Add(row["born_date"].ToString());   //2.
+                            dataOut.Add(row["user_name"].ToString());   //3.
+                            dataOut.Add(row["password"].ToString());    //4.
+                            dataOut.Add(row["active"].ToString());      //5.
+                        }
+                        break;
+                    }
+                case 103:   //parent data
+                    { permName = "parent";
+                        MySqlCommand cmd = new MySqlCommand("aenParentDataSelect", dataUse.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            dataOut.Add(row["parent_id"].ToString());   //0
+                            dataOut.Add(row["name"].ToString());        //1.
+                            dataOut.Add(row["born_date"].ToString());   //2. 
+                            dataOut.Add(row["user_name"].ToString());   //3.
+                            dataOut.Add(row["password"].ToString());    //4.
+                            dataOut.Add(row["teacher_id"].ToString());  //5. 
+                            dataOut.Add(row["active"].ToString());      //6.
+                        }
+                        break;
+                    }
+                case 104:   //student data
+                    { permName = "student";
+                        MySqlCommand cmd = new MySqlCommand("aenStudentDataSelect", dataUse.connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_username", username);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            dataOut.Add(row["student_id"].ToString());  //0
+                            dataOut.Add(row["name"].ToString());        //1.
+                            dataOut.Add(row["born_date"].ToString());   //2.
+                            dataOut.Add(row["user_name"].ToString());   //3.
+                            dataOut.Add(row["password"].ToString());    //4.
+                            dataOut.Add(row["parent_id"].ToString());   //5.
+                            dataOut.Add(row["teacher_id"].ToString());  //6.
+                            dataOut.Add(row["active"].ToString());      //7.
+                        }
+                        break;
+                    }
             }
 
-            MySqlCommand cmd = new MySqlCommand("aenTeacherDataSelect", dataUse.connection);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_username", username);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            cmd.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-             
-            foreach(DataRow row in dt.Rows)
-            {
-                dataOut.Add(row["teacher_id"].ToString());  //0
-                dataOut.Add(row["name"].ToString());        //1.
-                dataOut.Add(row["born_date"].ToString());   //2.
-                dataOut.Add(row["user_name"].ToString());   //3
-                dataOut.Add(row["password"].ToString());    //4.
-                dataOut.Add(row["active"].ToString());      //5.
-            }                                               
   
             dataUse.CloseConnection();
 
@@ -73,10 +118,11 @@ namespace AEN
     }
 }
 
-//MySqlDataReader dataReader = cmd.ExecuteReader();
-//string[] userDataArray = new string[dataReader.FieldCount];    
-            /* 
-                while (dataReader.Read())
+    //TODO: kitörölni ezeket 
+/*  MySqlDataReader dataReader = cmd.ExecuteReader();
+    string[] userDataArray = new string[dataReader.FieldCount];   
+               
+        while (dataReader.Read())
             {
                 dataList[0].Add(dataReader["techer_id"] + "");
                 dataList[1].Add(dataReader["name"] + "");
@@ -85,7 +131,7 @@ namespace AEN
                 dataList[4].Add(dataReader["password"] + "");
                 dataList[5].Add(dataReader["active"] + "");
             }
-            */
+            
 
             //userDataArray[1] = da.ToString();
             /* DataRow row = dt.Rows[0];

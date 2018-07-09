@@ -13,7 +13,7 @@ namespace AEN
 {
     public partial class Loginscreen : Form
     {
-        public int permValue;
+        public static int permValue;
 
         private void Loginscreen_Load(object sender, EventArgs e)
         {
