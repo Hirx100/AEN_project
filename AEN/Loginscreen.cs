@@ -14,7 +14,7 @@ namespace AEN
     public partial class Loginscreen : Form
     {
         public int permValue;
-        public string userName;
+
         private void Loginscreen_Load(object sender, EventArgs e)
         {
 
@@ -54,19 +54,19 @@ namespace AEN
         //login process trigger
         private void logInbutton_Click(object sender, EventArgs e)
         {
-
+            Class1 datastore = new Class1();
             DBConnect pass = new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
-            userName = userNameTextBox.Text;
+
             permValue = perm.Value;
 
-
+            
             if (permValue < 101) // TODO: csinálni hiba ablakot.(jogosúltság)
                 MessageBox.Show("Nem választottál jogusoltságot.");
             else
             {
                 if (pass.LoginPasswordCheck(userNameTextBox.Text, passwordTextBox.Text, permValue) == true)
-                {
+                {   datastore.Valami();
                     this.Hide();
                     Main mainJump = new Main();
                     mainJump.Show();

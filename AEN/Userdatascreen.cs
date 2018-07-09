@@ -14,14 +14,19 @@ namespace AEN
     public partial class Userdatascreen : Form
     {       DBConnect dataConnect = new DBConnect ();
             Class1 userDataClaim= new Class1();
-        string test;
- 
+
+
+
         public Userdatascreen()
-        {
+        {   
             InitializeComponent();
             userDataClaim.Valami();
-            userDataScreenNameTextBox.Text = userDataClaim.dataOut;
-           MessageBox.Show(userDataClaim.dataOut);
+            DateTime parsedDate = DateTime.Parse(userDataClaim.dataOut[2]);
+
+            userDataScreenNameTextBox.Text = userDataClaim.dataOut[1];
+            userDataScreenUserNameTextBox.Text = userDataClaim.dataOut[3];
+            userDataScreenBornDateTextBox.Value = parsedDate;
+           
         }
  
         private void exitButton_Click(object sender, EventArgs e)

@@ -30,16 +30,16 @@
         {
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.userDataScreenUserNameTextBox = new System.Windows.Forms.TextBox();
+            this.userDataScreenNewPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.userDataScreenBornDateTextBox = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.userDataScreenNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.userDataScreenNewPasswordAgainTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
@@ -67,26 +67,27 @@
             this.minimizeButton.TabStop = false;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
-            // textBox1
+            // userDataScreenUserNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 144);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 20);
-            this.textBox1.TabIndex = 6;
+            this.userDataScreenUserNameTextBox.Location = new System.Drawing.Point(84, 144);
+            this.userDataScreenUserNameTextBox.Name = "userDataScreenUserNameTextBox";
+            this.userDataScreenUserNameTextBox.ReadOnly = true;
+            this.userDataScreenUserNameTextBox.Size = new System.Drawing.Size(104, 20);
+            this.userDataScreenUserNameTextBox.TabIndex = 6;
             // 
-            // textBox2
+            // userDataScreenNewPasswordTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 251);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(104, 20);
-            this.textBox2.TabIndex = 7;
+            this.userDataScreenNewPasswordTextBox.Location = new System.Drawing.Point(84, 251);
+            this.userDataScreenNewPasswordTextBox.Name = "userDataScreenNewPasswordTextBox";
+            this.userDataScreenNewPasswordTextBox.Size = new System.Drawing.Size(104, 20);
+            this.userDataScreenNewPasswordTextBox.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // userDataScreenBornDateTextBox
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(68, 195);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(136, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.userDataScreenBornDateTextBox.Location = new System.Drawing.Point(68, 195);
+            this.userDataScreenBornDateTextBox.Name = "userDataScreenBornDateTextBox";
+            this.userDataScreenBornDateTextBox.Size = new System.Drawing.Size(136, 20);
+            this.userDataScreenBornDateTextBox.TabIndex = 8;
             // 
             // label1
             // 
@@ -155,12 +156,12 @@
             this.label5.Text = "Jelszó ismétlés:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox4
+            // userDataScreenNewPasswordAgainTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(84, 302);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(104, 20);
-            this.textBox4.TabIndex = 14;
+            this.userDataScreenNewPasswordAgainTextBox.Location = new System.Drawing.Point(84, 302);
+            this.userDataScreenNewPasswordAgainTextBox.Name = "userDataScreenNewPasswordAgainTextBox";
+            this.userDataScreenNewPasswordAgainTextBox.Size = new System.Drawing.Size(104, 20);
+            this.userDataScreenNewPasswordAgainTextBox.TabIndex = 14;
             // 
             // button1
             // 
@@ -179,15 +180,15 @@
             this.ClientSize = new System.Drawing.Size(263, 393);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.userDataScreenNewPasswordAgainTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.userDataScreenNameTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.userDataScreenBornDateTextBox);
+            this.Controls.Add(this.userDataScreenNewPasswordTextBox);
+            this.Controls.Add(this.userDataScreenUserNameTextBox);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -205,16 +206,16 @@
 
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.PictureBox minimizeButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox userDataScreenUserNameTextBox;
+        private System.Windows.Forms.TextBox userDataScreenNewPasswordTextBox;
+        private System.Windows.Forms.DateTimePicker userDataScreenBornDateTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox userDataScreenNameTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox userDataScreenNewPasswordAgainTextBox;
         private System.Windows.Forms.Button button1;
     }
 }

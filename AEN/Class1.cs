@@ -1,71 +1,74 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AEN
 {
     class Class1
     {   Loginscreen dataIn = new Loginscreen();
         DBConnect dataUse = new DBConnect();
-        public string dataOut; 
+        
 
         public string username;
         private string permName;
         private int permNummber;
-        private string truename;
+        //public ArrayList dataOut = new ArrayList();
+        public List<string> dataOut = new List<string>();
 
 
 
-        
 
-        
 
 
         public void Valami()
         {
             dataUse.OpenConnection();
 
-            username=dataIn.userName;
-            permNummber= dataIn.permValue;
+            TextBox temporaryTextBox = Application.OpenForms["Loginscreen"].Controls["userNameTextBox"] as TextBox;
+
+            
+            permNummber = dataIn.permValue;
+            username = temporaryTextBox.Text;
 
             switch(permNummber)
             {
-                case 101: { permName = "administrator"; break;}
+                case 101:
+                    { permName = "administrator"; break;
+
+                    }
                 case 102: { permName = "teacher";break; }
                 case 103: { permName = "parent";break; }
                 case 104: { permName = "student";break; }
             }
 
-            string mysqlquery = "Select * From `teacher` where `user_name` = '" + username+"'";
-            MySqlCommand cmd = new MySqlCommand(mysqlquery, dataUse.connection);
-            //cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("_username", username);
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-
-
-            /*MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            MySqlCommand cmd = new MySqlCommand("aenTeacherDataSelect", dataUse.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("_username", username);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             cmd.ExecuteNonQuery();
+
             DataTable dt = new DataTable();
             da.Fill(dt);
-            */
-
-            if (dr.Read())
-                dataOut = (dr["name"].ToString());
-
-
-
-
-
+             
+            foreach(DataRow row in dt.Rows)
+            {
+                dataOut.Add(row["teacher_id"].ToString());  //0
+                dataOut.Add(row["name"].ToString());        //1.
+                dataOut.Add(row["born_date"].ToString());   //2.
+                dataOut.Add(row["user_name"].ToString());   //3
+                dataOut.Add(row["password"].ToString());    //4.
+                dataOut.Add(row["active"].ToString());      //5.
+            }                                               
+  
             dataUse.CloseConnection();
 
-           
-           
-            
         }
     }
 }
