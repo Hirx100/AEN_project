@@ -109,9 +109,13 @@ CREATE TABLE `mark` (
   `student_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `subject_ID` int(11) NOT NULL,
+  `mark_number` int(1) NOT NULL,
   `description` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `weighting` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `weighting`) VALUES
+(1, 1, 1, 1, 5, 'Ókor csodái.', 2);
 
 DROP TABLE IF EXISTS `omission`;
 CREATE TABLE `omission` (
@@ -152,13 +156,16 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`, `active`) VALUES
-(3, ' Jhon Snow', '1996-04-08', 'JhSn', 'nem', 1, 1, 1, b'1');
+(1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1, b'1');
 
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE `subject` (
   `subject_ID` int(11) NOT NULL,
   `subject_name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+INSERT INTO `subject` (`subject_ID`, `subject_name`) VALUES
+(1, 'Történelem');
 
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -171,7 +178,7 @@ CREATE TABLE `teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`, `active`) VALUES
-(1, 'Teszt Elemér', '1960-02-18', 'TeEl', '1234', b'1');
+(1, 'Teszt Elek', '1960-02-18', 'TeEl', '1234', b'1');
 
 
 ALTER TABLE `class`
@@ -218,7 +225,7 @@ ALTER TABLE `lesson`
   MODIFY `lesson_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `mark`
-  MODIFY `mark_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mark_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `omission`
   MODIFY `omission_ID` int(11) NOT NULL AUTO_INCREMENT;
@@ -230,7 +237,7 @@ ALTER TABLE `student`
   MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 ALTER TABLE `subject`
-  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `teacher`
   MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

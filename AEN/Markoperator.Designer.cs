@@ -31,9 +31,11 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
+            this.markDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // logOutButton
@@ -69,21 +71,31 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // Form1
+            // markDataGridView
+            // 
+            this.markDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.markDataGridView.Location = new System.Drawing.Point(59, 101);
+            this.markDataGridView.Name = "markDataGridView";
+            this.markDataGridView.Size = new System.Drawing.Size(690, 287);
+            this.markDataGridView.TabIndex = 26;
+            // 
+            // Markoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.markDataGridView);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "Markoperator";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -93,5 +105,6 @@
         private System.Windows.Forms.PictureBox logOutButton;
         private System.Windows.Forms.PictureBox minimizeButton;
         private System.Windows.Forms.PictureBox exitButton;
+        private System.Windows.Forms.DataGridView markDataGridView;
     }
 }

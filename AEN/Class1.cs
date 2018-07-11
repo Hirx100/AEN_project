@@ -115,7 +115,7 @@ namespace AEN
             dataUse.CloseConnection();
 
         }
-
+                            //TODO: kód egyszerűsítés
         public void UserDataupdater()
         {
             dataUse.OpenConnection();
