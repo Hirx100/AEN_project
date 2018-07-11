@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace AEN
 {
     public partial class Markoperator : Form
     {
+        DBConnect dataviwe = new DBConnect();
         public Markoperator()
         {
             InitializeComponent();
@@ -33,5 +35,18 @@ namespace AEN
             Loginscreen logJump = new Loginscreen();
             logJump.Show();
         }
-    }
+
+        void GridFill()
+        {
+            
+                dataviwe.OpenConnection();
+                MySqlDataAdapter sqlDa = new MySqlDataAdapter("tetelek_view", dataviwe.connection);
+                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataTable dtblTetel = new DataTable();
+                sqlDa.Fill(dtblTetel);
+                markDataGridView.DataSource = dtblTetel;
+                markDataGridView.Columns[6].Visible = false;
+            
+
+        }
 }

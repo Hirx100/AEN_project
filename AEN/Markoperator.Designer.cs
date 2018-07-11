@@ -32,10 +32,15 @@
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.markDataGridView = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // logOutButton
@@ -74,17 +79,51 @@
             // markDataGridView
             // 
             this.markDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.markDataGridView.Location = new System.Drawing.Point(59, 101);
+            this.markDataGridView.Location = new System.Drawing.Point(275, 50);
             this.markDataGridView.Name = "markDataGridView";
-            this.markDataGridView.Size = new System.Drawing.Size(690, 287);
+            this.markDataGridView.Size = new System.Drawing.Size(475, 287);
             this.markDataGridView.TabIndex = 26;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(275, 357);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(474, 254);
+            this.panel1.TabIndex = 27;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(17, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(198, 21);
+            this.comboBox1.TabIndex = 0;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(17, 139);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(97, 21);
+            this.comboBox2.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.comboBox2);
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Location = new System.Drawing.Point(22, 50);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(230, 286);
+            this.panel2.TabIndex = 28;
             // 
             // Markoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 666);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.markDataGridView);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.minimizeButton);
@@ -96,6 +135,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -106,5 +146,9 @@
         private System.Windows.Forms.PictureBox minimizeButton;
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.DataGridView markDataGridView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Panel panel2;
     }
 }
