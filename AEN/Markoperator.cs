@@ -17,8 +17,10 @@ namespace AEN
         public Markoperator()
         {
             InitializeComponent();
+            GridFill();
         }
 
+        
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -40,14 +42,14 @@ namespace AEN
         {
 
             dataviwe.OpenConnection();
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter("tetelek_view", dataviwe.connection);
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenMarkSelect", dataviwe.connection);
             sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             DataTable dtblTetel = new DataTable();
             sqlDa.Fill(dtblTetel);
             markDataGridView.DataSource = dtblTetel;
-            markDataGridView.Columns[6].Visible = false;
-
-
+            markDataGridView.Columns["teacher_ID"].Visible = false;
+            markDataGridView.Columns["teacher_ID"].Visible = false;
+            markDataGridView.Columns["teacher_ID"].Visible = false;
         }
     }
 }
