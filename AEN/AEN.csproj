@@ -89,6 +89,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\MarkControlPanels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\MarkControlPanels.Designer.cs">
+      <DependentUpon>MarkControlPanels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Userdatascreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="Testform.resx">
       <DependentUpon>Testform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MarkControlPanels.resx">
+      <DependentUpon>MarkControlPanels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Userdatascreen.resx">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
@@ -160,5 +169,6 @@
   <ItemGroup>
     <None Include="Resources\control_book_button.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

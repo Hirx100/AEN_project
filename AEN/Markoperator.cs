@@ -38,15 +38,16 @@ namespace AEN
 
         void GridFill()
         {
-            
-                dataviwe.OpenConnection();
-                MySqlDataAdapter sqlDa = new MySqlDataAdapter("tetelek_view", dataviwe.connection);
-                sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                DataTable dtblTetel = new DataTable();
-                sqlDa.Fill(dtblTetel);
-                markDataGridView.DataSource = dtblTetel;
-                markDataGridView.Columns[6].Visible = false;
-            
+
+            dataviwe.OpenConnection();
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter("tetelek_view", dataviwe.connection);
+            sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dtblTetel = new DataTable();
+            sqlDa.Fill(dtblTetel);
+            markDataGridView.DataSource = dtblTetel;
+            markDataGridView.Columns[6].Visible = false;
+
 
         }
+    }
 }
