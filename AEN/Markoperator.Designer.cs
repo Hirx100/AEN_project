@@ -33,11 +33,19 @@
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.markDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.markControlPanels1 = new AEN.UserControls.MarkControlPanels();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.activeCheckBox = new System.Windows.Forms.CheckBox();
+            this.classComboBox = new System.Windows.Forms.ComboBox();
+            this.studenNameCombobox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // logOutButton
@@ -88,12 +96,77 @@
             this.panel1.Size = new System.Drawing.Size(474, 254);
             this.panel1.TabIndex = 27;
             // 
-            // markControlPanels1
+            // panel2
             // 
-            this.markControlPanels1.Location = new System.Drawing.Point(35, 12);
-            this.markControlPanels1.Name = "markControlPanels1";
-            this.markControlPanels1.Size = new System.Drawing.Size(241, 336);
-            this.markControlPanels1.TabIndex = 28;
+            this.panel2.Controls.Add(this.endDateTimePicker);
+            this.panel2.Controls.Add(this.startDateTimePicker);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.activeCheckBox);
+            this.panel2.Controls.Add(this.classComboBox);
+            this.panel2.Controls.Add(this.studenNameCombobox);
+            this.panel2.Location = new System.Drawing.Point(39, 50);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(230, 286);
+            this.panel2.TabIndex = 30;
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Location = new System.Drawing.Point(85, 248);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.endDateTimePicker.TabIndex = 6;
+            // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.Location = new System.Drawing.Point(82, 207);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(133, 20);
+            this.startDateTimePicker.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(82, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Tanuló:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(17, 163);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(196, 21);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // activeCheckBox
+            // 
+            this.activeCheckBox.AutoSize = true;
+            this.activeCheckBox.Location = new System.Drawing.Point(135, 110);
+            this.activeCheckBox.Name = "activeCheckBox";
+            this.activeCheckBox.Size = new System.Drawing.Size(78, 17);
+            this.activeCheckBox.TabIndex = 2;
+            this.activeCheckBox.Text = "Csak aktív";
+            this.activeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // classComboBox
+            // 
+            this.classComboBox.FormattingEnabled = true;
+            this.classComboBox.Location = new System.Drawing.Point(17, 108);
+            this.classComboBox.Name = "classComboBox";
+            this.classComboBox.Size = new System.Drawing.Size(44, 21);
+            this.classComboBox.TabIndex = 1;
+            // 
+            // studenNameCombobox
+            // 
+            this.studenNameCombobox.FormattingEnabled = true;
+            this.studenNameCombobox.Location = new System.Drawing.Point(17, 61);
+            this.studenNameCombobox.Name = "studenNameCombobox";
+            this.studenNameCombobox.Size = new System.Drawing.Size(198, 21);
+            this.studenNameCombobox.TabIndex = 0;
             // 
             // Markoperator
             // 
@@ -101,8 +174,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(800, 666);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.markDataGridView);
-            this.Controls.Add(this.markControlPanels1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.minimizeButton);
@@ -114,6 +187,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,6 +200,13 @@
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.DataGridView markDataGridView;
         private System.Windows.Forms.Panel panel1;
-        private UserControls.MarkControlPanels markControlPanels1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DateTimePicker endDateTimePicker;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox activeCheckBox;
+        private System.Windows.Forms.ComboBox classComboBox;
+        public System.Windows.Forms.ComboBox studenNameCombobox;
     }
 }
