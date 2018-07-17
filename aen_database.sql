@@ -12,6 +12,23 @@ CREATE DATABASE IF NOT EXISTS `aen_database` DEFAULT CHARACTER SET latin1 COLLAT
 USE `aen_database`;
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `aenClassSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenClassSelect` ()  NO SQL
+BEGIN
+Select * from class;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenMarkSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
+BEGIN
+SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
+FROM mark
+INNER JOIN subject on mark.subject_ID= subject.subject_ID
+INNER JOIN student on mark.student_ID= student.student_ID
+INNER JOIN teacher on mark.teacher_ID= student.student_ID
+WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer);
+END$$
+
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentDataSelect` (IN `_username` VARCHAR(10))  NO SQL
 BEGIN
@@ -56,6 +73,18 @@ BEGIN
 Select * From `student` where `user_name` = _username and `password` = _password; 
 END$$
 
+DROP PROCEDURE IF EXISTS `aenStudentsSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentsSelect` ()  NO SQL
+BEGIN
+Select * From student; 
+END$$
+
+DROP PROCEDURE IF EXISTS `aenSubjectSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenSubjectSelect` ()  NO SQL
+BEGIN
+Select * from subject;
+END$$
+
 DROP PROCEDURE IF EXISTS `aenTeacherDataSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherDataSelect` (IN `_username` VARCHAR(40))  NO SQL
 BEGIN
@@ -85,10 +114,10 @@ CREATE TABLE `class` (
   `class_start` date NOT NULL,
   `start_number` int(11) NOT NULL,
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
-  ` class_year` int(11) NOT NULL
+  `class_year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, ` class_year`) VALUES
+INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, `class_year`) VALUES
 (1, '2010-09-01', 1, 'A', 1);
 
 DROP TABLE IF EXISTS `lesson`;
@@ -111,11 +140,11 @@ CREATE TABLE `mark` (
   `subject_ID` int(11) NOT NULL,
   `mark_number` int(1) NOT NULL,
   `description` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `weighting` int(11) NOT NULL
+  `mark_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `weighting`) VALUES
-(1, 1, 1, 1, 5, 'Ókor csodái.', 2);
+INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) VALUES
+(1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21');
 
 DROP TABLE IF EXISTS `omission`;
 CREATE TABLE `omission` (
@@ -165,7 +194,8 @@ CREATE TABLE `subject` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `subject` (`subject_ID`, `subject_name`) VALUES
-(1, 'Történelem');
+(1, 'Történelem'),
+(2, 'Matematika');
 
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -234,10 +264,10 @@ ALTER TABLE `parent`
   MODIFY `parent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `student`
-  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `subject`
-  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `teacher`
   MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

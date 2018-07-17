@@ -88,16 +88,16 @@
             // markDataGridView
             // 
             this.markDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.markDataGridView.Location = new System.Drawing.Point(275, 50);
+            this.markDataGridView.Location = new System.Drawing.Point(12, 50);
             this.markDataGridView.Name = "markDataGridView";
-            this.markDataGridView.Size = new System.Drawing.Size(475, 287);
+            this.markDataGridView.Size = new System.Drawing.Size(776, 287);
             this.markDataGridView.TabIndex = 26;
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(275, 357);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(474, 254);
+            this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
             // 
             // panel2
@@ -113,7 +113,7 @@
             this.panel2.Controls.Add(this.activeCheckBox);
             this.panel2.Controls.Add(this.classComboBox);
             this.panel2.Controls.Add(this.studenNameCombobox);
-            this.panel2.Location = new System.Drawing.Point(12, 50);
+            this.panel2.Location = new System.Drawing.Point(12, 357);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(257, 286);
             this.panel2.TabIndex = 30;
