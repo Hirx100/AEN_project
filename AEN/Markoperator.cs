@@ -17,9 +17,10 @@ namespace AEN
         public Markoperator()
         {
             InitializeComponent();
-            MarkGridFill();
+            
             ClassFill();
-            Subject();
+            SubjectFill();
+            MarkGridFill();
         }
 
         
@@ -68,7 +69,7 @@ namespace AEN
 
             dataviwe.CloseConnection();
         }
-        void Subject()
+        void SubjectFill()
         {
             dataviwe.OpenConnection();
             MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenSubjectSelect", dataviwe.connection);
@@ -93,10 +94,24 @@ namespace AEN
         }
         void MarkGridFill()
         {
-
+            KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+            string selectClassSign;
+            string nummerPlaceholder;
+            int selectClassNummer;
+            string selectTrueClass = selectedClass.Key;
+            char[] charPlacehorder = new char[selectTrueClass.Length];
+            charPlacehorder = selectTrueClass.ToCharArray();
+            selectClassSign = charPlacehorder[1].ToString();
+            nummerPlaceholder = charPlacehorder[0].ToString();
+            selectClassNummer = Int32.Parse(nummerPlaceholder);
+                
+                
             dataviwe.OpenConnection();
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenClassSelect", dataviwe.connection);
-            sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            MySqlCommand cmd = new MySqlCommand("aenMarkSelect", dataviwe.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
+            cmd.Parameters.AddWithValue("_classSign", selectClassSign);
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dTClass = new DataTable();
             sqlDa.Fill(dTClass);
             markDataGridView.DataSource = dTClass;
