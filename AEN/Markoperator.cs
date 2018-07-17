@@ -13,6 +13,7 @@ namespace AEN
 {
     public partial class Markoperator : Form
     {
+        static int gridUsing;
         DBConnect dataviwe = new DBConnect();
         public Markoperator()
         {
@@ -95,6 +96,7 @@ namespace AEN
         void MarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+
             string selectClassSign;
             string nummerPlaceholder;
             int selectClassNummer;
@@ -116,10 +118,18 @@ namespace AEN
             sqlDa.Fill(dTClass);
             markDataGridView.DataSource = dTClass;
 
-            //markDataGridView.Columns["teacher_ID"].Visible = false;
-            //markDataGridView.Columns["mark_ID"].Visible = false;
-            //markDataGridView.Columns["teacher_ID"].Visible = false;
+            if(gridUsing==0)
+            {
+                DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
+                startDateTimePicker.Value = parsedDate;
+                parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
+                endDateTimePicker.Value = parsedDate;
+                gridUsing = 1;
+            }
+            else
+            {
 
+            }
             dataviwe.CloseConnection();
         }
     }

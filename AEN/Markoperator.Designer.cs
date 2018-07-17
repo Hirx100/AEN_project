@@ -102,6 +102,7 @@
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
@@ -181,7 +182,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(96, 29);
+            this.label1.Location = new System.Drawing.Point(105, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 20);
             this.label1.TabIndex = 4;
@@ -189,6 +190,7 @@
             // 
             // subjectComboBox
             // 
+            this.subjectComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.subjectComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.subjectComboBox.FormattingEnabled = true;
             this.subjectComboBox.Location = new System.Drawing.Point(46, 156);
@@ -209,6 +211,7 @@
             // 
             // classComboBox
             // 
+            this.classComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.classComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.classComboBox.FormattingEnabled = true;
             this.classComboBox.Location = new System.Drawing.Point(31, 106);
@@ -218,6 +221,7 @@
             // 
             // studenNameCombobox
             // 
+            this.studenNameCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.studenNameCombobox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.studenNameCombobox.FormattingEnabled = true;
             this.studenNameCombobox.Location = new System.Drawing.Point(31, 52);
