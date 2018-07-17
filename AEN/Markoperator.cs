@@ -13,7 +13,7 @@ namespace AEN
 {
     public partial class Markoperator : Form
     {
-        static int gridUsing;
+        
         DBConnect dataviwe = new DBConnect();
         public Markoperator()
         {
@@ -93,10 +93,11 @@ namespace AEN
 
             dataviwe.CloseConnection();
         }
+                                //markgridvive fill method.
         void MarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
-
+            int gridUsing=0;
             string selectClassSign;
             string nummerPlaceholder;
             int selectClassNummer;
@@ -117,20 +118,42 @@ namespace AEN
             DataTable dTClass = new DataTable();
             sqlDa.Fill(dTClass);
             markDataGridView.DataSource = dTClass;
+            dataviwe.CloseConnection();
 
+            //first time datetimepickers values set
             if(gridUsing==0)
-            {
+            {       
                 DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
                 startDateTimePicker.Value = parsedDate;
                 parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
                 endDateTimePicker.Value = parsedDate;
                 gridUsing = 1;
             }
+            //hide unwanted recordes
             else
-            {
+            {       
+                for (int i = 0; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[0][4].ToString());i++)
+                {
+                    markDataGridView.Rows[i].Visible= false;
+                }
 
+                for(int i=dTClass.Rows.Count-1; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString()); i--)
+                {
+                    markDataGridView.Rows[i].Visible = false;
+                }
             }
-            dataviwe.CloseConnection();
+            
+            
+        }
+
+        private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {   
+            MarkGridFill();
+        }
+
+        private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            MarkGridFill();
         }
     }
 }
