@@ -33,6 +33,11 @@
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.markDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.actualMarkcomboBox = new System.Windows.Forms.ComboBox();
+            this.actualMarkDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.actualTeacherComboBox = new System.Windows.Forms.ComboBox();
+            this.actualSubjectcomboBox = new System.Windows.Forms.ComboBox();
+            this.actualStudentNameComboBox = new System.Windows.Forms.ComboBox();
             this.actualDescriptiontextBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,11 +50,6 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
-            this.actualStudentNameComboBox = new System.Windows.Forms.ComboBox();
-            this.actualSubjectcomboBox = new System.Windows.Forms.ComboBox();
-            this.actualTeacherComboBox = new System.Windows.Forms.ComboBox();
-            this.actualMarkDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.actualMarkcomboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
@@ -93,13 +93,19 @@
             // 
             // markDataGridView
             // 
+            this.markDataGridView.AllowUserToAddRows = false;
+            this.markDataGridView.AllowUserToDeleteRows = false;
+            this.markDataGridView.AllowUserToResizeColumns = false;
+            this.markDataGridView.AllowUserToResizeRows = false;
             this.markDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.markDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             this.markDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.markDataGridView.Location = new System.Drawing.Point(12, 50);
             this.markDataGridView.Name = "markDataGridView";
+            this.markDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.markDataGridView.Size = new System.Drawing.Size(776, 287);
             this.markDataGridView.TabIndex = 26;
+            this.markDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.markDataGridView_RowEnter);
             // 
             // panel1
             // 
@@ -113,6 +119,53 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
+            // 
+            // actualMarkcomboBox
+            // 
+            this.actualMarkcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.actualMarkcomboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualMarkcomboBox.FormattingEnabled = true;
+            this.actualMarkcomboBox.Location = new System.Drawing.Point(56, 53);
+            this.actualMarkcomboBox.Name = "actualMarkcomboBox";
+            this.actualMarkcomboBox.Size = new System.Drawing.Size(44, 28);
+            this.actualMarkcomboBox.TabIndex = 11;
+            // 
+            // actualMarkDateTimePicker
+            // 
+            this.actualMarkDateTimePicker.Location = new System.Drawing.Point(56, 115);
+            this.actualMarkDateTimePicker.Name = "actualMarkDateTimePicker";
+            this.actualMarkDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.actualMarkDateTimePicker.TabIndex = 11;
+            // 
+            // actualTeacherComboBox
+            // 
+            this.actualTeacherComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.actualTeacherComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualTeacherComboBox.FormattingEnabled = true;
+            this.actualTeacherComboBox.Location = new System.Drawing.Point(277, 107);
+            this.actualTeacherComboBox.Name = "actualTeacherComboBox";
+            this.actualTeacherComboBox.Size = new System.Drawing.Size(164, 28);
+            this.actualTeacherComboBox.TabIndex = 11;
+            // 
+            // actualSubjectcomboBox
+            // 
+            this.actualSubjectcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.actualSubjectcomboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualSubjectcomboBox.FormattingEnabled = true;
+            this.actualSubjectcomboBox.Location = new System.Drawing.Point(277, 157);
+            this.actualSubjectcomboBox.Name = "actualSubjectcomboBox";
+            this.actualSubjectcomboBox.Size = new System.Drawing.Size(198, 28);
+            this.actualSubjectcomboBox.TabIndex = 12;
+            // 
+            // actualStudentNameComboBox
+            // 
+            this.actualStudentNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.actualStudentNameComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualStudentNameComboBox.FormattingEnabled = true;
+            this.actualStudentNameComboBox.Location = new System.Drawing.Point(277, 53);
+            this.actualStudentNameComboBox.Name = "actualStudentNameComboBox";
+            this.actualStudentNameComboBox.Size = new System.Drawing.Size(198, 28);
+            this.actualStudentNameComboBox.TabIndex = 11;
             // 
             // actualDescriptiontextBox
             // 
@@ -241,53 +294,6 @@
             this.studenNameCombobox.Size = new System.Drawing.Size(198, 28);
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
-            // 
-            // actualStudentNameComboBox
-            // 
-            this.actualStudentNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.actualStudentNameComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualStudentNameComboBox.FormattingEnabled = true;
-            this.actualStudentNameComboBox.Location = new System.Drawing.Point(277, 53);
-            this.actualStudentNameComboBox.Name = "actualStudentNameComboBox";
-            this.actualStudentNameComboBox.Size = new System.Drawing.Size(198, 28);
-            this.actualStudentNameComboBox.TabIndex = 11;
-            // 
-            // actualSubjectcomboBox
-            // 
-            this.actualSubjectcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.actualSubjectcomboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualSubjectcomboBox.FormattingEnabled = true;
-            this.actualSubjectcomboBox.Location = new System.Drawing.Point(277, 157);
-            this.actualSubjectcomboBox.Name = "actualSubjectcomboBox";
-            this.actualSubjectcomboBox.Size = new System.Drawing.Size(198, 28);
-            this.actualSubjectcomboBox.TabIndex = 12;
-            // 
-            // actualTeacherComboBox
-            // 
-            this.actualTeacherComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.actualTeacherComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualTeacherComboBox.FormattingEnabled = true;
-            this.actualTeacherComboBox.Location = new System.Drawing.Point(277, 107);
-            this.actualTeacherComboBox.Name = "actualTeacherComboBox";
-            this.actualTeacherComboBox.Size = new System.Drawing.Size(164, 28);
-            this.actualTeacherComboBox.TabIndex = 11;
-            // 
-            // actualMarkDateTimePicker
-            // 
-            this.actualMarkDateTimePicker.Location = new System.Drawing.Point(56, 115);
-            this.actualMarkDateTimePicker.Name = "actualMarkDateTimePicker";
-            this.actualMarkDateTimePicker.Size = new System.Drawing.Size(130, 20);
-            this.actualMarkDateTimePicker.TabIndex = 11;
-            // 
-            // actualMarkcomboBox
-            // 
-            this.actualMarkcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.actualMarkcomboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualMarkcomboBox.FormattingEnabled = true;
-            this.actualMarkcomboBox.Location = new System.Drawing.Point(56, 53);
-            this.actualMarkcomboBox.Name = "actualMarkcomboBox";
-            this.actualMarkcomboBox.Size = new System.Drawing.Size(44, 28);
-            this.actualMarkcomboBox.TabIndex = 11;
             // 
             // Markoperator
             // 

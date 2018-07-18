@@ -110,10 +110,5 @@ namespace AEN
         }
         #endregion
 
-        public string Username
-        {
-            get { return userNameTextBox.Text; }
-            set { userNameTextBox.Text = value; }
-        }
     }
 }

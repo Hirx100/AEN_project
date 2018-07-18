@@ -57,7 +57,6 @@ namespace AEN
                             dataOut.Add(row["born_date"].ToString());   //2.
                             dataOut.Add(row["user_name"].ToString());   //3.
                             dataOut.Add(row["password"].ToString());    //4.
-                            dataOut.Add(row["active"].ToString());      //5.
                         }
                         break;
                     }
@@ -80,7 +79,6 @@ namespace AEN
                             dataOut.Add(row["user_name"].ToString());   //3.
                             dataOut.Add(row["password"].ToString());    //4.
                             dataOut.Add(row["teacher_id"].ToString());  //5. 
-                            dataOut.Add(row["active"].ToString());      //6.
                         }
                         break;
                     }
@@ -104,7 +102,6 @@ namespace AEN
                             dataOut.Add(row["password"].ToString());    //4.
                             dataOut.Add(row["parent_id"].ToString());   //5.
                             dataOut.Add(row["teacher_id"].ToString());  //6.
-                            dataOut.Add(row["active"].ToString());      //7.
                         }
                         break;
                     }

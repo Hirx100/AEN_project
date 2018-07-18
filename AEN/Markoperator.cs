@@ -24,12 +24,6 @@ namespace AEN
             SubjectFill();
             StartMarkGridFill();
 
-            if (markDataGridView.SelectedRows.Count > 0)
-            {
-                string description = markDataGridView.SelectedRows[0].Cells[1].Value + string.Empty;
-                actualDescriptiontextBox.Text = description;
-
-            }
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -136,6 +130,7 @@ namespace AEN
             }
 
             studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
+            actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
             for (int i = 0; i < allStudent.Length; i++)
             {
                 studenNameCombobox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i+1) + 400));
@@ -242,5 +237,24 @@ namespace AEN
             RuningMarkGridFill();
         }
 
+        private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            {
+                int index = e.RowIndex;
+                DataGridViewRow selectedRows = markDataGridView.Rows[index];
+
+                string description = selectedRows.Cells["description"].Value + string.Empty;
+                actualDescriptiontextBox.Text = description;
+                actualMarkDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["mark_Date"].Value.ToString());
+
+                for (int i = 400; actualStudentNameComboBox.DisplayMember == selectedRows.Cells["student"].Value.ToString();i++)
+                {
+                    actualStudentNameComboBox.SelectedIndex = i;
+                }
+              //  actualStudentNameComboBox.Text = selectedRows.Cells["student"].Value.ToString();
+              // actualSubjectcomboBox.Text = selectedRows.Cells["subject_name"].Value.ToString();
+              // actualTeacherComboBox.Text = selectedRows.Cells["teacher"].Value.ToString();
+            }
+        }
     }
 }
