@@ -21,7 +21,7 @@ namespace AEN
             
             ClassFill();
             SubjectFill();
-            MarkGridFill();
+            StartMarkGridFill();
         }
 
         
@@ -93,8 +93,11 @@ namespace AEN
 
             dataviwe.CloseConnection();
         }
+
+
+
                                 //markgridvive fill method.
-        void MarkGridFill()
+        void StartMarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
             
@@ -110,7 +113,7 @@ namespace AEN
                 
                 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenMarkSelect", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenMarkStartSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
             cmd.Parameters.AddWithValue("_classSign", selectClassSign);
@@ -120,40 +123,57 @@ namespace AEN
             markDataGridView.DataSource = dTClass;
             dataviwe.CloseConnection();
 
-            //first time datetimepickers values set
-            if(gridUsing==0)
-            {       
-                DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
-                startDateTimePicker.Value = parsedDate;
-                parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
-                endDateTimePicker.Value = parsedDate;
-                gridUsing++;
-            }
-            //hide unwanted recordes
-            else
-            {       
-                for (int i = 1; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[0][4].ToString());i++)
-                {
-                    markDataGridView.Rows[i].Visible= false;
-                }
-
-                for(int i=dTClass.Rows.Count-1; endDateTimePicker.Value == DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString()); i--)
-                {
-                    markDataGridView.Rows[i].Visible = false;
-                }
-            }
-            
+            DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
+            startDateTimePicker.Value = parsedDate;
+            parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
+            endDateTimePicker.Value = parsedDate;
             
         }
 
+        void RuningMarkGridFill()
+        {
+            if (startDateTimePicker.Value > endDateTimePicker.Value)
+            {
+                MessageBox.Show("a kezdő dátum később van mint a befejező dátum");
+            }
+            else
+            {
+                KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+
+                string selectClassSign;
+                string nummerPlaceholder;
+                int selectClassNummer;
+                string selectTrueClass = selectedClass.Key;
+                char[] charPlacehorder = new char[selectTrueClass.Length];
+                charPlacehorder = selectTrueClass.ToCharArray();
+                selectClassSign = charPlacehorder[1].ToString();
+                nummerPlaceholder = charPlacehorder[0].ToString();
+                selectClassNummer = Int32.Parse(nummerPlaceholder);
+
+
+                dataviwe.OpenConnection();
+                MySqlCommand cmd = new MySqlCommand("aenMarkRuningSelect", dataviwe.connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
+                cmd.Parameters.AddWithValue("_classSign", selectClassSign);
+                cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
+                cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
+                MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
+                DataTable dTClass = new DataTable();
+                sqlDa.Fill(dTClass);
+                markDataGridView.DataSource = dTClass;
+                dataviwe.CloseConnection();
+            }
+        }
+
         private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {   
-            MarkGridFill();
+        {
+            RuningMarkGridFill();
         }
 
         private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            MarkGridFill();
+            RuningMarkGridFill();
         }
     }
 }
