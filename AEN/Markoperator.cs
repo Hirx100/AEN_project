@@ -92,7 +92,9 @@ namespace AEN
             subjectComboBox.SelectedIndex = 0;
             subjectComboBox.DisplayMember = "key";
             subjectComboBox.ValueMember = "value";
-
+            actualSubjectcomboBox.SelectedIndex = 0;
+            actualSubjectcomboBox.DisplayMember = "key";
+            actualSubjectcomboBox.ValueMember = "value";
 
             dataviwe.CloseConnection();
         }
@@ -130,15 +132,20 @@ namespace AEN
             }
 
             studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
-            actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
+            
             for (int i = 0; i < allStudent.Length; i++)
             {
                 studenNameCombobox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i+1) + 400));
-                actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i + 1) + 400));
+                actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>(allStudent[i], i + 400));
             }
+
             studenNameCombobox.SelectedIndex = 0;
             studenNameCombobox.DisplayMember = "key";
             studenNameCombobox.ValueMember = "value";
+            actualStudentNameComboBox.SelectedIndex = 0;
+            actualStudentNameComboBox.DisplayMember = "key";
+            actualStudentNameComboBox.ValueMember = "value";
+
             dataviwe.CloseConnection();
 
             DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
@@ -239,22 +246,48 @@ namespace AEN
 
         private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            {
+            
+                KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
+                KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)actualSubjectcomboBox.SelectedItem;
+              //  KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
+
                 int index = e.RowIndex;
                 DataGridViewRow selectedRows = markDataGridView.Rows[index];
+                string parseName;
+                string placehorderName = selectedStudent.Key.ToString();
 
                 string description = selectedRows.Cells["description"].Value + string.Empty;
                 actualDescriptiontextBox.Text = description;
                 actualMarkDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["mark_Date"].Value.ToString());
 
-                for (int i = 400; actualStudentNameComboBox.DisplayMember == selectedRows.Cells["student"].Value.ToString();i++)
-                {
+            {
+                parseName = selectedRows.Cells["student"].Value.ToString();
+                placehorderName = selectedStudent.Key.ToString();
+                for (int i =0;parseName.Equals(placehorderName)==false;i++)
+                {   
                     actualStudentNameComboBox.SelectedIndex = i;
+                    placehorderName = selectedStudent.Key.ToString();
                 }
-              //  actualStudentNameComboBox.Text = selectedRows.Cells["student"].Value.ToString();
-              // actualSubjectcomboBox.Text = selectedRows.Cells["subject_name"].Value.ToString();
-              // actualTeacherComboBox.Text = selectedRows.Cells["teacher"].Value.ToString();
+
             }
+
+            {
+                parseName = selectedRows.Cells["subject_name"].Value.ToString();
+                placehorderName = selectedSubject.Key.ToString();
+                for(int i = 0; parseName.Equals(placehorderName)==false; i++)
+                {
+                    actualSubjectcomboBox.SelectedIndex = i;
+                    placehorderName = selectedSubject.Key.ToString();
+                }
+            }
+
+            {
+                //parseName= 
+
+            }
+              
+              // actualTeacherComboBox.Text = selectedRows.Cells["teacher"].Value.ToString();
+           
         }
     }
 }
