@@ -283,6 +283,7 @@
             this.classComboBox.Name = "classComboBox";
             this.classComboBox.Size = new System.Drawing.Size(44, 28);
             this.classComboBox.TabIndex = 1;
+            this.classComboBox.SelectionChangeCommitted += new System.EventHandler(this.classComboBox_SelectionChangeCommitted);
             // 
             // studenNameCombobox
             // 

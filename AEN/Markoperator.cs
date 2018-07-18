@@ -23,6 +23,7 @@ namespace AEN
             ClassFill();
             SubjectFill();
             StartMarkGridFill();
+            StudentFill();
 
         }
 
@@ -99,6 +100,38 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
+        void StudentFill()
+        {
+            dataviwe.OpenConnection();
+            MySqlCommand cmd = new MySqlCommand("aenStudentsSelect", dataviwe.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
+            DataTable dtStudent = new DataTable();
+            sqlDa.Fill(dtStudent);
+
+            string[] allStudent = new string[dtStudent.Rows.Count];
+            for (int i = 0; i < allStudent.Length; i++)
+            {
+                allStudent[i] = dtStudent.Rows[i][1].ToString();
+            }
+
+            studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
+
+            for (int i = 0; i < allStudent.Length; i++)
+            {
+                studenNameCombobox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i + 1) + 400));
+                actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>(allStudent[i], i + 400));
+            }
+
+            studenNameCombobox.SelectedIndex = 0;
+            studenNameCombobox.DisplayMember = "key";
+            studenNameCombobox.ValueMember = "value";
+            actualStudentNameComboBox.SelectedIndex = 0;
+            actualStudentNameComboBox.DisplayMember = "key";
+            actualStudentNameComboBox.ValueMember = "value";
+
+            dataviwe.CloseConnection();
+        }
                             //markgrid fill 1.time method.
         void StartMarkGridFill()
         {
@@ -121,14 +154,14 @@ namespace AEN
             cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
             cmd.Parameters.AddWithValue("_classSign", selectClassSign);
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-            DataTable dTClass = new DataTable();
-            sqlDa.Fill(dTClass);
-            markDataGridView.DataSource = dTClass;
+            DataTable dtMark = new DataTable();
+            sqlDa.Fill(dtMark);
+            markDataGridView.DataSource = dtMark;
 
-            string[] allStudent = new string[dTClass.Rows.Count];
+        /*    string[] allStudent = new string[dtMark.Rows.Count];
             for (int i = 0; i < allStudent.Length; i++)
             {
-                allStudent[i] = dTClass.Rows[i][3].ToString();
+                allStudent[i] = dtMark.Rows[i][3].ToString();
             }
 
             studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
@@ -144,13 +177,13 @@ namespace AEN
             studenNameCombobox.ValueMember = "value";
             actualStudentNameComboBox.SelectedIndex = 0;
             actualStudentNameComboBox.DisplayMember = "key";
-            actualStudentNameComboBox.ValueMember = "value";
+            actualStudentNameComboBox.ValueMember = "value"; */
 
             dataviwe.CloseConnection();
 
-            DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
+            DateTime parsedDate = DateTime.Parse(dtMark.Rows[0][4].ToString());
             startDateTimePicker.Value = parsedDate;
-            parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
+            parsedDate = DateTime.Parse(dtMark.Rows[dtMark.Rows.Count - 1][4].ToString());
             endDateTimePicker.Value = parsedDate;
             
         }
@@ -198,9 +231,9 @@ namespace AEN
                     cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
                     cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
                     MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-                    DataTable dTClass = new DataTable();
-                    sqlDa.Fill(dTClass);
-                    markDataGridView.DataSource = dTClass;
+                    DataTable dtRunningMark = new DataTable();
+                    sqlDa.Fill(dtRunningMark);
+                    markDataGridView.DataSource = dtRunningMark;
                     dataviwe.CloseConnection();
                 }
             }
@@ -288,6 +321,11 @@ namespace AEN
               
               // actualTeacherComboBox.Text = selectedRows.Cells["teacher"].Value.ToString();
            
+        }
+
+        private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RuningMarkGridFill(); 
         }
     }
 }

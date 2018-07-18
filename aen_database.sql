@@ -19,25 +19,30 @@ Select * from class;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenMarkRuningSelect`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkRuningSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11), IN `_startDate` DATE, IN `_endDate` DATE)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkRuningSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11), IN `_startDate` DATE, IN `_endDate` DATE, IN `_selectedStudent` VARCHAR(40), IN `_selectedSubject` VARCHAR(40))  NO SQL
 BEGIN
 SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
 FROM mark
 INNER JOIN subject on mark.subject_ID= subject.subject_ID
 INNER JOIN student on mark.student_ID= student.student_ID
 INNER JOIN teacher on mark.teacher_ID= student.student_ID
-WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer)AND mark_Date BETWEEN _startDate AND _endDate;
+WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer)
+AND student.name LIKE _selectedStudent
+AND subject.subject_name=_selectedSubject
+AND mark_Date BETWEEN _startDate AND _endDate
+GROUP BY mark.description;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenMarkStartSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
 BEGIN
-SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
+SELECT DISTINCT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
 FROM mark
 INNER JOIN subject on mark.subject_ID= subject.subject_ID
 INNER JOIN student on mark.student_ID= student.student_ID
 INNER JOIN teacher on mark.teacher_ID= student.student_ID
-WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer);
+WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer)
+GROUP BY mark.description;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
@@ -127,26 +132,11 @@ CREATE TABLE IF NOT EXISTS `class` (
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
   `class_year` int(11) NOT NULL,
   PRIMARY KEY (`class_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, `class_year`) VALUES
-(1, '2010-09-01', 1, 'A', 1);
-
-DROP TABLE IF EXISTS `lesson`;
-CREATE TABLE IF NOT EXISTS `lesson` (
-  `lesson_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `hour` int(11) NOT NULL,
-  `content` varchar(200) COLLATE utf8_hungarian_ci NOT NULL,
-  `teacher_ID` int(11) NOT NULL,
-  `class_ID` int(11) NOT NULL,
-  `subject_ID` int(11) NOT NULL,
-  `substituting` bit(1) NOT NULL,
-  PRIMARY KEY (`lesson_ID`),
-  KEY `teacher_ID` (`teacher_ID`,`class_ID`),
-  KEY `class_ID` (`class_ID`),
-  KEY `subject_ID` (`subject_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+(1, '2010-09-01', 1, 'A', 1),
+(2, '2017-09-01', 1, 'B', 1);
 
 DROP TABLE IF EXISTS `mark`;
 CREATE TABLE IF NOT EXISTS `mark` (
@@ -161,10 +151,13 @@ CREATE TABLE IF NOT EXISTS `mark` (
   KEY `teacher_ID` (`teacher_ID`),
   KEY `student_ID` (`student_ID`,`subject_ID`),
   KEY `subject_ID` (`subject_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) VALUES
-(1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21');
+(1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21'),
+(2, 2, 2, 2, 3, 'Összeadás', '2017-05-29'),
+(3, 1, 1, 2, 2, 'Kivonás', '2012-05-22'),
+(4, 1, 1, 2, 3, 'Szorzás', '2012-05-29');
 
 DROP TABLE IF EXISTS `omission`;
 CREATE TABLE IF NOT EXISTS `omission` (
@@ -188,13 +181,13 @@ CREATE TABLE IF NOT EXISTS `parent` (
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `teacher_ID` int(11) NOT NULL,
-  `active` bit(1) NOT NULL,
   PRIMARY KEY (`parent_ID`),
   KEY `teacher_ID` (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`, `active`) VALUES
-(1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1, b'1');
+INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES
+(1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1),
+(2, 'Boldog Árpád', '1969-02-12', 'BoÁr', 'akármi', 2);
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
@@ -206,15 +199,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   `parent_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `class_ID` int(11) NOT NULL,
-  `active` bit(1) NOT NULL,
   PRIMARY KEY (`student_ID`),
   KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
   KEY `class_ID` (`class_ID`),
   KEY `teacher_ID` (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`, `active`) VALUES
-(1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1, b'1');
+INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`) VALUES
+(1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1),
+(2, 'Minimum Sára', '1995-05-28', 'MiSá', 'igen1', 2, 2, 2);
 
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
@@ -234,18 +227,13 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  `active` bit(1) NOT NULL,
   PRIMARY KEY (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
-INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`, `active`) VALUES
-(1, 'Teszt Elek', '1960-02-18', 'TeEl', '1234', b'1');
+INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`) VALUES
+(1, 'Teszt Elek', '1960-02-18', 'TeEl', '1234'),
+(2, 'Valami Márta', '1960-02-18', 'VaMá', 'tütü');
 
-
-ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`teacher_ID`) REFERENCES `teacher` (`teacher_ID`),
-  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`class_ID`) REFERENCES `class` (`class_ID`),
-  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`subject_ID`) REFERENCES `subject` (`subject_ID`);
 
 ALTER TABLE `mark`
   ADD CONSTRAINT `mark_ibfk_1` FOREIGN KEY (`teacher_ID`) REFERENCES `teacher` (`teacher_ID`),
