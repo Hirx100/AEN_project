@@ -13,8 +13,9 @@ namespace AEN
 {
     public partial class Markoperator : Form
     {
-        int gridUsing = 0;
         DBConnect dataviwe = new DBConnect();
+        int startMarkGridRuningcount = 0;
+
         public Markoperator()
         {
             InitializeComponent();
@@ -22,9 +23,15 @@ namespace AEN
             ClassFill();
             SubjectFill();
             StartMarkGridFill();
+
+            if (markDataGridView.SelectedRows.Count > 0)
+            {
+                string description = markDataGridView.SelectedRows[0].Cells[1].Value + string.Empty;
+                actualDescriptiontextBox.Text = description;
+
+            }
         }
 
-        
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -70,6 +77,7 @@ namespace AEN
 
             dataviwe.CloseConnection();
         }
+
         void SubjectFill()
         {
             dataviwe.OpenConnection();
@@ -85,6 +93,7 @@ namespace AEN
             for (int i = 0; i < allSubject.Length; i++)
             {
                 subjectComboBox.Items.Add(new KeyValuePair<string, int>(allSubject[i], i + 300));
+                actualSubjectcomboBox.Items.Add(new KeyValuePair<string, int>(allSubject[i], i + 300));
             }
             subjectComboBox.SelectedIndex = 0;
             subjectComboBox.DisplayMember = "key";
@@ -94,9 +103,7 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-
-
-                                //markgridvive fill method.
+                            //markgrid fill 1.time method.
         void StartMarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
@@ -121,6 +128,22 @@ namespace AEN
             DataTable dTClass = new DataTable();
             sqlDa.Fill(dTClass);
             markDataGridView.DataSource = dTClass;
+
+            string[] allStudent = new string[dTClass.Rows.Count];
+            for (int i = 0; i < allStudent.Length; i++)
+            {
+                allStudent[i] = dTClass.Rows[i][3].ToString();
+            }
+
+            studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
+            for (int i = 0; i < allStudent.Length; i++)
+            {
+                studenNameCombobox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i+1) + 400));
+                actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i + 1) + 400));
+            }
+            studenNameCombobox.SelectedIndex = 0;
+            studenNameCombobox.DisplayMember = "key";
+            studenNameCombobox.ValueMember = "value";
             dataviwe.CloseConnection();
 
             DateTime parsedDate = DateTime.Parse(dTClass.Rows[0][4].ToString());
@@ -130,40 +153,56 @@ namespace AEN
             
         }
 
+                            //markgrid fill another time method.
         void RuningMarkGridFill()
-        {
-            if (startDateTimePicker.Value > endDateTimePicker.Value)
+        { 
+
+            if (startMarkGridRuningcount > 2)
             {
-                MessageBox.Show("a kezdő dátum később van mint a befejező dátum");
+                if (startDateTimePicker.Value > endDateTimePicker.Value)
+                {
+                    MessageBox.Show("a kezdő dátum később van mint a befejező dátum");
+                }
+                else
+                {
+                    KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+                    KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)studenNameCombobox.SelectedItem;
+                    KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)subjectComboBox.SelectedItem;
+                    string selectClassSign;
+                    string nummerPlaceholder;
+                    int selectClassNummer;
+                    string selectTrueClass = selectedClass.Key;
+                    char[] charPlacehorder = new char[selectTrueClass.Length];
+                    charPlacehorder = selectTrueClass.ToCharArray();
+                    selectClassSign = charPlacehorder[1].ToString();
+                    nummerPlaceholder = charPlacehorder[0].ToString();
+                    selectClassNummer = Int32.Parse(nummerPlaceholder);
+
+                    int parseNameValue = selectedStudent.Value;
+                    string parseName = selectedStudent.Key;
+
+                    if (parseNameValue == 400)
+                    {
+                        parseName = "%%";
+                    }
+                    
+                    dataviwe.OpenConnection();
+                    MySqlCommand cmd = new MySqlCommand("aenMarkRuningSelect", dataviwe.connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
+                    cmd.Parameters.AddWithValue("_classSign", selectClassSign);
+                    cmd.Parameters.AddWithValue("_selectedStudent", parseName);
+                    cmd.Parameters.AddWithValue("_selectedSubject", selectedSubject);
+                    cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
+                    cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
+                    MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
+                    DataTable dTClass = new DataTable();
+                    sqlDa.Fill(dTClass);
+                    markDataGridView.DataSource = dTClass;
+                    dataviwe.CloseConnection();
+                }
             }
-            else
-            {
-                KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
-
-                string selectClassSign;
-                string nummerPlaceholder;
-                int selectClassNummer;
-                string selectTrueClass = selectedClass.Key;
-                char[] charPlacehorder = new char[selectTrueClass.Length];
-                charPlacehorder = selectTrueClass.ToCharArray();
-                selectClassSign = charPlacehorder[1].ToString();
-                nummerPlaceholder = charPlacehorder[0].ToString();
-                selectClassNummer = Int32.Parse(nummerPlaceholder);
-
-
-                dataviwe.OpenConnection();
-                MySqlCommand cmd = new MySqlCommand("aenMarkRuningSelect", dataviwe.connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
-                cmd.Parameters.AddWithValue("_classSign", selectClassSign);
-                cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
-                cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
-                MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-                DataTable dTClass = new DataTable();
-                sqlDa.Fill(dTClass);
-                markDataGridView.DataSource = dTClass;
-                dataviwe.CloseConnection();
-            }
+            else startMarkGridRuningcount++;
         }
 
         private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -175,5 +214,33 @@ namespace AEN
         {
             RuningMarkGridFill();
         }
+
+        private void studenNameCombobox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RuningMarkGridFill();
+        }
+
+        #region borderless form movable
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+
+            base.WndProc(ref m);
+        }
+
+        #endregion
+
+        private void subjectComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            RuningMarkGridFill();
+        }
+
     }
 }
