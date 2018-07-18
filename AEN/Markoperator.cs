@@ -13,7 +13,7 @@ namespace AEN
 {
     public partial class Markoperator : Form
     {
-        
+        int gridUsing = 0;
         DBConnect dataviwe = new DBConnect();
         public Markoperator()
         {
@@ -97,7 +97,7 @@ namespace AEN
         void MarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
-            int gridUsing=0;
+            
             string selectClassSign;
             string nummerPlaceholder;
             int selectClassNummer;
@@ -127,17 +127,17 @@ namespace AEN
                 startDateTimePicker.Value = parsedDate;
                 parsedDate = DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString());
                 endDateTimePicker.Value = parsedDate;
-                gridUsing = 1;
+                gridUsing++;
             }
             //hide unwanted recordes
             else
             {       
-                for (int i = 0; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[0][4].ToString());i++)
+                for (int i = 1; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[0][4].ToString());i++)
                 {
                     markDataGridView.Rows[i].Visible= false;
                 }
 
-                for(int i=dTClass.Rows.Count-1; startDateTimePicker.Value == DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString()); i--)
+                for(int i=dTClass.Rows.Count-1; endDateTimePicker.Value == DateTime.Parse(dTClass.Rows[dTClass.Rows.Count - 1][4].ToString()); i--)
                 {
                     markDataGridView.Rows[i].Visible = false;
                 }
