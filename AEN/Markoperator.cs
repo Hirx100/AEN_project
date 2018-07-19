@@ -413,5 +413,11 @@ namespace AEN
             StartMarkGridFill();
             MessageBox.Show("A jegy adatai frissítve");
         }
+
+        private void newMarkButton_Click(object sender, EventArgs e)
+        {
+            NewMark jump = new NewMark();
+            jump.Show();
+        }
     }
 }

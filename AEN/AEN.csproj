@@ -89,6 +89,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NewMark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewMark.Designer.cs">
+      <DependentUpon>NewMark.cs</DependentUpon>
+    </Compile>
     <Compile Include="Userdatascreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <EmbeddedResource Include="Testform.resx">
       <DependentUpon>Testform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewMark.resx">
+      <DependentUpon>NewMark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Userdatascreen.resx">
       <DependentUpon>Userdatascreen.cs</DependentUpon>

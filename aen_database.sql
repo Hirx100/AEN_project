@@ -18,10 +18,17 @@ BEGIN
 Select * from class;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenMarkDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkDelete` (IN `_mark_ID` INT)  NO SQL
+BEGIN
+DELETE FROM mark
+WHERE mark.mark_ID= _mark_ID;
+END$$
+
 DROP PROCEDURE IF EXISTS `aenMarkRuningSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkRuningSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11), IN `_startDate` DATE, IN `_endDate` DATE, IN `_selectedStudent` VARCHAR(40), IN `_selectedSubject` VARCHAR(40))  NO SQL
 BEGIN
-SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
+SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher, mark.mark_ID
 FROM mark
 INNER JOIN subject on mark.subject_ID= subject.subject_ID
 INNER JOIN student on mark.student_ID= student.student_ID
@@ -36,13 +43,32 @@ END$$
 DROP PROCEDURE IF EXISTS `aenMarkStartSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
 BEGIN
-SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
+SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher, mark.mark_ID
 FROM mark
 INNER JOIN subject on mark.subject_ID= subject.subject_ID
 INNER JOIN student on mark.student_ID= student.student_ID
 INNER JOIN teacher on mark.teacher_ID= student.student_ID
 WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer)
 GROUP BY mark.mark_ID;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenMarkUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkUpdate` (IN `_updateStudent` VARCHAR(40), IN `_updateTeacher` VARCHAR(40), IN `_updateSubject` VARCHAR(40), IN `_updateMarkNummer` INT(1), IN `_updateDescription` VARCHAR(100), IN `_updateMarkDate` DATE, IN `_updateMarkID` INT(11))  NO SQL
+BEGIN
+UPDATE mark
+SET 
+mark.student_ID=(SELECT student.student_ID FROM student WHERE student.name=_updateStudent),
+
+mark.teacher_ID=(SELECT teacher.teacher_ID FROM teacher WHERE teacher.name=_updateTeacher),
+
+mark.subject_ID=(SELECT subject.subject_ID FROM subject WHERE subject.subject_name=_updateSubject),
+
+mark.mark_number=_updateMarkNummer,
+
+mark.description=_updateDescription,
+
+mark.mark_Date=_updateMarkDate
+WHERE mark.mark_ID=_UpdateMarkID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
@@ -157,13 +183,13 @@ CREATE TABLE IF NOT EXISTS `mark` (
   KEY `teacher_ID` (`teacher_ID`),
   KEY `student_ID` (`student_ID`,`subject_ID`),
   KEY `subject_ID` (`subject_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) VALUES
 (1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21'),
 (2, 2, 2, 2, 3, 'Összeadás', '2017-05-29'),
-(3, 1, 1, 2, 2, 'Kivonás', '2012-05-22'),
-(4, 1, 1, 2, 3, 'Szorzás', '2012-05-29');
+(4, 1, 1, 1, 5, 'Lómaiak', '2012-05-31'),
+(5, 2, 1, 2, 3, 'Osztás', '2012-05-31');
 
 DROP TABLE IF EXISTS `omission`;
 CREATE TABLE IF NOT EXISTS `omission` (

@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.logOutButton = new System.Windows.Forms.PictureBox();
-            this.minimizeButton = new System.Windows.Forms.PictureBox();
-            this.exitButton = new System.Windows.Forms.PictureBox();
             this.markDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -55,46 +52,20 @@
             this.deleteMarkButton = new System.Windows.Forms.Button();
             this.updateMarkbutton = new System.Windows.Forms.Button();
             this.newMarkButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
+            this.logOutButton = new System.Windows.Forms.PictureBox();
+            this.minimizeButton = new System.Windows.Forms.PictureBox();
+            this.exitButton = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
-            // 
-            // logOutButton
-            // 
-            this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
-            this.logOutButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.logOutButton.Location = new System.Drawing.Point(680, 12);
-            this.logOutButton.Name = "logOutButton";
-            this.logOutButton.Size = new System.Drawing.Size(32, 32);
-            this.logOutButton.TabIndex = 25;
-            this.logOutButton.TabStop = false;
-            this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.Image = global::AEN.Properties.Resources.minimize_button;
-            this.minimizeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.minimizeButton.Location = new System.Drawing.Point(718, 12);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(32, 32);
-            this.minimizeButton.TabIndex = 24;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
-            // 
-            // exitButton
-            // 
-            this.exitButton.Image = global::AEN.Properties.Resources.exit_button;
-            this.exitButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.exitButton.Location = new System.Drawing.Point(756, 12);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(32, 32);
-            this.exitButton.TabIndex = 23;
-            this.exitButton.TabStop = false;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // markDataGridView
             // 
@@ -114,6 +85,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.newMarkButton);
             this.panel1.Controls.Add(this.updateMarkbutton);
             this.panel1.Controls.Add(this.deleteMarkButton);
@@ -129,6 +104,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
+            this.panel1.Tag = "Aktuális jegy";
             // 
             // label7
             // 
@@ -164,7 +140,7 @@
             // 
             // actualMarkDateTimePicker
             // 
-            this.actualMarkDateTimePicker.Location = new System.Drawing.Point(56, 115);
+            this.actualMarkDateTimePicker.Location = new System.Drawing.Point(56, 107);
             this.actualMarkDateTimePicker.Name = "actualMarkDateTimePicker";
             this.actualMarkDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.actualMarkDateTimePicker.TabIndex = 11;
@@ -176,7 +152,7 @@
             this.actualTeacherComboBox.FormattingEnabled = true;
             this.actualTeacherComboBox.Location = new System.Drawing.Point(277, 107);
             this.actualTeacherComboBox.Name = "actualTeacherComboBox";
-            this.actualTeacherComboBox.Size = new System.Drawing.Size(164, 28);
+            this.actualTeacherComboBox.Size = new System.Drawing.Size(198, 28);
             this.actualTeacherComboBox.TabIndex = 11;
             // 
             // actualSubjectcomboBox
@@ -331,9 +307,10 @@
             // 
             // deleteMarkButton
             // 
-            this.deleteMarkButton.Location = new System.Drawing.Point(56, 237);
+            this.deleteMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.deleteMarkButton.Location = new System.Drawing.Point(56, 218);
             this.deleteMarkButton.Name = "deleteMarkButton";
-            this.deleteMarkButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteMarkButton.Size = new System.Drawing.Size(87, 42);
             this.deleteMarkButton.TabIndex = 13;
             this.deleteMarkButton.Text = "Törlés";
             this.deleteMarkButton.UseVisualStyleBackColor = true;
@@ -341,9 +318,10 @@
             // 
             // updateMarkbutton
             // 
-            this.updateMarkbutton.Location = new System.Drawing.Point(166, 237);
+            this.updateMarkbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.updateMarkbutton.Location = new System.Drawing.Point(174, 218);
             this.updateMarkbutton.Name = "updateMarkbutton";
-            this.updateMarkbutton.Size = new System.Drawing.Size(75, 23);
+            this.updateMarkbutton.Size = new System.Drawing.Size(87, 42);
             this.updateMarkbutton.TabIndex = 14;
             this.updateMarkbutton.Text = "Modosítás";
             this.updateMarkbutton.UseVisualStyleBackColor = true;
@@ -351,12 +329,91 @@
             // 
             // newMarkButton
             // 
-            this.newMarkButton.Location = new System.Drawing.Point(276, 237);
+            this.newMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.newMarkButton.Location = new System.Drawing.Point(287, 218);
             this.newMarkButton.Name = "newMarkButton";
-            this.newMarkButton.Size = new System.Drawing.Size(75, 23);
+            this.newMarkButton.Size = new System.Drawing.Size(87, 42);
             this.newMarkButton.TabIndex = 15;
             this.newMarkButton.Text = "Új jegy";
             this.newMarkButton.UseVisualStyleBackColor = true;
+            this.newMarkButton.Click += new System.EventHandler(this.newMarkButton_Click);
+            // 
+            // logOutButton
+            // 
+            this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
+            this.logOutButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.logOutButton.Location = new System.Drawing.Point(680, 12);
+            this.logOutButton.Name = "logOutButton";
+            this.logOutButton.Size = new System.Drawing.Size(32, 32);
+            this.logOutButton.TabIndex = 25;
+            this.logOutButton.TabStop = false;
+            this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Image = global::AEN.Properties.Resources.minimize_button;
+            this.minimizeButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.minimizeButton.Location = new System.Drawing.Point(718, 12);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(32, 32);
+            this.minimizeButton.TabIndex = 24;
+            this.minimizeButton.TabStop = false;
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Image = global::AEN.Properties.Resources.exit_button;
+            this.exitButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.exitButton.Location = new System.Drawing.Point(756, 12);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(32, 32);
+            this.exitButton.TabIndex = 23;
+            this.exitButton.TabStop = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(219, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 20);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Tanár:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.ForeColor = System.Drawing.SystemColors.Control;
+            this.label9.Location = new System.Drawing.Point(52, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 20);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Jegy:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.ForeColor = System.Drawing.SystemColors.Control;
+            this.label10.Location = new System.Drawing.Point(52, 84);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 20);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Dátum:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.ForeColor = System.Drawing.SystemColors.Control;
+            this.label11.Location = new System.Drawing.Point(52, 134);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 20);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Leírás:";
             // 
             // Markoperator
             // 
@@ -373,14 +430,14 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Markoperator";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -414,5 +471,9 @@
         private System.Windows.Forms.Button newMarkButton;
         private System.Windows.Forms.Button updateMarkbutton;
         private System.Windows.Forms.Button deleteMarkButton;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
     }
 }

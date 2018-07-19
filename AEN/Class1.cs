@@ -165,26 +165,3 @@ namespace AEN
         }
     }
 }
-
-    //TODO: kitörölni ezeket 
-/*  MySqlDataReader dataReader = cmd.ExecuteReader();
-    string[] userDataArray = new string[dataReader.FieldCount];   
-               
-        while (dataReader.Read())
-            {
-                dataList[0].Add(dataReader["techer_id"] + "");
-                dataList[1].Add(dataReader["name"] + "");
-                dataList[2].Add(dataReader["born_date"] + "");
-                dataList[3].Add(dataReader["user_name"] + "");
-                dataList[4].Add(dataReader["password"] + "");
-                dataList[5].Add(dataReader["active"] + "");
-            }
-            
-
-            //userDataArray[1] = da.ToString();
-            /* DataRow row = dt.Rows[0];
-            userDataArray[0] = row["name"].ToString();
-            userDataArray[1] = row["born_date"].ToString();
-            userDataArray[2] = row["user_name"].ToString();
-            userDataArray[3] = row["password"].ToString();
-            */
