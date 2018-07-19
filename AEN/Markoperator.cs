@@ -19,14 +19,19 @@ namespace AEN
         public Markoperator()
         {
             InitializeComponent();
-            
+
+           
+            TeacherFill();
+            MarkFill();
             ClassFill();
             SubjectFill();
-            StartMarkGridFill();
             StudentFill();
-            TeacherFill();
+            StartMarkGridFill();
+            
 
+            
         }
+
 
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -43,6 +48,22 @@ namespace AEN
             this.Close();
             Loginscreen logJump = new Loginscreen();
             logJump.Show();
+        }
+
+        void MarkFill() {
+            string[] mark = new string[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                mark[i]= (5 - i).ToString();
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                actualMarkcomboBox.Items.Add(new KeyValuePair<string, int>(mark[i], i + 1));
+            }
+            actualMarkcomboBox.SelectedIndex = 0;
+            actualMarkcomboBox.DisplayMember = "key";
+            actualMarkcomboBox.ValueMember = "value";
         }
 
         void TeacherFill()
@@ -77,10 +98,12 @@ namespace AEN
             DataTable dTClass = new DataTable();
             sqlDa.Fill(dTClass);
             string[] allClass = new string[dTClass.Rows.Count];
-            for (int i = 0; i < allClass.Length; i++)
-            {   int startNumber;
+
+                int startNumber;
                 int classYear;
                 int trueYear;
+            for (int i = 0; i < allClass.Length; i++)
+            {   
                 startNumber= int.Parse(dTClass.Rows[i][2].ToString());
                 classYear= int.Parse(dTClass.Rows[i][4].ToString());
                 trueYear = startNumber + (classYear - 1);
@@ -127,13 +150,29 @@ namespace AEN
 
         void StudentFill()
         {
+
+            KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+
+            string selectClassSign;
+            string nummerPlaceholder;
+            int selectClassNummer;
+            string selectTrueClass = selectedClass.Key;
+            char[] charPlacehorder = new char[selectTrueClass.Length];
+            charPlacehorder = selectTrueClass.ToCharArray();
+            selectClassSign = charPlacehorder[1].ToString();
+            nummerPlaceholder = charPlacehorder[0].ToString();
+            selectClassNummer = Int32.Parse(nummerPlaceholder);
+
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenStudentsSelect", dataviwe.connection);
+            cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
+            cmd.Parameters.AddWithValue("_classSign", selectClassSign);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtStudent = new DataTable();
             sqlDa.Fill(dtStudent);
 
+            studenNameCombobox.Items.Clear();
             string[] allStudent = new string[dtStudent.Rows.Count];
             for (int i = 0; i < allStudent.Length; i++)
             {
@@ -217,8 +256,7 @@ namespace AEN
         void RuningMarkGridFill()
         { 
 
-            if (startMarkGridRuningcount > 2)
-            {
+            
                 if (startDateTimePicker.Value > endDateTimePicker.Value)
                 {
                     MessageBox.Show("a kezdő dátum később van mint a befejező dátum");
@@ -231,6 +269,7 @@ namespace AEN
                     string selectClassSign;
                     string nummerPlaceholder;
                     int selectClassNummer;
+                    string parseSubject = selectedSubject.Key.ToString();
                     string selectTrueClass = selectedClass.Key;
                     char[] charPlacehorder = new char[selectTrueClass.Length];
                     charPlacehorder = selectTrueClass.ToCharArray();
@@ -243,7 +282,7 @@ namespace AEN
 
                     if (parseNameValue == 400)
                     {
-                        parseName = "%%";
+                        parseName = "% %";
                     }
                     
                     dataviwe.OpenConnection();
@@ -252,7 +291,7 @@ namespace AEN
                     cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
                     cmd.Parameters.AddWithValue("_classSign", selectClassSign);
                     cmd.Parameters.AddWithValue("_selectedStudent", parseName);
-                    cmd.Parameters.AddWithValue("_selectedSubject", selectedSubject);
+                    cmd.Parameters.AddWithValue("_selectedSubject", parseSubject);
                     cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
                     cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
                     MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
@@ -261,18 +300,24 @@ namespace AEN
                     markDataGridView.DataSource = dtRunningMark;
                     dataviwe.CloseConnection();
                 }
+            
+        }
+
+        private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {    if (startMarkGridRuningcount > 1)
+            {
+                RuningMarkGridFill();
             }
             else startMarkGridRuningcount++;
         }
 
-        private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            RuningMarkGridFill();
-        }
-
         private void endDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            RuningMarkGridFill();
+            if (startMarkGridRuningcount > 1)
+            {
+                RuningMarkGridFill();
+            }
+            else startMarkGridRuningcount++;
         }
 
         private void studenNameCombobox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -304,11 +349,7 @@ namespace AEN
 
         private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            
-          /*    KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
-                KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)actualSubjectcomboBox.SelectedItem;
-                KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
-          */
+
                 int index = e.RowIndex;
                 DataGridViewRow selectedRows = markDataGridView.Rows[index];
                 string description = selectedRows.Cells["description"].Value + string.Empty;
@@ -318,11 +359,13 @@ namespace AEN
                 actualStudentNameComboBox.SelectedIndex=actualStudentNameComboBox.FindStringExact(selectedRows.Cells["student"].Value.ToString());
                 actualSubjectcomboBox.SelectedIndex = actualSubjectcomboBox.FindStringExact(selectedRows.Cells["subject_name"].Value.ToString());
                 actualTeacherComboBox.SelectedIndex = actualTeacherComboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
+                actualMarkcomboBox.SelectedIndex = actualMarkcomboBox.FindStringExact(selectedRows.Cells["mark_number"].Value.ToString());
 
         }
 
         private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            StudentFill();
             RuningMarkGridFill(); 
         }
     }

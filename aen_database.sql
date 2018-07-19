@@ -30,19 +30,19 @@ WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _
 AND student.name LIKE _selectedStudent
 AND subject.subject_name=_selectedSubject
 AND mark_Date BETWEEN _startDate AND _endDate
-GROUP BY mark.description;
+GROUP BY mark.mark_ID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenMarkStartSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
 BEGIN
-SELECT DISTINCT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
+SELECT `mark_number`,`description`, subject.subject_name, student.name as student ,`mark_Date`, teacher.name as teacher
 FROM mark
 INNER JOIN subject on mark.subject_ID= subject.subject_ID
 INNER JOIN student on mark.student_ID= student.student_ID
 INNER JOIN teacher on mark.teacher_ID= student.student_ID
 WHERE student.class_ID=(SELECT class_Id FROM class WHERE class.character_sign= _classSign AND class.class_year=_classNummer)
-GROUP BY mark.description;
+GROUP BY mark.mark_ID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
@@ -90,9 +90,9 @@ Select * From `student` where `user_name` = _username and `password` = _password
 END$$
 
 DROP PROCEDURE IF EXISTS `aenStudentsSelect`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentsSelect` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentsSelect` (IN `_classSign` VARCHAR(40), IN `_classNummer` INT(11))  NO SQL
 BEGIN
-Select * From student; 
+Select * From student Where student.class_ID = (SELECT `class_ID` FROM `class` WHERE class.character_sign= _classSign AND class.class_year= _classNummer);
 END$$
 
 DROP PROCEDURE IF EXISTS `aenSubjectSelect`$$
@@ -120,6 +120,12 @@ END$$
 DROP PROCEDURE IF EXISTS `aenTeacherPassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherPassSelect` (IN `_username` VARCHAR(50), IN `_password` VARCHAR(50))  BEGIN
 Select * From `teacher` where `user_name` = _username and `password` = _password; 
+END$$
+
+DROP PROCEDURE IF EXISTS `aenTeachersSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeachersSelect` ()  NO SQL
+BEGIN
+SELECT * FROM `teacher`;
 END$$
 
 DELIMITER ;
