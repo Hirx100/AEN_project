@@ -133,6 +133,7 @@ namespace AEN
             {
                 allSubject[i]= dtSubject.Rows[i][1].ToString();
             }
+            subjectComboBox.Items.Add(new KeyValuePair<string, int>("Összes", 399));
             for (int i = 0; i < allSubject.Length; i++)
             {
                 subjectComboBox.Items.Add(new KeyValuePair<string, int>(allSubject[i], i + 300));
@@ -221,27 +222,7 @@ namespace AEN
             DataTable dtMark = new DataTable();
             sqlDa.Fill(dtMark);
             markDataGridView.DataSource = dtMark;
-
-        /*    string[] allStudent = new string[dtMark.Rows.Count];
-            for (int i = 0; i < allStudent.Length; i++)
-            {
-                allStudent[i] = dtMark.Rows[i][3].ToString();
-            }
-
-            studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Mind", 400));
-            
-            for (int i = 0; i < allStudent.Length; i++)
-            {
-                studenNameCombobox.Items.Add(new KeyValuePair<string, int>(allStudent[i], (i+1) + 400));
-                actualStudentNameComboBox.Items.Add(new KeyValuePair<string, int>(allStudent[i], i + 400));
-            }
-
-            studenNameCombobox.SelectedIndex = 0;
-            studenNameCombobox.DisplayMember = "key";
-            studenNameCombobox.ValueMember = "value";
-            actualStudentNameComboBox.SelectedIndex = 0;
-            actualStudentNameComboBox.DisplayMember = "key";
-            actualStudentNameComboBox.ValueMember = "value"; */
+            markDataGridView.Columns["mark_id"].Visible = false;
 
             dataviwe.CloseConnection();
 
@@ -251,7 +232,7 @@ namespace AEN
             endDateTimePicker.Value = parsedDate;
             
         }
-
+//TODO: sll mark_ID
                             //markgrid fill another time method.
         void RuningMarkGridFill()
         { 
@@ -269,7 +250,8 @@ namespace AEN
                     string selectClassSign;
                     string nummerPlaceholder;
                     int selectClassNummer;
-                    string parseSubject = selectedSubject.Key.ToString();
+                    
+                    string parseSubject = selectedSubject.Key;
                     string selectTrueClass = selectedClass.Key;
                     char[] charPlacehorder = new char[selectTrueClass.Length];
                     charPlacehorder = selectTrueClass.ToCharArray();
@@ -277,14 +259,15 @@ namespace AEN
                     nummerPlaceholder = charPlacehorder[0].ToString();
                     selectClassNummer = Int32.Parse(nummerPlaceholder);
 
+                    int parseSubjectValue = selectedSubject.Value;
                     int parseNameValue = selectedStudent.Value;
+                    
                     string parseName = selectedStudent.Key;
 
-                    if (parseNameValue == 400)
-                    {
-                        parseName = "% %";
-                    }
-                    
+                if (parseSubjectValue == 399) parseSubject = "%%";
+
+                if (parseNameValue == 400)parseName = "% %";
+               
                     dataviwe.OpenConnection();
                     MySqlCommand cmd = new MySqlCommand("aenMarkRuningSelect", dataviwe.connection);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -298,6 +281,7 @@ namespace AEN
                     DataTable dtRunningMark = new DataTable();
                     sqlDa.Fill(dtRunningMark);
                     markDataGridView.DataSource = dtRunningMark;
+                markDataGridView.Columns["mark_id"].Visible = false;
                     dataviwe.CloseConnection();
                 }
             
