@@ -31,7 +31,7 @@ namespace AEN
 
             
         }
-
+        int SelectedRowIndex { get; set; }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -232,7 +232,6 @@ namespace AEN
             endDateTimePicker.Value = parsedDate;
             
         }
-//TODO: sll mark_ID
                             //markgrid fill another time method.
         void RuningMarkGridFill()
         { 
@@ -281,10 +280,47 @@ namespace AEN
                     DataTable dtRunningMark = new DataTable();
                     sqlDa.Fill(dtRunningMark);
                     markDataGridView.DataSource = dtRunningMark;
-                markDataGridView.Columns["mark_id"].Visible = false;
+                    markDataGridView.Columns["mark_id"].Visible = false;
                     dataviwe.CloseConnection();
                 }
             
+        }
+
+        void UpdateMark()
+        {
+            KeyValuePair<string, int> updateStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
+            KeyValuePair<string, int> updateTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
+            KeyValuePair<string, int> updateSubject = (KeyValuePair<string, int>)actualSubjectcomboBox.SelectedItem;
+            KeyValuePair<string, int> updateMarkNummer = (KeyValuePair<string, int>)actualMarkcomboBox.SelectedItem;
+            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
+            string updateMarkID = selectedRows.Cells["mark_id"].Value.ToString();
+
+          //  string updateName = updateStudent.Key;
+
+            dataviwe.OpenConnection();
+            MySqlCommand cmd = new MySqlCommand(" aenMarkUpdate", dataviwe.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("_updateStudent", updateStudent.Key);
+            cmd.Parameters.AddWithValue("_updateTeacher", updateTeacher.Key);
+            cmd.Parameters.AddWithValue("_updateSubject", updateSubject.Key);
+            cmd.Parameters.AddWithValue("_updateMarkNummer", updateMarkNummer.Key);
+            cmd.Parameters.AddWithValue("_updateDescription", actualDescriptiontextBox.Text);
+            cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualMarkDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_updateMarkID", updateMarkID);
+            cmd.ExecuteNonQuery();
+            dataviwe.CloseConnection();
+        }
+
+        void DeleteMark()
+        {
+            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
+            string deleteMarkID = selectedRows.Cells["mark_id"].Value.ToString();
+            dataviwe.OpenConnection();
+            MySqlCommand cmd = new MySqlCommand("aenMarkDelete", dataviwe.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("_mark_id", deleteMarkID);
+            cmd.ExecuteNonQuery();
+            dataviwe.CloseConnection();
         }
 
         private void startDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -328,13 +364,16 @@ namespace AEN
 
         private void subjectComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            RuningMarkGridFill();
+            KeyValuePair<string, int> pickSubject = (KeyValuePair<string, int>)subjectComboBox.SelectedItem;
+            if (pickSubject.Value == 399) StartMarkGridFill();
+            else RuningMarkGridFill();
         }
 
         private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
+                
                 int index = e.RowIndex;
+                SelectedRowIndex = index;
                 DataGridViewRow selectedRows = markDataGridView.Rows[index];
                 string description = selectedRows.Cells["description"].Value + string.Empty;
 
@@ -351,6 +390,28 @@ namespace AEN
         {
             StudentFill();
             RuningMarkGridFill(); 
+        }
+
+        private void deleteMarkButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a jegyet?", "Megerősítés", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DeleteMark();
+                StartMarkGridFill();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+ 
+        }
+
+        private void updateMarkbutton_Click(object sender, EventArgs e)
+        {
+            UpdateMark();
+            StartMarkGridFill();
+            MessageBox.Show("A jegy adatai frissítve");
         }
     }
 }

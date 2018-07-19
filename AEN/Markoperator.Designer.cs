@@ -33,6 +33,8 @@
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.markDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.actualMarkcomboBox = new System.Windows.Forms.ComboBox();
             this.actualMarkDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.actualTeacherComboBox = new System.Windows.Forms.ComboBox();
@@ -50,8 +52,9 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.deleteMarkButton = new System.Windows.Forms.Button();
+            this.updateMarkbutton = new System.Windows.Forms.Button();
+            this.newMarkButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
@@ -111,6 +114,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.newMarkButton);
+            this.panel1.Controls.Add(this.updateMarkbutton);
+            this.panel1.Controls.Add(this.deleteMarkButton);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.actualMarkcomboBox);
@@ -123,6 +129,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(208, 160);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Tantárgy:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(219, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Tanuló:";
             // 
             // actualMarkcomboBox
             // 
@@ -166,7 +194,7 @@
             this.actualStudentNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.actualStudentNameComboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.actualStudentNameComboBox.FormattingEnabled = true;
-            this.actualStudentNameComboBox.Location = new System.Drawing.Point(277, 53);
+            this.actualStudentNameComboBox.Location = new System.Drawing.Point(277, 56);
             this.actualStudentNameComboBox.Name = "actualStudentNameComboBox";
             this.actualStudentNameComboBox.Size = new System.Drawing.Size(198, 28);
             this.actualStudentNameComboBox.TabIndex = 11;
@@ -301,27 +329,34 @@
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
             // 
-            // label6
+            // deleteMarkButton
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(219, 56);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 20);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Tanuló:";
+            this.deleteMarkButton.Location = new System.Drawing.Point(56, 237);
+            this.deleteMarkButton.Name = "deleteMarkButton";
+            this.deleteMarkButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteMarkButton.TabIndex = 13;
+            this.deleteMarkButton.Text = "Törlés";
+            this.deleteMarkButton.UseVisualStyleBackColor = true;
+            this.deleteMarkButton.Click += new System.EventHandler(this.deleteMarkButton_Click);
             // 
-            // label7
+            // updateMarkbutton
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.ForeColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(208, 160);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Tantárgy:";
+            this.updateMarkbutton.Location = new System.Drawing.Point(166, 237);
+            this.updateMarkbutton.Name = "updateMarkbutton";
+            this.updateMarkbutton.Size = new System.Drawing.Size(75, 23);
+            this.updateMarkbutton.TabIndex = 14;
+            this.updateMarkbutton.Text = "Modosítás";
+            this.updateMarkbutton.UseVisualStyleBackColor = true;
+            this.updateMarkbutton.Click += new System.EventHandler(this.updateMarkbutton_Click);
+            // 
+            // newMarkButton
+            // 
+            this.newMarkButton.Location = new System.Drawing.Point(276, 237);
+            this.newMarkButton.Name = "newMarkButton";
+            this.newMarkButton.Size = new System.Drawing.Size(75, 23);
+            this.newMarkButton.TabIndex = 15;
+            this.newMarkButton.Text = "Új jegy";
+            this.newMarkButton.UseVisualStyleBackColor = true;
             // 
             // Markoperator
             // 
@@ -376,5 +411,8 @@
         public System.Windows.Forms.ComboBox actualStudentNameComboBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button newMarkButton;
+        private System.Windows.Forms.Button updateMarkbutton;
+        private System.Windows.Forms.Button deleteMarkButton;
     }
 }
