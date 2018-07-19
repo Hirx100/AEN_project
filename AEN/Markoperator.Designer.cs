@@ -50,6 +50,8 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
@@ -109,6 +111,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.actualMarkcomboBox);
             this.panel1.Controls.Add(this.actualMarkDateTimePicker);
             this.panel1.Controls.Add(this.actualTeacherComboBox);
@@ -169,9 +173,10 @@
             // 
             // actualDescriptiontextBox
             // 
-            this.actualDescriptiontextBox.Location = new System.Drawing.Point(56, 165);
+            this.actualDescriptiontextBox.Font = new System.Drawing.Font("Arial Narrow", 12F);
+            this.actualDescriptiontextBox.Location = new System.Drawing.Point(56, 159);
             this.actualDescriptiontextBox.Name = "actualDescriptiontextBox";
-            this.actualDescriptiontextBox.Size = new System.Drawing.Size(108, 20);
+            this.actualDescriptiontextBox.Size = new System.Drawing.Size(108, 26);
             this.actualDescriptiontextBox.TabIndex = 0;
             // 
             // panel2
@@ -296,6 +301,28 @@
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(219, 56);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 20);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Tanuló:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(208, 160);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 20);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Tantárgy:";
+            // 
             // Markoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,5 +374,7 @@
         private System.Windows.Forms.ComboBox actualTeacherComboBox;
         public System.Windows.Forms.ComboBox actualSubjectcomboBox;
         public System.Windows.Forms.ComboBox actualStudentNameComboBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

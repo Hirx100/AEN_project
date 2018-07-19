@@ -24,6 +24,7 @@ namespace AEN
             SubjectFill();
             StartMarkGridFill();
             StudentFill();
+            TeacherFill();
 
         }
 
@@ -42,6 +43,30 @@ namespace AEN
             this.Close();
             Loginscreen logJump = new Loginscreen();
             logJump.Show();
+        }
+
+        void TeacherFill()
+        {
+            dataviwe.OpenConnection();
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenTeachersSelect", dataviwe.connection);
+            sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dtTeacher = new DataTable();
+            sqlDa.Fill(dtTeacher);
+            string[] allTeacher = new string[dtTeacher.Rows.Count];
+            for (int i = 0; i < allTeacher.Length; i++)
+            {
+                   allTeacher[i] = dtTeacher.Rows[i][1].ToString();
+            }
+            for (int i = 0; i < allTeacher.Length; i++)
+            {
+                actualTeacherComboBox.Items.Add(new KeyValuePair<string, int>(allTeacher[i], i + 500));
+            }
+            actualTeacherComboBox.SelectedIndex = 0;
+            actualTeacherComboBox.DisplayMember = "key";
+            actualTeacherComboBox.ValueMember = "value";
+
+
+            dataviwe.CloseConnection();
         }
 
         void ClassFill()
@@ -280,47 +305,20 @@ namespace AEN
         private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             
-                KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
+          /*    KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
                 KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)actualSubjectcomboBox.SelectedItem;
-              //  KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
-
+                KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
+          */
                 int index = e.RowIndex;
                 DataGridViewRow selectedRows = markDataGridView.Rows[index];
-                string parseName;
-                string placehorderName = selectedStudent.Key.ToString();
-
                 string description = selectedRows.Cells["description"].Value + string.Empty;
+
                 actualDescriptiontextBox.Text = description;
                 actualMarkDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["mark_Date"].Value.ToString());
+                actualStudentNameComboBox.SelectedIndex=actualStudentNameComboBox.FindStringExact(selectedRows.Cells["student"].Value.ToString());
+                actualSubjectcomboBox.SelectedIndex = actualSubjectcomboBox.FindStringExact(selectedRows.Cells["subject_name"].Value.ToString());
+                actualTeacherComboBox.SelectedIndex = actualTeacherComboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
 
-            {
-                parseName = selectedRows.Cells["student"].Value.ToString();
-                placehorderName = selectedStudent.Key.ToString();
-                for (int i =0;parseName.Equals(placehorderName)==false;i++)
-                {   
-                    actualStudentNameComboBox.SelectedIndex = i;
-                    placehorderName = selectedStudent.Key.ToString();
-                }
-
-            }
-
-            {
-                parseName = selectedRows.Cells["subject_name"].Value.ToString();
-                placehorderName = selectedSubject.Key.ToString();
-                for(int i = 0; parseName.Equals(placehorderName)==false; i++)
-                {
-                    actualSubjectcomboBox.SelectedIndex = i;
-                    placehorderName = selectedSubject.Key.ToString();
-                }
-            }
-
-            {
-                //parseName= 
-
-            }
-              
-              // actualTeacherComboBox.Text = selectedRows.Cells["teacher"].Value.ToString();
-           
         }
 
         private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
