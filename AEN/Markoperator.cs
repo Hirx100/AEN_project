@@ -28,7 +28,14 @@ namespace AEN
             StudentFill(classComboBox,studenNameCombobox);
             StartMarkGridFill();
 
-            MessageBox.Show(StudentID);
+            if (Loginscreen.permValue == 103 || Loginscreen.permValue == 104)
+            {
+                deleteMarkButton.Visible = false;
+                updateMarkbutton.Visible = false;
+                newMarkButton.Visible = false;
+                actualDescriptiontextBox.ReadOnly= true;
+                actualDescriptiontextBox.BackColor = Color.DarkGray;
+            }
             
         }
         int SelectedRowIndex { get; set; }

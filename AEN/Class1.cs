@@ -18,7 +18,6 @@ namespace AEN
 
         public string username;
         private static string permName;
-        //private int permNummber= Loginscreen.permValue;
         public List<string> dataOut = new List<string>();
 
 
