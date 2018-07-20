@@ -25,6 +25,19 @@ DELETE FROM mark
 WHERE mark.mark_ID= _mark_ID;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenMarkInstert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkInstert` (IN `_studentName` VARCHAR(40), IN `_teacherName` VARCHAR(40), IN `_subjectName` VARCHAR(40), IN `_markNumber` INT(1), IN `_description` VARCHAR(100), IN `_markDate` DATE)  NO SQL
+BEGIN
+INSERT INTO `mark`(`student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) 
+VALUES 
+(
+(SELECT student_ID FROM student WHERE student.name=_studentName),
+(SELECT teacher_ID FROM teacher WHERE teacher.name= _teacherName),
+(SELECT subject_ID FROM subject WHERE subject.subject_name=_subjectName),
+_markNumber,_description,
+_markDate);
+END$$
+
 DROP PROCEDURE IF EXISTS `aenMarkRuningSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenMarkRuningSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11), IN `_startDate` DATE, IN `_endDate` DATE, IN `_selectedStudent` VARCHAR(40), IN `_selectedSubject` VARCHAR(40))  NO SQL
 BEGIN
@@ -157,114 +170,152 @@ END$$
 DELIMITER ;
 
 DROP TABLE IF EXISTS `class`;
-CREATE TABLE IF NOT EXISTS `class` (
-  `class_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `class` (
+  `class_ID` int(11) NOT NULL,
   `class_start` date NOT NULL,
   `start_number` int(11) NOT NULL,
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
-  `class_year` int(11) NOT NULL,
-  PRIMARY KEY (`class_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `class_year` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, `class_year`) VALUES
 (1, '2010-09-01', 1, 'A', 1),
 (2, '2017-09-01', 1, 'B', 1);
 
 DROP TABLE IF EXISTS `mark`;
-CREATE TABLE IF NOT EXISTS `mark` (
-  `mark_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mark` (
+  `mark_ID` int(11) NOT NULL,
   `student_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `subject_ID` int(11) NOT NULL,
   `mark_number` int(1) NOT NULL,
   `description` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `mark_Date` date NOT NULL,
-  PRIMARY KEY (`mark_ID`),
-  KEY `teacher_ID` (`teacher_ID`),
-  KEY `student_ID` (`student_ID`,`subject_ID`),
-  KEY `subject_ID` (`subject_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `mark_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) VALUES
 (1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21'),
 (2, 2, 2, 2, 3, 'Összeadás', '2017-05-29'),
-(4, 1, 1, 1, 5, 'Lómaiak', '2012-05-31'),
-(5, 2, 1, 2, 3, 'Osztás', '2012-05-31');
+(4, 1, 1, 2, 5, 'Lómaiszámok', '2012-05-31'),
+(5, 2, 1, 2, 3, 'Osztás', '2012-05-31'),
+(6, 1, 1, 1, 3, '1848 forradalom', '2018-07-20');
 
 DROP TABLE IF EXISTS `omission`;
-CREATE TABLE IF NOT EXISTS `omission` (
-  `omission_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `omission` (
+  `omission_ID` int(11) NOT NULL,
   `student_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `date` date NOT NULL,
   `hour` int(11) NOT NULL,
   `delay` bit(1) NOT NULL,
-  `certify` bit(1) NOT NULL,
-  PRIMARY KEY (`omission_ID`),
-  KEY `student_ID` (`student_ID`,`teacher_ID`),
-  KEY `teacher_ID` (`teacher_ID`)
+  `certify` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 DROP TABLE IF EXISTS `parent`;
-CREATE TABLE IF NOT EXISTS `parent` (
-  `parent_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `parent` (
+  `parent_ID` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  `teacher_ID` int(11) NOT NULL,
-  PRIMARY KEY (`parent_ID`),
-  KEY `teacher_ID` (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `teacher_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES
 (1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1),
 (2, 'Boldog Árpád', '1969-02-12', 'BoÁr', 'akármi', 2);
 
 DROP TABLE IF EXISTS `student`;
-CREATE TABLE IF NOT EXISTS `student` (
-  `student_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student` (
+  `student_ID` int(11) NOT NULL,
   `name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `parent_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
-  `class_ID` int(11) NOT NULL,
-  PRIMARY KEY (`student_ID`),
-  KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
-  KEY `class_ID` (`class_ID`),
-  KEY `teacher_ID` (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `class_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`) VALUES
 (1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1),
 (2, 'Minimum Sára', '1995-05-28', 'MiSá', 'igen1', 2, 2, 2);
 
 DROP TABLE IF EXISTS `subject`;
-CREATE TABLE IF NOT EXISTS `subject` (
-  `subject_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `subject_name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`subject_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+CREATE TABLE `subject` (
+  `subject_ID` int(11) NOT NULL,
+  `subject_name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `subject` (`subject_ID`, `subject_name`) VALUES
 (1, 'Történelem'),
 (2, 'Matematika');
 
 DROP TABLE IF EXISTS `teacher`;
-CREATE TABLE IF NOT EXISTS `teacher` (
-  `teacher_ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `teacher` (
+  `teacher_ID` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`) VALUES
 (1, 'Teszt Elek', '1960-02-18', 'TeEl', '1234'),
 (2, 'Valami Márta', '1960-02-18', 'VaMá', 'tütü');
+
+
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`class_ID`);
+
+ALTER TABLE `mark`
+  ADD PRIMARY KEY (`mark_ID`),
+  ADD KEY `teacher_ID` (`teacher_ID`),
+  ADD KEY `student_ID` (`student_ID`,`subject_ID`),
+  ADD KEY `subject_ID` (`subject_ID`);
+
+ALTER TABLE `omission`
+  ADD PRIMARY KEY (`omission_ID`),
+  ADD KEY `student_ID` (`student_ID`,`teacher_ID`),
+  ADD KEY `teacher_ID` (`teacher_ID`);
+
+ALTER TABLE `parent`
+  ADD PRIMARY KEY (`parent_ID`),
+  ADD KEY `teacher_ID` (`teacher_ID`);
+
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`student_ID`),
+  ADD KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
+  ADD KEY `class_ID` (`class_ID`),
+  ADD KEY `teacher_ID` (`teacher_ID`);
+
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_ID`);
+
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`teacher_ID`);
+
+
+ALTER TABLE `class`
+  MODIFY `class_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `mark`
+  MODIFY `mark_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `omission`
+  MODIFY `omission_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `parent`
+  MODIFY `parent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `student`
+  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `subject`
+  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+ALTER TABLE `teacher`
+  MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 ALTER TABLE `mark`

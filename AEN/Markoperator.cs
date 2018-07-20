@@ -15,23 +15,24 @@ namespace AEN
     {
         DBConnect dataviwe = new DBConnect();
         int startMarkGridRuningcount = 0;
-
+        public List<string> studentID = new List<string>();
         public Markoperator()
         {
             InitializeComponent();
 
            
-            TeacherFill();
-            MarkFill();
-            ClassFill();
-            SubjectFill();
-            StudentFill();
+            TeacherFill(actualTeacherComboBox);
+            MarkFill(actualMarkcomboBox);
+            ClassFill(classComboBox);
+            SubjectFill(subjectComboBox);
+            StudentFill(classComboBox,studenNameCombobox);
             StartMarkGridFill();
-            
 
+            MessageBox.Show(StudentID);
             
         }
         int SelectedRowIndex { get; set; }
+        string StudentID { get; set; }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
@@ -50,7 +51,8 @@ namespace AEN
             logJump.Show();
         }
 
-        void MarkFill() {
+        public void MarkFill(ComboBox MarkcomboBox)
+        {
             string[] mark = new string[4];
 
             for (int i = 0; i < 4; i++)
@@ -59,14 +61,14 @@ namespace AEN
             }
             for (int i = 0; i < 4; i++)
             {
-                actualMarkcomboBox.Items.Add(new KeyValuePair<string, int>(mark[i], i + 1));
+                MarkcomboBox.Items.Add(new KeyValuePair<string, int>(mark[i], i + 1));
             }
-            actualMarkcomboBox.SelectedIndex = 0;
-            actualMarkcomboBox.DisplayMember = "key";
-            actualMarkcomboBox.ValueMember = "value";
+            MarkcomboBox.SelectedIndex = 0;
+            MarkcomboBox.DisplayMember = "key";
+            MarkcomboBox.ValueMember = "value";
         }
 
-        void TeacherFill()
+        public void TeacherFill(ComboBox teacherComboBox)
         {
             dataviwe.OpenConnection();
             MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenTeachersSelect", dataviwe.connection);
@@ -80,17 +82,17 @@ namespace AEN
             }
             for (int i = 0; i < allTeacher.Length; i++)
             {
-                actualTeacherComboBox.Items.Add(new KeyValuePair<string, int>(allTeacher[i], i + 500));
+                teacherComboBox.Items.Add(new KeyValuePair<string, int>(allTeacher[i], i + 500));
             }
-            actualTeacherComboBox.SelectedIndex = 0;
-            actualTeacherComboBox.DisplayMember = "key";
-            actualTeacherComboBox.ValueMember = "value";
+            teacherComboBox.SelectedIndex = 0;
+            teacherComboBox.DisplayMember = "key";
+            teacherComboBox.ValueMember = "value";
 
 
             dataviwe.CloseConnection();
         }
 
-        void ClassFill()
+        public void ClassFill(ComboBox classComboBox)
         {   
             dataviwe.OpenConnection();
             MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenClassSelect", dataviwe.connection);
@@ -121,7 +123,7 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-        void SubjectFill()
+        public void SubjectFill(ComboBox subjectComboBox)
         {
             dataviwe.OpenConnection();
             MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenSubjectSelect", dataviwe.connection);
@@ -149,11 +151,11 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-        void StudentFill()
+        public void StudentFill(ComboBox classComboBox, ComboBox studenNameCombobox)
         {
 
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
-
+            
             string selectClassSign;
             string nummerPlaceholder;
             int selectClassNummer;
@@ -172,6 +174,13 @@ namespace AEN
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtStudent = new DataTable();
             sqlDa.Fill(dtStudent);
+
+            studentID.Clear();
+            foreach(DataRow row in dtStudent.Rows)
+            { 
+                studentID.Add(row["student_id"].ToString());
+                studentID.Add(row["name"].ToString());
+            }
 
             studenNameCombobox.Items.Clear();
             string[] allStudent = new string[dtStudent.Rows.Count];
@@ -198,7 +207,7 @@ namespace AEN
             dataviwe.CloseConnection();
         }
                             //markgrid fill 1.time method.
-        void StartMarkGridFill()
+        public void StartMarkGridFill()
         {
             KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
             
@@ -388,7 +397,7 @@ namespace AEN
 
         private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            StudentFill();
+            StudentFill(classComboBox,studenNameCombobox);
             RuningMarkGridFill(); 
         }
 

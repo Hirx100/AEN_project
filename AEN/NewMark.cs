@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,27 @@ using System.Windows.Forms;
 namespace AEN
 {
     public partial class NewMark : Form
-    {       DBConnect dataConnect = new DBConnect ();
+    {
+            DBConnect dbConnect = new DBConnect();
             Class1 userDataClaim= new Class1();
             Markoperator markThings = new Markoperator();
-
 
         public NewMark()
         {   
             InitializeComponent();
+            markThings.ClassFill(this.classComboBox);
+            markThings.MarkFill(this.markComboBox);
+            markThings.SubjectFill(this.subjectComboBox);
+            markThings.TeacherFill(this.teacherComboBox);
 
+            studenNameCombobox.Items.Add(new KeyValuePair<string, int>("Válasszon osztályt elősször!", 400));
+            studenNameCombobox.SelectedIndex = 0;
+            studenNameCombobox.DisplayMember = "key";
+            studenNameCombobox.ValueMember = "value";
+
+            subjectComboBox.Items.RemoveAt(0);
+            classComboBox.SelectedIndex = -1;
+            
         }
  
         private void exitButton_Click(object sender, EventArgs e)
@@ -33,6 +46,38 @@ namespace AEN
             this.WindowState = FormWindowState.Minimized;
         }
 
+        void MarkInsert()
+        {
+            KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
+            KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)studenNameCombobox.SelectedItem;
+            KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)teacherComboBox.SelectedItem;
+            KeyValuePair<string, int> selectedMark = (KeyValuePair<string, int>)markComboBox.SelectedItem;
+            KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)subjectComboBox.SelectedItem;
+
+            string[] parsedata = new string[6];
+            parsedata[0] = selectedClass.Key;
+            parsedata[1] = selectedStudent.Key;
+            parsedata[2] = selectedTeacher.Key;
+            parsedata[3] = selectedMark.Key;
+            parsedata[4] = selectedSubject.Key;
+            parsedata[5] = descriptionTextBox.Text;
+
+
+            dbConnect.OpenConnection();
+            MySqlCommand cmd = new MySqlCommand("aenMarkInstert", dbConnect.connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("_studentName", parsedata[1]);
+            cmd.Parameters.AddWithValue("_teacherName", parsedata[2]);
+            cmd.Parameters.AddWithValue("_subjectName", parsedata[4]);
+            cmd.Parameters.AddWithValue("_markNumber",  Int32.Parse(parsedata[3]));
+            cmd.Parameters.AddWithValue("_description", parsedata[5]);
+            cmd.Parameters.AddWithValue("_markDate",    DateTime.Parse(markDateTimePicker.Value.ToString()));
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            cmd.ExecuteNonQuery();
+            dbConnect.CloseConnection();
+
+        }
+     
 
 
 
@@ -44,8 +89,6 @@ namespace AEN
 
 
 
-
-        
         #region borderless form movable
         protected override void WndProc(ref Message m)
         {
@@ -65,5 +108,19 @@ namespace AEN
 
         #endregion
 
+        private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            studenNameCombobox.Items.Clear();
+            markThings.StudentFill(this.classComboBox, this.studenNameCombobox);
+            studenNameCombobox.Items.RemoveAt(0);
+            studenNameCombobox.SelectedIndex = 0;
+        }
+
+        private void markInsertButton_Click(object sender, EventArgs e)
+        {
+            MarkInsert();
+            markThings.StartMarkGridFill();
+            this.Close();
+        }
     }
 }

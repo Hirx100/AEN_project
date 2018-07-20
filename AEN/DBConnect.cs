@@ -128,11 +128,11 @@ namespace AEN
                 switch (ex.Number)
                 {
                     case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        MessageBox.Show("Nem tud csatlakozni a szerver. Lépjen kapcsolatba az rendszergazdával!");
                         break;
 
                     case 1045:
-                        MessageBox.Show("Invalid username/password, please try again");
+                        MessageBox.Show("Hibás szerver jelszó vagy felhasználó név. Lépjen kapcsolatba az adminisztrátorral.");
                         break;
                 }
                 return false;
