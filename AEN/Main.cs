@@ -71,7 +71,7 @@ namespace AEN
 
         private void omissionOperatorButton_Click(object sender, EventArgs e)
         {
-            Omissionoperator omissionJump = new Omissionoperator;
+            Omissionoperator omissionJump = new Omissionoperator();
             omissionJump.Show();
             this.Close();
         }

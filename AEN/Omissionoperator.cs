@@ -17,6 +17,7 @@ namespace AEN
         Markoperator comboFill = new Markoperator();
         int startMarkGridRuningcount = 0;
         public List<string> studentID = new List<string>();
+        
         public Omissionoperator()
         {
             InitializeComponent();
@@ -27,13 +28,12 @@ namespace AEN
             comboFill.StudentFill(classComboBox,studenNameCombobox);
             StartOmissionGridFill();
 
+            omissionDataGridView.ColumnHeadersVisible = false;
             if (Loginscreen.permValue == 103 || Loginscreen.permValue == 104)
             {
                 deleteOmissionButton.Visible = false;
                 updateOmissionbutton.Visible = false;
                 newOmissionButton.Visible = false;
-                actualDescriptiontextBox.ReadOnly= true;
-                actualDescriptiontextBox.BackColor = Color.DarkGray;
             }
             
         }
@@ -79,16 +79,16 @@ namespace AEN
             cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
             cmd.Parameters.AddWithValue("_classSign", selectClassSign);
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-            DataTable dtMark = new DataTable();
-            sqlDa.Fill(dtMark);
-            markDataGridView.DataSource = dtMark;
-            markDataGridView.Columns["omission_id"].Visible = false;
+            DataTable dtOmission = new DataTable();
+            sqlDa.Fill(dtOmission);
+            omissionDataGridView.DataSource = dtOmission;
+            omissionDataGridView.Columns["omission_id"].Visible = false;
 
             dataviwe.CloseConnection();
 
-            DateTime parsedDate = DateTime.Parse(dtMark.Rows[0][4].ToString());
+            DateTime parsedDate = DateTime.Parse(dtOmission.Rows[0][3].ToString());
             startDateTimePicker.Value = parsedDate;
-            parsedDate = DateTime.Parse(dtMark.Rows[dtMark.Rows.Count - 1][4].ToString());
+            parsedDate = DateTime.Parse(dtOmission.Rows[dtOmission.Rows.Count - 1][3].ToString());
             endDateTimePicker.Value = parsedDate;
             
         }
@@ -105,12 +105,10 @@ namespace AEN
                 {
                     KeyValuePair<string, int> selectedClass = (KeyValuePair<string, int>)classComboBox.SelectedItem;
                     KeyValuePair<string, int> selectedStudent = (KeyValuePair<string, int>)studenNameCombobox.SelectedItem;
-                    KeyValuePair<string, int> selectedSubject = (KeyValuePair<string, int>)subjectComboBox.SelectedItem;
                     string selectClassSign;
                     string nummerPlaceholder;
                     int selectClassNummer;
                     
-                    string parseSubject = selectedSubject.Key;
                     string selectTrueClass = selectedClass.Key;
                     char[] charPlacehorder = new char[selectTrueClass.Length];
                     charPlacehorder = selectTrueClass.ToCharArray();
@@ -118,12 +116,10 @@ namespace AEN
                     nummerPlaceholder = charPlacehorder[0].ToString();
                     selectClassNummer = Int32.Parse(nummerPlaceholder);
 
-                    int parseSubjectValue = selectedSubject.Value;
                     int parseNameValue = selectedStudent.Value;
                     
                     string parseName = selectedStudent.Key;
 
-                if (parseSubjectValue == 399) parseSubject = "%%";
 
                 if (parseNameValue == 400)parseName = "% %";
                
@@ -133,14 +129,13 @@ namespace AEN
                     cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
                     cmd.Parameters.AddWithValue("_classSign", selectClassSign);
                     cmd.Parameters.AddWithValue("_selectedStudent", parseName);
-                    cmd.Parameters.AddWithValue("_selectedSubject", parseSubject);
                     cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
                     cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
                     MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
                     DataTable dtRunningMark = new DataTable();
                     sqlDa.Fill(dtRunningMark);
-                    markDataGridView.DataSource = dtRunningMark;
-                    markDataGridView.Columns["mark_id"].Visible = false;
+                    omissionDataGridView.DataSource = dtRunningMark;
+                    omissionDataGridView.Columns["omission_id"].Visible = false;
                     dataviwe.CloseConnection();
                 }
             
@@ -150,10 +145,9 @@ namespace AEN
         {
             KeyValuePair<string, int> updateStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
             KeyValuePair<string, int> updateTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
-            KeyValuePair<string, int> updateSubject = (KeyValuePair<string, int>)actualSubjectcomboBox.SelectedItem;
-            KeyValuePair<string, int> updateMarkNummer = (KeyValuePair<string, int>)actualMarkcomboBox.SelectedItem;
-            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
-            string updateMarkID = selectedRows.Cells["mark_id"].Value.ToString();
+
+            DataGridViewRow selectedRows = omissionDataGridView.Rows[SelectedRowIndex];
+            string updateMarkID = selectedRows.Cells["omission_id"].Value.ToString();
 
           //  string updateName = updateStudent.Key;
 
@@ -162,8 +156,6 @@ namespace AEN
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateStudent", updateStudent.Key);
             cmd.Parameters.AddWithValue("_updateTeacher", updateTeacher.Key);
-            cmd.Parameters.AddWithValue("_updateSubject", updateSubject.Key);
-            cmd.Parameters.AddWithValue("_updateMarkNummer", updateMarkNummer.Key);
             cmd.Parameters.AddWithValue("_updateDescription", actualDescriptiontextBox.Text);
             cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualMarkDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateMarkID", updateMarkID);
@@ -173,8 +165,8 @@ namespace AEN
 
         void DeleteMark()
         {
-            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
-            string deleteMarkID = selectedRows.Cells["mark_id"].Value.ToString();
+            DataGridViewRow selectedRows = omissionDataGridView.Rows[SelectedRowIndex];
+            string deleteMarkID = selectedRows.Cells["omission_id"].Value.ToString();
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenMarkDelete", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -227,21 +219,19 @@ namespace AEN
                 
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
-                DataGridViewRow selectedRows = markDataGridView.Rows[index];
+                DataGridViewRow selectedRows = omissionDataGridView.Rows[index];
                 string description = selectedRows.Cells["description"].Value + string.Empty;
 
                 actualDescriptiontextBox.Text = description;
                 actualMarkDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["mark_Date"].Value.ToString());
                 actualStudentNameComboBox.SelectedIndex=actualStudentNameComboBox.FindStringExact(selectedRows.Cells["student"].Value.ToString());
-                actualSubjectcomboBox.SelectedIndex = actualSubjectcomboBox.FindStringExact(selectedRows.Cells["subject_name"].Value.ToString());
                 actualTeacherComboBox.SelectedIndex = actualTeacherComboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
-                actualMarkcomboBox.SelectedIndex = actualMarkcomboBox.FindStringExact(selectedRows.Cells["mark_number"].Value.ToString());
 
         }
 
         private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            StudentFill(classComboBox,studenNameCombobox);
+            comboFill.StudentFill(classComboBox,studenNameCombobox);
             RuningMarkGridFill(); 
         }
 
