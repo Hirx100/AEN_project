@@ -39,7 +39,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.omissionOperatorButton = new System.Windows.Forms.PictureBox();
             this.userDataButton = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.markOperatorButton = new System.Windows.Forms.PictureBox();
@@ -50,7 +50,7 @@
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.omissionOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).BeginInit();
@@ -178,15 +178,16 @@
             this.logOutButton.TabStop = false;
             this.logOutButton.Click += new System.EventHandler(this.logOutButton_Click);
             // 
-            // pictureBox7
+            // omissionOperatorButton
             // 
-            this.pictureBox7.Image = global::AEN.Properties.Resources.exit_button;
-            this.pictureBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox7.Location = new System.Drawing.Point(510, 203);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox7.TabIndex = 16;
-            this.pictureBox7.TabStop = false;
+            this.omissionOperatorButton.Image = global::AEN.Properties.Resources.exit_button;
+            this.omissionOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.omissionOperatorButton.Location = new System.Drawing.Point(510, 203);
+            this.omissionOperatorButton.Name = "omissionOperatorButton";
+            this.omissionOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.omissionOperatorButton.TabIndex = 16;
+            this.omissionOperatorButton.TabStop = false;
+            this.omissionOperatorButton.Click += new System.EventHandler(this.omissionOperatorButton_Click);
             // 
             // userDataButton
             // 
@@ -294,7 +295,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.omissionOperatorButton);
             this.Controls.Add(this.userDataButton);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.label2);
@@ -313,7 +314,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.omissionOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).EndInit();
@@ -341,7 +342,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox omissionOperatorButton;
         private System.Windows.Forms.PictureBox userDataButton;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.Label label7;

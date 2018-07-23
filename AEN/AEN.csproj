@@ -63,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DBConnect.cs" />
+    <Compile Include="Omissionoperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Omissionoperator.Designer.cs">
+      <DependentUpon>Omissionoperator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Markoperator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     <Compile Include="Userdatascreen.Designer.cs">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Omissionoperator.resx">
+      <DependentUpon>Omissionoperator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Markoperator.resx">
       <DependentUpon>Markoperator.cs</DependentUpon>
     </EmbeddedResource>
