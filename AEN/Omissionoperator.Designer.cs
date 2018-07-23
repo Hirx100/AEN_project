@@ -36,7 +36,7 @@
             this.updateOmissionbutton = new System.Windows.Forms.Button();
             this.deleteOmissionButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.actualMarkDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.actualOmissionDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.actualTeacherComboBox = new System.Windows.Forms.ComboBox();
             this.actualStudentNameComboBox = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -83,7 +83,7 @@
             this.panel1.Controls.Add(this.updateOmissionbutton);
             this.panel1.Controls.Add(this.deleteOmissionButton);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.actualMarkDateTimePicker);
+            this.panel1.Controls.Add(this.actualOmissionDateTimePicker);
             this.panel1.Controls.Add(this.actualTeacherComboBox);
             this.panel1.Controls.Add(this.actualStudentNameComboBox);
             this.panel1.Location = new System.Drawing.Point(275, 357);
@@ -158,12 +158,12 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Tanuló:";
             // 
-            // actualMarkDateTimePicker
+            // actualOmissionDateTimePicker
             // 
-            this.actualMarkDateTimePicker.Location = new System.Drawing.Point(56, 107);
-            this.actualMarkDateTimePicker.Name = "actualMarkDateTimePicker";
-            this.actualMarkDateTimePicker.Size = new System.Drawing.Size(130, 20);
-            this.actualMarkDateTimePicker.TabIndex = 11;
+            this.actualOmissionDateTimePicker.Location = new System.Drawing.Point(56, 107);
+            this.actualOmissionDateTimePicker.Name = "actualOmissionDateTimePicker";
+            this.actualOmissionDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.actualOmissionDateTimePicker.TabIndex = 11;
             // 
             // actualTeacherComboBox
             // 
@@ -359,7 +359,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker actualMarkDateTimePicker;
+        private System.Windows.Forms.DateTimePicker actualOmissionDateTimePicker;
         private System.Windows.Forms.ComboBox actualTeacherComboBox;
         public System.Windows.Forms.ComboBox actualStudentNameComboBox;
         private System.Windows.Forms.Label label6;

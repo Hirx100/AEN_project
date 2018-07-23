@@ -132,9 +132,9 @@ namespace AEN
                     cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
                     cmd.Parameters.AddWithValue("_endDate", DateTime.Parse(endDateTimePicker.Value.ToString()));
                     MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-                    DataTable dtRunningMark = new DataTable();
-                    sqlDa.Fill(dtRunningMark);
-                    omissionDataGridView.DataSource = dtRunningMark;
+                    DataTable dtRunningOmission = new DataTable();
+                    sqlDa.Fill(dtRunningOmission);
+                    omissionDataGridView.DataSource = dtRunningOmission;
                     omissionDataGridView.Columns["omission_id"].Visible = false;
                     dataviwe.CloseConnection();
                 }
@@ -156,8 +156,7 @@ namespace AEN
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateStudent", updateStudent.Key);
             cmd.Parameters.AddWithValue("_updateTeacher", updateTeacher.Key);
-            cmd.Parameters.AddWithValue("_updateDescription", actualDescriptiontextBox.Text);
-            cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualMarkDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualOmissionDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateMarkID", updateMarkID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
@@ -220,10 +219,8 @@ namespace AEN
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
                 DataGridViewRow selectedRows = omissionDataGridView.Rows[index];
-                string description = selectedRows.Cells["description"].Value + string.Empty;
 
-                actualDescriptiontextBox.Text = description;
-                actualMarkDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["mark_Date"].Value.ToString());
+                actualOmissionDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["omission_Date"].Value.ToString());
                 actualStudentNameComboBox.SelectedIndex=actualStudentNameComboBox.FindStringExact(selectedRows.Cells["student"].Value.ToString());
                 actualTeacherComboBox.SelectedIndex = actualTeacherComboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
 
