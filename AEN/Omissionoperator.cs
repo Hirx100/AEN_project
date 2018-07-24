@@ -26,14 +26,17 @@ namespace AEN
             comboFill.TeacherFill(actualTeacherComboBox);
             comboFill.ClassFill(classComboBox);
             comboFill.StudentFill(classComboBox,studenNameCombobox);
+            comboFill.StudentFill(classComboBox, actualStudentNameComboBox);
             StartOmissionGridFill();
 
-            omissionDataGridView.ColumnHeadersVisible = false;
+         //   omissionDataGridView.ColumnHeadersVisible = false;
             if (Loginscreen.permValue == 103 || Loginscreen.permValue == 104)
             {
                 deleteOmissionButton.Visible = false;
                 updateOmissionbutton.Visible = false;
                 newOmissionButton.Visible = false;
+                actualCertifyCheckBox.Enabled = false;
+                actualDelayCheckBox.Enabled = false;
             }
             
         }
@@ -81,14 +84,37 @@ namespace AEN
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtOmission = new DataTable();
             sqlDa.Fill(dtOmission);
+
+            string placehorderhour = ". óra";
+            dtOmission.Columns.Add(new DataColumn("dayhour", typeof(string)));
+            dtOmission.Columns.Add(new DataColumn("parsedelay", typeof(string)));
+            dtOmission.Columns.Add(new DataColumn("parsecertify", typeof(string)));
+            foreach (DataRow row in dtOmission.Rows)
+            {
+                row["dayhour"] = row["hour"].ToString() + placehorderhour;
+                if (Convert.ToBoolean(row["delay"]) == true)
+                {
+                    row["parsedaley"] = "Késett";
+                }
+                else row["parsedelay"]= " ";
+
+                if (Convert.ToBoolean(row["certify"]) == true)
+                {
+                    row["parsecertify"] = "Igazolt";
+                }
+                else row["parsecertify"] = "Igazolatlan";
+            }
             omissionDataGridView.DataSource = dtOmission;
             omissionDataGridView.Columns["omission_id"].Visible = false;
-
+            omissionDataGridView.Columns["hour"].Visible = false;
+            omissionDataGridView.Columns["certify"].Visible = false;
+            omissionDataGridView.Columns["delay"].Visible = false;
+            omissionDataGridView.Columns["dayhour"].DisplayIndex = 2;
             dataviwe.CloseConnection();
 
-            DateTime parsedDate = DateTime.Parse(dtOmission.Rows[0][3].ToString());
+            DateTime parsedDate = DateTime.Parse(dtOmission.Rows[0][1].ToString());
             startDateTimePicker.Value = parsedDate;
-            parsedDate = DateTime.Parse(dtOmission.Rows[dtOmission.Rows.Count - 1][3].ToString());
+            parsedDate = DateTime.Parse(dtOmission.Rows[dtOmission.Rows.Count - 1][1].ToString());
             endDateTimePicker.Value = parsedDate;
             
         }
@@ -124,7 +150,7 @@ namespace AEN
                 if (parseNameValue == 400)parseName = "% %";
                
                     dataviwe.OpenConnection();
-                    MySqlCommand cmd = new MySqlCommand("aenMarkRuningSelect", dataviwe.connection);
+                    MySqlCommand cmd = new MySqlCommand("aenOmissionRuningSelect", dataviwe.connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
                     cmd.Parameters.AddWithValue("_classSign", selectClassSign);
@@ -135,41 +161,67 @@ namespace AEN
                     DataTable dtRunningOmission = new DataTable();
                     sqlDa.Fill(dtRunningOmission);
                     omissionDataGridView.DataSource = dtRunningOmission;
-                    omissionDataGridView.Columns["omission_id"].Visible = false;
+
+                string placehorderhour = ". óra";
+                dtRunningOmission.Columns.Add(new DataColumn("dayhour", typeof(string)));
+                dtRunningOmission.Columns.Add(new DataColumn("parsedelay", typeof(string)));
+                dtRunningOmission.Columns.Add(new DataColumn("parsecertify", typeof(string)));
+                foreach (DataRow row in dtRunningOmission.Rows)
+                {
+                    row["dayhour"] = row["hour"].ToString() + placehorderhour;
+                    if (Convert.ToBoolean(row["delay"]) == true)
+                    {
+                        row["parsedelay"] = "Késett";
+                    }
+                    else row["parsedelay"] = " ";
+
+                    if (Convert.ToBoolean(row["certify"]) == true)
+                    {
+                        row["parsecertify"] = "Igazolt";
+                    }
+                    else row["parsecertify"] = "Igazolatlan";
+                }
+                omissionDataGridView.DataSource = dtRunningOmission;
+                omissionDataGridView.Columns["omission_id"].Visible = false;
+                omissionDataGridView.Columns["hour"].Visible = false;
+                omissionDataGridView.Columns["certify"].Visible = false;
+                omissionDataGridView.Columns["delay"].Visible = false;
+                omissionDataGridView.Columns["dayhour"].DisplayIndex = 2;
+                omissionDataGridView.Columns["omission_id"].Visible = false;
                     dataviwe.CloseConnection();
                 }
             
         }
 
-        void UpdateMark()
+        void UpdateOmission()
         {
             KeyValuePair<string, int> updateStudent = (KeyValuePair<string, int>)actualStudentNameComboBox.SelectedItem;
             KeyValuePair<string, int> updateTeacher = (KeyValuePair<string, int>)actualTeacherComboBox.SelectedItem;
 
             DataGridViewRow selectedRows = omissionDataGridView.Rows[SelectedRowIndex];
-            string updateMarkID = selectedRows.Cells["omission_id"].Value.ToString();
+            string updateOmissionID = selectedRows.Cells["omission_id"].Value.ToString();
 
           //  string updateName = updateStudent.Key;
 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand(" aenMarkUpdate", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand(" aenOmissionkUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateStudent", updateStudent.Key);
             cmd.Parameters.AddWithValue("_updateTeacher", updateTeacher.Key);
             cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualOmissionDateTimePicker.Value.ToString()));
-            cmd.Parameters.AddWithValue("_updateMarkID", updateMarkID);
+            cmd.Parameters.AddWithValue("_updateMarkID", updateOmissionID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
 
-        void DeleteMark()
+        void DeleteOmission()
         {
             DataGridViewRow selectedRows = omissionDataGridView.Rows[SelectedRowIndex];
             string deleteMarkID = selectedRows.Cells["omission_id"].Value.ToString();
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenMarkDelete", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_mark_id", deleteMarkID);
+            cmd.Parameters.AddWithValue("_omission_ID", deleteMarkID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -213,17 +265,19 @@ namespace AEN
 
         #endregion
 
-        private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void omissionDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
                 
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
                 DataGridViewRow selectedRows = omissionDataGridView.Rows[index];
 
-                actualOmissionDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["omission_Date"].Value.ToString());
+                actualOmissionDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["date"].Value.ToString());
                 actualStudentNameComboBox.SelectedIndex=actualStudentNameComboBox.FindStringExact(selectedRows.Cells["student"].Value.ToString());
                 actualTeacherComboBox.SelectedIndex = actualTeacherComboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
 
+            if (selectedRows.Cells["parsedelay"].Value.Equals("Késett")) actualDelayCheckBox.Checked = true;
+            if (selectedRows.Cells["parsecertify"].Value.Equals("Igazolt")) actualCertifyCheckBox.Checked = true;
         }
 
         private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -232,12 +286,12 @@ namespace AEN
             RuningMarkGridFill(); 
         }
 
-        private void deleteMarkButton_Click(object sender, EventArgs e)
+        private void deleteOmissionButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a jegyet?", "Megerősítés", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a hiányzást?", "Megerősítés", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DeleteMark();
+                DeleteOmission();
                 StartOmissionGridFill();
             }
             else if (dialogResult == DialogResult.No)
@@ -247,17 +301,18 @@ namespace AEN
  
         }
 
-        private void updateMarkbutton_Click(object sender, EventArgs e)
+        private void updateOmissionkbutton_Click(object sender, EventArgs e)
         {
-            UpdateMark();
+            UpdateOmission();
             StartOmissionGridFill();
-            MessageBox.Show("A jegy adatai frissítve");
+            MessageBox.Show("A hiányzás adatai frissítve");
         }
 
-        private void newMarkButton_Click(object sender, EventArgs e)
+        private void newOmissionButton_Click(object sender, EventArgs e)
         {
             NewMark jump = new NewMark();
             jump.Show();
         }
+
     }
 }

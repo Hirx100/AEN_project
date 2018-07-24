@@ -51,6 +51,8 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
+            this.actualDelayCheckBox = new System.Windows.Forms.CheckBox();
+            this.actualCertifyCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.omissionDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,10 +75,12 @@
             this.omissionDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.omissionDataGridView.Size = new System.Drawing.Size(776, 287);
             this.omissionDataGridView.TabIndex = 26;
-            this.omissionDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.markDataGridView_RowEnter);
+            this.omissionDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.omissionDataGridView_RowEnter);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.actualCertifyCheckBox);
+            this.panel1.Controls.Add(this.actualDelayCheckBox);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.newOmissionButton);
@@ -97,7 +101,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(52, 84);
+            this.label10.Location = new System.Drawing.Point(52, 53);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(50, 20);
             this.label10.TabIndex = 18;
@@ -123,7 +127,7 @@
             this.newOmissionButton.TabIndex = 15;
             this.newOmissionButton.Text = "Új Hiányzás";
             this.newOmissionButton.UseVisualStyleBackColor = true;
-            this.newOmissionButton.Click += new System.EventHandler(this.newMarkButton_Click);
+            this.newOmissionButton.Click += new System.EventHandler(this.newOmissionButton_Click);
             // 
             // updateOmissionbutton
             // 
@@ -134,7 +138,7 @@
             this.updateOmissionbutton.TabIndex = 14;
             this.updateOmissionbutton.Text = "Modosítás";
             this.updateOmissionbutton.UseVisualStyleBackColor = true;
-            this.updateOmissionbutton.Click += new System.EventHandler(this.updateMarkbutton_Click);
+            this.updateOmissionbutton.Click += new System.EventHandler(this.updateOmissionkbutton_Click);
             // 
             // deleteOmissionButton
             // 
@@ -145,7 +149,7 @@
             this.deleteOmissionButton.TabIndex = 13;
             this.deleteOmissionButton.Text = "Törlés";
             this.deleteOmissionButton.UseVisualStyleBackColor = true;
-            this.deleteOmissionButton.Click += new System.EventHandler(this.deleteMarkButton_Click);
+            this.deleteOmissionButton.Click += new System.EventHandler(this.deleteOmissionButton_Click);
             // 
             // label6
             // 
@@ -160,7 +164,7 @@
             // 
             // actualOmissionDateTimePicker
             // 
-            this.actualOmissionDateTimePicker.Location = new System.Drawing.Point(56, 107);
+            this.actualOmissionDateTimePicker.Location = new System.Drawing.Point(56, 76);
             this.actualOmissionDateTimePicker.Name = "actualOmissionDateTimePicker";
             this.actualOmissionDateTimePicker.Size = new System.Drawing.Size(130, 20);
             this.actualOmissionDateTimePicker.TabIndex = 11;
@@ -316,6 +320,30 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // actualDelayCheckBox
+            // 
+            this.actualDelayCheckBox.AutoSize = true;
+            this.actualDelayCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualDelayCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualDelayCheckBox.Location = new System.Drawing.Point(56, 111);
+            this.actualDelayCheckBox.Name = "actualDelayCheckBox";
+            this.actualDelayCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualDelayCheckBox.TabIndex = 19;
+            this.actualDelayCheckBox.Text = "Késés";
+            this.actualDelayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // actualCertifyCheckBox
+            // 
+            this.actualCertifyCheckBox.AutoSize = true;
+            this.actualCertifyCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualCertifyCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualCertifyCheckBox.Location = new System.Drawing.Point(56, 155);
+            this.actualCertifyCheckBox.Name = "actualCertifyCheckBox";
+            this.actualCertifyCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualCertifyCheckBox.TabIndex = 20;
+            this.actualCertifyCheckBox.Text = "Igazolt";
+            this.actualCertifyCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Omissionoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +358,7 @@
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Omissionoperator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.omissionDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -368,5 +397,7 @@
         private System.Windows.Forms.Button deleteOmissionButton;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox actualCertifyCheckBox;
+        private System.Windows.Forms.CheckBox actualDelayCheckBox;
     }
 }

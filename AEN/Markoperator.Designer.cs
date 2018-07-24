@@ -30,6 +30,13 @@
         {
             this.markDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.newMarkButton = new System.Windows.Forms.Button();
+            this.updateMarkbutton = new System.Windows.Forms.Button();
+            this.deleteMarkButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.actualMarkcomboBox = new System.Windows.Forms.ComboBox();
@@ -49,16 +56,9 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
-            this.deleteMarkButton = new System.Windows.Forms.Button();
-            this.updateMarkbutton = new System.Windows.Forms.Button();
-            this.newMarkButton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -105,6 +105,83 @@
             this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
             this.panel1.Tag = "Aktuális jegy";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.ForeColor = System.Drawing.SystemColors.Control;
+            this.label11.Location = new System.Drawing.Point(52, 134);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 20);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Leírás:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.ForeColor = System.Drawing.SystemColors.Control;
+            this.label10.Location = new System.Drawing.Point(52, 84);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(50, 20);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Dátum:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.ForeColor = System.Drawing.SystemColors.Control;
+            this.label9.Location = new System.Drawing.Point(52, 30);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 20);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Jegy:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(219, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 20);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Tanár:";
+            // 
+            // newMarkButton
+            // 
+            this.newMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.newMarkButton.Location = new System.Drawing.Point(287, 218);
+            this.newMarkButton.Name = "newMarkButton";
+            this.newMarkButton.Size = new System.Drawing.Size(87, 42);
+            this.newMarkButton.TabIndex = 15;
+            this.newMarkButton.Text = "Új jegy";
+            this.newMarkButton.UseVisualStyleBackColor = true;
+            this.newMarkButton.Click += new System.EventHandler(this.newMarkButton_Click);
+            // 
+            // updateMarkbutton
+            // 
+            this.updateMarkbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.updateMarkbutton.Location = new System.Drawing.Point(174, 218);
+            this.updateMarkbutton.Name = "updateMarkbutton";
+            this.updateMarkbutton.Size = new System.Drawing.Size(87, 42);
+            this.updateMarkbutton.TabIndex = 14;
+            this.updateMarkbutton.Text = "Modosítás";
+            this.updateMarkbutton.UseVisualStyleBackColor = true;
+            this.updateMarkbutton.Click += new System.EventHandler(this.updateMarkbutton_Click);
+            // 
+            // deleteMarkButton
+            // 
+            this.deleteMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.deleteMarkButton.Location = new System.Drawing.Point(56, 218);
+            this.deleteMarkButton.Name = "deleteMarkButton";
+            this.deleteMarkButton.Size = new System.Drawing.Size(87, 42);
+            this.deleteMarkButton.TabIndex = 13;
+            this.deleteMarkButton.Text = "Törlés";
+            this.deleteMarkButton.UseVisualStyleBackColor = true;
+            this.deleteMarkButton.Click += new System.EventHandler(this.deleteMarkButton_Click);
             // 
             // label7
             // 
@@ -305,39 +382,6 @@
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
             // 
-            // deleteMarkButton
-            // 
-            this.deleteMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.deleteMarkButton.Location = new System.Drawing.Point(56, 218);
-            this.deleteMarkButton.Name = "deleteMarkButton";
-            this.deleteMarkButton.Size = new System.Drawing.Size(87, 42);
-            this.deleteMarkButton.TabIndex = 13;
-            this.deleteMarkButton.Text = "Törlés";
-            this.deleteMarkButton.UseVisualStyleBackColor = true;
-            this.deleteMarkButton.Click += new System.EventHandler(this.deleteMarkButton_Click);
-            // 
-            // updateMarkbutton
-            // 
-            this.updateMarkbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.updateMarkbutton.Location = new System.Drawing.Point(174, 218);
-            this.updateMarkbutton.Name = "updateMarkbutton";
-            this.updateMarkbutton.Size = new System.Drawing.Size(87, 42);
-            this.updateMarkbutton.TabIndex = 14;
-            this.updateMarkbutton.Text = "Modosítás";
-            this.updateMarkbutton.UseVisualStyleBackColor = true;
-            this.updateMarkbutton.Click += new System.EventHandler(this.updateMarkbutton_Click);
-            // 
-            // newMarkButton
-            // 
-            this.newMarkButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.newMarkButton.Location = new System.Drawing.Point(287, 218);
-            this.newMarkButton.Name = "newMarkButton";
-            this.newMarkButton.Size = new System.Drawing.Size(87, 42);
-            this.newMarkButton.TabIndex = 15;
-            this.newMarkButton.Text = "Új jegy";
-            this.newMarkButton.UseVisualStyleBackColor = true;
-            this.newMarkButton.Click += new System.EventHandler(this.newMarkButton_Click);
-            // 
             // logOutButton
             // 
             this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
@@ -371,50 +415,6 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.ForeColor = System.Drawing.SystemColors.Control;
-            this.label8.Location = new System.Drawing.Point(219, 110);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Tanár:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(52, 30);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Jegy:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(52, 84);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(50, 20);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Dátum:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.ForeColor = System.Drawing.SystemColors.Control;
-            this.label11.Location = new System.Drawing.Point(52, 134);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 20);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Leírás:";
-            // 
             // Markoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -429,6 +429,7 @@
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Markoperator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
