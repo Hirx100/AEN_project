@@ -29,7 +29,7 @@ namespace AEN
             comboFill.StudentFill(classComboBox, actualStudentNameComboBox);
             StartOmissionGridFill();
 
-         //   omissionDataGridView.ColumnHeadersVisible = false;
+            omissionDataGridView.ColumnHeadersVisible = false;
             if (Loginscreen.permValue == 103 || Loginscreen.permValue == 104)
             {
                 deleteOmissionButton.Visible = false;
@@ -160,7 +160,6 @@ namespace AEN
                     MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
                     DataTable dtRunningOmission = new DataTable();
                     sqlDa.Fill(dtRunningOmission);
-                    omissionDataGridView.DataSource = dtRunningOmission;
 
                 string placehorderhour = ". óra";
                 dtRunningOmission.Columns.Add(new DataColumn("dayhour", typeof(string)));
@@ -181,6 +180,7 @@ namespace AEN
                     }
                     else row["parsecertify"] = "Igazolatlan";
                 }
+
                 omissionDataGridView.DataSource = dtRunningOmission;
                 omissionDataGridView.Columns["omission_id"].Visible = false;
                 omissionDataGridView.Columns["hour"].Visible = false;
@@ -310,7 +310,7 @@ namespace AEN
 
         private void newOmissionButton_Click(object sender, EventArgs e)
         {
-            NewMark jump = new NewMark();
+            NewOmission jump = new NewOmission();
             jump.Show();
         }
 

@@ -48,11 +48,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
+            this.actualDelayCheckBox = new System.Windows.Forms.CheckBox();
+            this.actualCertifyCheckBox = new System.Windows.Forms.CheckBox();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            this.actualDelayCheckBox = new System.Windows.Forms.CheckBox();
-            this.actualCertifyCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.omissionDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -287,6 +287,30 @@
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
             // 
+            // actualDelayCheckBox
+            // 
+            this.actualDelayCheckBox.AutoSize = true;
+            this.actualDelayCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualDelayCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualDelayCheckBox.Location = new System.Drawing.Point(56, 111);
+            this.actualDelayCheckBox.Name = "actualDelayCheckBox";
+            this.actualDelayCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualDelayCheckBox.TabIndex = 19;
+            this.actualDelayCheckBox.Text = "Késés";
+            this.actualDelayCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // actualCertifyCheckBox
+            // 
+            this.actualCertifyCheckBox.AutoSize = true;
+            this.actualCertifyCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualCertifyCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualCertifyCheckBox.Location = new System.Drawing.Point(56, 155);
+            this.actualCertifyCheckBox.Name = "actualCertifyCheckBox";
+            this.actualCertifyCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualCertifyCheckBox.TabIndex = 20;
+            this.actualCertifyCheckBox.Text = "Igazolt";
+            this.actualCertifyCheckBox.UseVisualStyleBackColor = true;
+            // 
             // logOutButton
             // 
             this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
@@ -319,30 +343,6 @@
             this.exitButton.TabIndex = 23;
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // actualDelayCheckBox
-            // 
-            this.actualDelayCheckBox.AutoSize = true;
-            this.actualDelayCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualDelayCheckBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.actualDelayCheckBox.Location = new System.Drawing.Point(56, 111);
-            this.actualDelayCheckBox.Name = "actualDelayCheckBox";
-            this.actualDelayCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.actualDelayCheckBox.TabIndex = 19;
-            this.actualDelayCheckBox.Text = "Késés";
-            this.actualDelayCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // actualCertifyCheckBox
-            // 
-            this.actualCertifyCheckBox.AutoSize = true;
-            this.actualCertifyCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualCertifyCheckBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.actualCertifyCheckBox.Location = new System.Drawing.Point(56, 155);
-            this.actualCertifyCheckBox.Name = "actualCertifyCheckBox";
-            this.actualCertifyCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.actualCertifyCheckBox.TabIndex = 20;
-            this.actualCertifyCheckBox.Text = "Igazolt";
-            this.actualCertifyCheckBox.UseVisualStyleBackColor = true;
             // 
             // Omissionoperator
             // 
