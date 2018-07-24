@@ -63,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DBConnect.cs" />
+    <Compile Include="Teacheroperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teacheroperator.Designer.cs">
+      <DependentUpon>Teacheroperator.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewOmission.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="Userdatascreen.Designer.cs">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Teacheroperator.resx">
+      <DependentUpon>Teacheroperator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewOmission.resx">
       <DependentUpon>NewOmission.cs</DependentUpon>
     </EmbeddedResource>
