@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.markDataGridView = new System.Windows.Forms.DataGridView();
+            this.teacherDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.actualPasswordtextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,35 +37,35 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.newTeacherButton = new System.Windows.Forms.Button();
-            this.bornDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.actualBornDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.updateTeacherbutton = new System.Windows.Forms.Button();
             this.deleteTeacherButton = new System.Windows.Forms.Button();
             this.actualAccountNametextBox = new System.Windows.Forms.TextBox();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
             // 
-            // markDataGridView
+            // teacherDataGridView
             // 
-            this.markDataGridView.AllowUserToAddRows = false;
-            this.markDataGridView.AllowUserToDeleteRows = false;
-            this.markDataGridView.AllowUserToResizeColumns = false;
-            this.markDataGridView.AllowUserToResizeRows = false;
-            this.markDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.markDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
-            this.markDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.markDataGridView.Location = new System.Drawing.Point(12, 50);
-            this.markDataGridView.Name = "markDataGridView";
-            this.markDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.markDataGridView.Size = new System.Drawing.Size(776, 287);
-            this.markDataGridView.TabIndex = 26;
-            this.markDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.markDataGridView_RowEnter);
+            this.teacherDataGridView.AllowUserToAddRows = false;
+            this.teacherDataGridView.AllowUserToDeleteRows = false;
+            this.teacherDataGridView.AllowUserToResizeColumns = false;
+            this.teacherDataGridView.AllowUserToResizeRows = false;
+            this.teacherDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.teacherDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.teacherDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.teacherDataGridView.Location = new System.Drawing.Point(12, 50);
+            this.teacherDataGridView.Name = "teacherDataGridView";
+            this.teacherDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.teacherDataGridView.Size = new System.Drawing.Size(776, 287);
+            this.teacherDataGridView.TabIndex = 26;
+            this.teacherDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.markDataGridView_RowEnter);
             // 
             // panel1
             // 
@@ -76,7 +76,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.newTeacherButton);
-            this.panel1.Controls.Add(this.bornDateTimePicker);
+            this.panel1.Controls.Add(this.actualBornDateTimePicker);
             this.panel1.Controls.Add(this.updateTeacherbutton);
             this.panel1.Controls.Add(this.deleteTeacherButton);
             this.panel1.Controls.Add(this.actualAccountNametextBox);
@@ -149,25 +149,25 @@
             // newTeacherButton
             // 
             this.newTeacherButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.newTeacherButton.Location = new System.Drawing.Point(605, 232);
+            this.newTeacherButton.Location = new System.Drawing.Point(328, 214);
             this.newTeacherButton.Name = "newTeacherButton";
             this.newTeacherButton.Size = new System.Drawing.Size(87, 42);
             this.newTeacherButton.TabIndex = 15;
-            this.newTeacherButton.Text = "Új jegy";
+            this.newTeacherButton.Text = "Új tanár";
             this.newTeacherButton.UseVisualStyleBackColor = true;
             this.newTeacherButton.Click += new System.EventHandler(this.newMarkButton_Click);
             // 
-            // bornDateTimePicker
+            // actualBornDateTimePicker
             // 
-            this.bornDateTimePicker.Location = new System.Drawing.Point(254, 129);
-            this.bornDateTimePicker.Name = "bornDateTimePicker";
-            this.bornDateTimePicker.Size = new System.Drawing.Size(130, 20);
-            this.bornDateTimePicker.TabIndex = 5;
+            this.actualBornDateTimePicker.Location = new System.Drawing.Point(254, 129);
+            this.actualBornDateTimePicker.Name = "actualBornDateTimePicker";
+            this.actualBornDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.actualBornDateTimePicker.TabIndex = 5;
             // 
             // updateTeacherbutton
             // 
             this.updateTeacherbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.updateTeacherbutton.Location = new System.Drawing.Point(492, 232);
+            this.updateTeacherbutton.Location = new System.Drawing.Point(215, 214);
             this.updateTeacherbutton.Name = "updateTeacherbutton";
             this.updateTeacherbutton.Size = new System.Drawing.Size(87, 42);
             this.updateTeacherbutton.TabIndex = 14;
@@ -178,7 +178,7 @@
             // deleteTeacherButton
             // 
             this.deleteTeacherButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.deleteTeacherButton.Location = new System.Drawing.Point(374, 232);
+            this.deleteTeacherButton.Location = new System.Drawing.Point(97, 214);
             this.deleteTeacherButton.Name = "deleteTeacherButton";
             this.deleteTeacherButton.Size = new System.Drawing.Size(87, 42);
             this.deleteTeacherButton.TabIndex = 13;
@@ -234,7 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(800, 666);
-            this.Controls.Add(this.markDataGridView);
+            this.Controls.Add(this.teacherDataGridView);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.minimizeButton);
@@ -243,7 +243,7 @@
             this.Name = "Teacheroperator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
@@ -258,9 +258,9 @@
         private System.Windows.Forms.PictureBox logOutButton;
         private System.Windows.Forms.PictureBox minimizeButton;
         private System.Windows.Forms.PictureBox exitButton;
-        private System.Windows.Forms.DataGridView markDataGridView;
+        private System.Windows.Forms.DataGridView teacherDataGridView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker bornDateTimePicker;
+        private System.Windows.Forms.DateTimePicker actualBornDateTimePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox actualAccountNametextBox;
         private System.Windows.Forms.Button newTeacherButton;

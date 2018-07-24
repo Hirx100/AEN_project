@@ -61,14 +61,14 @@ namespace AEN
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtTeacher = new DataTable();
             sqlDa.Fill(dtTeacher);
-            markDataGridView.DataSource = dtTeacher;
-            markDataGridView.Columns["teacher_id"].Visible = false;
+            teacherDataGridView.DataSource = dtTeacher;
+            teacherDataGridView.Columns["teacher_id"].Visible = false;
             dataviwe.CloseConnection();
         }
 
         void UpdateTeacher()
         {
-            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
+            DataGridViewRow selectedRows = teacherDataGridView.Rows[SelectedRowIndex];
             string updateTeacherID = selectedRows.Cells["teacher_id"].Value.ToString();
 
             dataviwe.OpenConnection();
@@ -76,7 +76,7 @@ namespace AEN
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateName", actualTeacherNameTextBox.Text);
             cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox);
-            cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(bornDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateTeacherID", updateTeacherID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
@@ -84,7 +84,7 @@ namespace AEN
 
         void DeleteTeacher()
         {
-            DataGridViewRow selectedRows = markDataGridView.Rows[SelectedRowIndex];
+            DataGridViewRow selectedRows = teacherDataGridView.Rows[SelectedRowIndex];
             string deleteMarkID = selectedRows.Cells["teacher_id"].Value.ToString();
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenTeacherDelete", dataviwe.connection);
@@ -116,11 +116,11 @@ namespace AEN
         {
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
-                DataGridViewRow selectedRows = markDataGridView.Rows[index];
+                DataGridViewRow selectedRows = teacherDataGridView.Rows[index];
                 string accName = selectedRows.Cells["user_name"].Value + string.Empty;
 
                 actualAccountNametextBox.Text = accName;
-                bornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
+                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
                 actualPasswordtextBox.Text=selectedRows.Cells["password"].Value.ToString();
                 actualTeacherNameTextBox.Text = selectedRows.Cells["name"].Value.ToString();
    
