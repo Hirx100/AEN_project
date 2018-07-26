@@ -74,7 +74,7 @@ namespace AEN
             MySqlCommand cmd = new MySqlCommand("aenTeacherUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateName", actualTeacherNameTextBox.Text);
-            cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox);
+            cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox.Text);
             cmd.Parameters.AddWithValue("_updateMarkDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateTeacherID", updateTeacherID);
             cmd.ExecuteNonQuery();

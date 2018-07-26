@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    class Class1
+    class Login
     {   Loginscreen dataIn = new Loginscreen();
         DBConnect dataUse = new DBConnect();
         

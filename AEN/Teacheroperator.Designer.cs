@@ -62,6 +62,7 @@
             this.teacherDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.teacherDataGridView.Location = new System.Drawing.Point(12, 50);
             this.teacherDataGridView.Name = "teacherDataGridView";
+            this.teacherDataGridView.ReadOnly = true;
             this.teacherDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.teacherDataGridView.Size = new System.Drawing.Size(776, 287);
             this.teacherDataGridView.TabIndex = 26;

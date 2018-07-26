@@ -54,7 +54,7 @@ namespace AEN
         //login process trigger
         private void logInbutton_Click(object sender, EventArgs e)
         {
-            Class1 datastore = new Class1();
+            Login datastore = new Login();
             DBConnect pass = new DBConnect();
             KeyValuePair<string, int> perm = (KeyValuePair<string, int>)permissionSelecterComboBox.SelectedItem;
 

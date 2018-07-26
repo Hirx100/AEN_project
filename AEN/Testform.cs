@@ -19,7 +19,7 @@ namespace AEN
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Class1 test;
+            Login test;
             //test.UserDataSelecter();
             string[] testarray = new string[5];
             MessageBox.Show(testarray[2]);

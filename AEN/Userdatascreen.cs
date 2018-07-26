@@ -13,7 +13,7 @@ namespace AEN
 {
     public partial class Userdatascreen : Form
     {       DBConnect dataConnect = new DBConnect ();
-            Class1 userDataClaim= new Class1();
+            Login userDataClaim= new Login();
 
 
 

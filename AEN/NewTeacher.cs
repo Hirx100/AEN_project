@@ -15,7 +15,7 @@ namespace AEN
     public partial class NewTeacher : Form
     {
             DBConnect dbConnect = new DBConnect();
-            Class1 userDataClaim= new Class1();
+            Login userDataClaim= new Login();
             Markoperator markThings = new Markoperator();
             
 
@@ -85,21 +85,23 @@ namespace AEN
 
         private void TeacherNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<char> parseAccname= new List<char>();
-            List<char> transerChar = new List<char>();
-            
-            string[] parseName = TeacherNameTextBox.Text.Split(' ');
-            string transferString;
-            transferString = parseName[1];
+            string parseAccname;
 
-            for (int i = 0; i < 2; i++)
-            {
-                
-                transerChar.Add(transferString.Take(2).ToArray());
-                parseAccname.Add(transerChar[i]);
+                string[] parseName = TeacherNameTextBox.Text.Split(' ');
+            if (parseName[0].Length > 2)
+            {   string valami2;
+                string valami = parseName[0].Remove(2,(parseName[0].Length-2));
+                if (parseName.Count() > 1 && parseName[1].Length>2)
+                {
+                    valami2 = parseName[1].Remove(2, parseName[1].Length-2);
+                    parseAccname = valami + valami2;
+                    AccountNametextBox.Text = parseAccname;
+                }
+
             }
+            
 
-            AccountNametextBox.Text = parseAccname.ToString();
+           
         }
     }
 }

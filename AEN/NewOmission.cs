@@ -15,7 +15,7 @@ namespace AEN
     public partial class NewOmission : Form
     {
             DBConnect dbConnect = new DBConnect();
-            Class1 userDataClaim= new Class1();
+            Login userDataClaim= new Login();
             Markoperator markThings = new Markoperator();
             
 
