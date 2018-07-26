@@ -30,7 +30,7 @@
         {
             this.exitButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
-            this.omissionInsertButton = new System.Windows.Forms.Button();
+            this.teacherInsertButton = new System.Windows.Forms.Button();
             this.PasswordtextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TeacherNameTextBox = new System.Windows.Forms.TextBox();
@@ -65,15 +65,15 @@
             this.minimizeButton.TabStop = false;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
-            // omissionInsertButton
+            // teacherInsertButton
             // 
-            this.omissionInsertButton.Location = new System.Drawing.Point(67, 253);
-            this.omissionInsertButton.Name = "omissionInsertButton";
-            this.omissionInsertButton.Size = new System.Drawing.Size(137, 34);
-            this.omissionInsertButton.TabIndex = 16;
-            this.omissionInsertButton.Text = "Felvétel";
-            this.omissionInsertButton.UseVisualStyleBackColor = true;
-            this.omissionInsertButton.Click += new System.EventHandler(this.markInsertButton_Click);
+            this.teacherInsertButton.Location = new System.Drawing.Point(67, 253);
+            this.teacherInsertButton.Name = "teacherInsertButton";
+            this.teacherInsertButton.Size = new System.Drawing.Size(137, 34);
+            this.teacherInsertButton.TabIndex = 16;
+            this.teacherInsertButton.Text = "Felvétel";
+            this.teacherInsertButton.UseVisualStyleBackColor = true;
+            this.teacherInsertButton.Click += new System.EventHandler(this.TeacherInsertButton_Click);
             // 
             // PasswordtextBox
             // 
@@ -165,7 +165,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.BornDateTimePicker);
             this.Controls.Add(this.AccountNametextBox);
-            this.Controls.Add(this.omissionInsertButton);
+            this.Controls.Add(this.teacherInsertButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -184,7 +184,7 @@
 
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.PictureBox minimizeButton;
-        private System.Windows.Forms.Button omissionInsertButton;
+        private System.Windows.Forms.Button teacherInsertButton;
         private System.Windows.Forms.TextBox PasswordtextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TeacherNameTextBox;

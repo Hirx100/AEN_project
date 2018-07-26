@@ -84,6 +84,53 @@ mark.mark_Date=_updateMarkDate
 WHERE mark.mark_ID=_UpdateMarkID;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenOmissionDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionDelete` (IN `_omission_ID` INT(11))  NO SQL
+BEGIN
+DELETE FROM mark
+WHERE omission.omission_ID= _omission_ID;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenOmissionInsert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionInsert` (IN `_studentName` VARCHAR(40), IN `_teacherName` VARCHAR(40), IN `_omissionDate` DATE, IN `_omissionHour` INT(1), IN `_omissionDelay` BIT(1), IN `_certify` BIT(1))  NO SQL
+BEGIN
+INSERT INTO `omission`(`student_ID`, `teacher_ID`, `date`, `hour`, `delay`, `certify`) 
+VALUES 
+(
+(SELECT student_ID FROM student WHERE student.name=_studentName),
+(SELECT teacher_ID FROM teacher WHERE teacher.name= _teacherName),
+ 	_omissionDate,
+    _omissionHour,
+    _omissionDelay,
+    _certify
+);
+END$$
+
+DROP PROCEDURE IF EXISTS `aenOmissionRuningSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionRuningSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` VARCHAR(11), IN `_selectedStudent` VARCHAR(40), IN `_startDate` DATE, IN `_endDate` DATE)  NO SQL
+BEGIN
+SELECT omission_ID,omission.date, student.name as student, teacher.name as teacher, hour,delay, certify FROM `omission` 
+INNER JOIN student ON omission.student_ID= student.student_ID
+INNER JOIN class on student.class_ID= class.class_ID
+INNER JOIN teacher ON teacher.teacher_ID=omission.omission_ID
+WHERE omission.student_ID=
+(SELECT student_ID FROM student WHERE student.class_ID=
+(SELECT class.class_ID FROM class WHERE class.character_sign=_classSign AND class.class_year= _classNummer and student.name LIKE _selectedStudent AND
+omission.date BETWEEN _startDate AND _endDate));
+END$$
+
+DROP PROCEDURE IF EXISTS `aenOmissionStartSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
+BEGIN
+SELECT omission_ID,omission.date, student.name as student, teacher.name as teacher, hour,delay, certify FROM `omission` 
+INNER JOIN student ON omission.student_ID= student.student_ID
+INNER JOIN class on student.class_ID= class.class_ID
+INNER JOIN teacher ON teacher.teacher_ID=omission.omission_ID
+WHERE omission.student_ID=
+(SELECT student_ID FROM student WHERE student.class_ID=
+(SELECT class.class_ID FROM class WHERE class.character_sign=_classSign AND class.class_year= _classNummer));
+END$$
+
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentDataSelect` (IN `_username` VARCHAR(10))  NO SQL
 BEGIN
@@ -156,6 +203,18 @@ BEGIN
      WHERE `user_name` = _username;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenTeacherDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherDelete` (IN `_teacher_id` INT(11))  NO SQL
+BEGIN
+DELETE FROM teacher WHERE teacher.teacher_ID=_teacher_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenTeacherInsert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherInsert` (IN `_name` VARCHAR(50), IN `_bornDate` DATE, IN `_accName` VARCHAR(4), IN `_password` VARCHAR(10))  NO SQL
+BEGIN
+INSERT INTO `teacher`(`name`, `born_date`, `user_name`, `password`) VALUES (_name,_bornDate,_accName,_password);
+END$$
+
 DROP PROCEDURE IF EXISTS `aenTeacherPassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherPassSelect` (IN `_username` VARCHAR(50), IN `_password` VARCHAR(50))  BEGIN
 Select * From `teacher` where `user_name` = _username and `password` = _password; 
@@ -167,31 +226,42 @@ BEGIN
 SELECT * FROM `teacher`;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenTeacherUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenTeacherUpdate` (IN `_updateName` VARCHAR(40), IN `_updateMarkDate` DATE, IN `_updatePassword` VARCHAR(40), IN `_updateTeacherID` INT(11))  NO SQL
+BEGIN
+UPDATE `teacher` SET `name`=_updateName,`born_date`=_updateMarkDate,`password`=_updatePassword WHERE teacher_ID=_updateTeacherID;
+END$$
+
 DELIMITER ;
 
 DROP TABLE IF EXISTS `class`;
-CREATE TABLE `class` (
-  `class_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `class` (
+  `class_ID` int(11) NOT NULL AUTO_INCREMENT,
   `class_start` date NOT NULL,
   `start_number` int(11) NOT NULL,
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
-  `class_year` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `class_year` int(11) NOT NULL,
+  PRIMARY KEY (`class_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, `class_year`) VALUES
 (1, '2010-09-01', 1, 'A', 1),
 (2, '2017-09-01', 1, 'B', 1);
 
 DROP TABLE IF EXISTS `mark`;
-CREATE TABLE `mark` (
-  `mark_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `mark` (
+  `mark_ID` int(11) NOT NULL AUTO_INCREMENT,
   `student_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `subject_ID` int(11) NOT NULL,
   `mark_number` int(1) NOT NULL,
   `description` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `mark_Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `mark_Date` date NOT NULL,
+  PRIMARY KEY (`mark_ID`),
+  KEY `teacher_ID` (`teacher_ID`),
+  KEY `student_ID` (`student_ID`,`subject_ID`),
+  KEY `subject_ID` (`subject_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_number`, `description`, `mark_Date`) VALUES
 (1, 1, 1, 1, 5, 'Ókor csodái.', '2012-05-21'),
@@ -201,121 +271,83 @@ INSERT INTO `mark` (`mark_ID`, `student_ID`, `teacher_ID`, `subject_ID`, `mark_n
 (6, 1, 1, 1, 3, '1848 forradalom', '2018-07-20');
 
 DROP TABLE IF EXISTS `omission`;
-CREATE TABLE `omission` (
-  `omission_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `omission` (
+  `omission_ID` int(11) NOT NULL AUTO_INCREMENT,
   `student_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
   `date` date NOT NULL,
   `hour` int(11) NOT NULL,
   `delay` bit(1) NOT NULL,
-  `certify` bit(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `certify` bit(1) NOT NULL,
+  PRIMARY KEY (`omission_ID`),
+  KEY `student_ID` (`student_ID`,`teacher_ID`),
+  KEY `teacher_ID` (`teacher_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+INSERT INTO `omission` (`omission_ID`, `student_ID`, `teacher_ID`, `date`, `hour`, `delay`, `certify`) VALUES
+(1, 1, 2, '2018-07-17', 2, b'0', b'1'),
+(3, 2, 2, '2018-07-24', 3, b'1', b'0');
 
 DROP TABLE IF EXISTS `parent`;
-CREATE TABLE `parent` (
-  `parent_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `parent` (
+  `parent_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  `teacher_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `teacher_ID` int(11) NOT NULL,
+  PRIMARY KEY (`parent_ID`),
+  KEY `teacher_ID` (`teacher_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES
 (1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1),
 (2, 'Boldog Árpád', '1969-02-12', 'BoÁr', 'akármi', 2);
 
 DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student` (
-  `student_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `student` (
+  `student_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
   `parent_ID` int(11) NOT NULL,
   `teacher_ID` int(11) NOT NULL,
-  `class_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `class_ID` int(11) NOT NULL,
+  PRIMARY KEY (`student_ID`),
+  KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
+  KEY `class_ID` (`class_ID`),
+  KEY `teacher_ID` (`teacher_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`) VALUES
 (1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1),
 (2, 'Minimum Sára', '1995-05-28', 'MiSá', 'igen1', 2, 2, 2);
 
 DROP TABLE IF EXISTS `subject`;
-CREATE TABLE `subject` (
-  `subject_ID` int(11) NOT NULL,
-  `subject_name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `subject_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `subject_name` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`subject_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `subject` (`subject_ID`, `subject_name`) VALUES
 (1, 'Történelem'),
 (2, 'Matematika');
 
 DROP TABLE IF EXISTS `teacher`;
-CREATE TABLE `teacher` (
-  `teacher_ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `teacher` (
+  `teacher_ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `born_date` date NOT NULL,
   `user_name` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
-  `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `password` varchar(40) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`teacher_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `teacher` (`teacher_ID`, `name`, `born_date`, `user_name`, `password`) VALUES
 (1, 'Teszt Elek', '1960-02-18', 'TeEl', '1234'),
 (2, 'Valami Márta', '1960-02-18', 'VaMá', 'tütü');
-
-
-ALTER TABLE `class`
-  ADD PRIMARY KEY (`class_ID`);
-
-ALTER TABLE `mark`
-  ADD PRIMARY KEY (`mark_ID`),
-  ADD KEY `teacher_ID` (`teacher_ID`),
-  ADD KEY `student_ID` (`student_ID`,`subject_ID`),
-  ADD KEY `subject_ID` (`subject_ID`);
-
-ALTER TABLE `omission`
-  ADD PRIMARY KEY (`omission_ID`),
-  ADD KEY `student_ID` (`student_ID`,`teacher_ID`),
-  ADD KEY `teacher_ID` (`teacher_ID`);
-
-ALTER TABLE `parent`
-  ADD PRIMARY KEY (`parent_ID`),
-  ADD KEY `teacher_ID` (`teacher_ID`);
-
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_ID`),
-  ADD KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
-  ADD KEY `class_ID` (`class_ID`),
-  ADD KEY `teacher_ID` (`teacher_ID`);
-
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subject_ID`);
-
-ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`teacher_ID`);
-
-
-ALTER TABLE `class`
-  MODIFY `class_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
-ALTER TABLE `mark`
-  MODIFY `mark_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
-ALTER TABLE `omission`
-  MODIFY `omission_ID` int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `parent`
-  MODIFY `parent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
-ALTER TABLE `student`
-  MODIFY `student_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
-ALTER TABLE `subject`
-  MODIFY `subject_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
-ALTER TABLE `teacher`
-  MODIFY `teacher_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
 ALTER TABLE `mark`

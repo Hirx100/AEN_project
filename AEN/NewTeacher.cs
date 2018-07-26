@@ -75,15 +75,7 @@ namespace AEN
 
         #endregion
 
-        private void classComboBox_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            studenNameCombobox.Items.Clear();
-            markThings.StudentFill(this.classComboBox, this.studenNameCombobox);
-            studenNameCombobox.Items.RemoveAt(0);
-            studenNameCombobox.SelectedIndex = 0;
-        }
-
-        private void markInsertButton_Click(object sender, EventArgs e)
+        private void TeacherInsertButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Késés felvéve.");
             TeahcerInsert();
@@ -91,14 +83,5 @@ namespace AEN
             this.Close();
         }
 
-        private void NewOmission_Load(object sender, EventArgs e)
-        {
-            for (int i = 0; i <8; i++)
-            {
-                hourComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), i+1));
-                hourComboBox.DisplayMember = "key";
-                hourComboBox.ValueMember = "value";
-            }
-        }
     }
 }

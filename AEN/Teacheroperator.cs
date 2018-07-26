@@ -152,5 +152,17 @@ namespace AEN
         {
            
         }
+
+        private void actualTeacherNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            char[] parseAccname = new char[4];
+            string[] parseName = actualAccountNametextBox.Text.Split(' ');
+            string transferString;
+            for (int i = 0; i < 2; i++)
+            {
+                transferString = parseName[1];
+                parseAccname[i] = transferString.Take(1).ToArray();
+            }
+        }
     }
 }
