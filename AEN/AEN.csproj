@@ -69,6 +69,12 @@
     <Compile Include="NewTeacher.Designer.cs">
       <DependentUpon>NewTeacher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parentoperator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Parentoperator.Designer.cs">
+      <DependentUpon>Parentoperator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Teacheroperator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="NewTeacher.resx">
       <DependentUpon>NewTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parentoperator.resx">
+      <DependentUpon>Parentoperator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Teacheroperator.resx">
       <DependentUpon>Teacheroperator.cs</DependentUpon>
