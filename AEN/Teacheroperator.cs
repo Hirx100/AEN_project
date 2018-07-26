@@ -14,7 +14,6 @@ namespace AEN
     public partial class Teacheroperator : Form
     {
         DBConnect dataviwe = new DBConnect();
-        int startMarkGridRuningcount = 0;
         public List<string> studentID = new List<string>();
         public Teacheroperator()
         {
@@ -22,7 +21,7 @@ namespace AEN
 
             AllTeacherFill();
 
-            if (Loginscreen.permValue > 101)
+            if (Loginscreen.permValue > 102)
             {
                 deleteTeacherButton.Visible = false;
                 updateTeacherbutton.Visible = false;
@@ -150,19 +149,9 @@ namespace AEN
 
         private void newMarkButton_Click(object sender, EventArgs e)
         {
-           
+            NewTeacher jump = new NewTeacher();
+            jump.Show();
         }
 
-        private void actualTeacherNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            char[] parseAccname = new char[4];
-            string[] parseName = actualAccountNametextBox.Text.Split(' ');
-            string transferString;
-            for (int i = 0; i < 2; i++)
-            {
-                transferString = parseName[1];
-                parseAccname[i] = transferString.Take(1).ToArray();
-            }
-        }
     }
 }

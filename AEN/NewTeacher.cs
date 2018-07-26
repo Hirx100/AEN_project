@@ -83,5 +83,23 @@ namespace AEN
             this.Close();
         }
 
+        private void TeacherNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<char> parseAccname= new List<char>();
+            List<char> transerChar = new List<char>();
+            
+            string[] parseName = TeacherNameTextBox.Text.Split(' ');
+            string transferString;
+            transferString = parseName[1];
+
+            for (int i = 0; i < 2; i++)
+            {
+                
+                transerChar.Add(transferString.Take(2).ToArray());
+                parseAccname.Add(transerChar[i]);
+            }
+
+            AccountNametextBox.Text = parseAccname.ToString();
+        }
     }
 }

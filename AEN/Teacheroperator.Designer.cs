@@ -112,7 +112,6 @@
             this.actualTeacherNameTextBox.Name = "actualTeacherNameTextBox";
             this.actualTeacherNameTextBox.Size = new System.Drawing.Size(108, 26);
             this.actualTeacherNameTextBox.TabIndex = 20;
-            this.actualTeacherNameTextBox.TextChanged += new System.EventHandler(this.actualTeacherNameTextBox_TextChanged);
             // 
             // label11
             // 

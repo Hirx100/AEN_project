@@ -101,6 +101,7 @@
             this.TeacherNameTextBox.Name = "TeacherNameTextBox";
             this.TeacherNameTextBox.Size = new System.Drawing.Size(110, 26);
             this.TeacherNameTextBox.TabIndex = 29;
+            this.TeacherNameTextBox.TextChanged += new System.EventHandler(this.TeacherNameTextBox_TextChanged);
             // 
             // label11
             // 
@@ -171,8 +172,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NewTeacher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Userdatascreen";
-            this.Load += new System.EventHandler(this.NewOmission_Load);
+            this.Text = "NewTeacher";
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             this.ResumeLayout(false);
