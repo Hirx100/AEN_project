@@ -30,21 +30,22 @@
         {
             this.parentDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.actualTeachercomboBox = new System.Windows.Forms.ComboBox();
             this.actualPasswordtextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.actualParentNameTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.newTeacherButton = new System.Windows.Forms.Button();
+            this.newParentButton = new System.Windows.Forms.Button();
             this.actualBornDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.updateTeacherbutton = new System.Windows.Forms.Button();
-            this.deleteTeacherButton = new System.Windows.Forms.Button();
+            this.updateParentButton = new System.Windows.Forms.Button();
+            this.deleteParentButton = new System.Windows.Forms.Button();
             this.actualAccountNametextBox = new System.Windows.Forms.TextBox();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            this.actualTeachercomboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.parentDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
@@ -67,10 +68,11 @@
             this.parentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.parentDataGridView.Size = new System.Drawing.Size(776, 287);
             this.parentDataGridView.TabIndex = 26;
-            this.parentDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.markDataGridView_RowEnter);
+            this.parentDataGridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.parentDataGridView_RowEnter);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.actualTeachercomboBox);
             this.panel1.Controls.Add(this.actualPasswordtextBox);
             this.panel1.Controls.Add(this.label1);
@@ -78,16 +80,26 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.newTeacherButton);
+            this.panel1.Controls.Add(this.newParentButton);
             this.panel1.Controls.Add(this.actualBornDateTimePicker);
-            this.panel1.Controls.Add(this.updateTeacherbutton);
-            this.panel1.Controls.Add(this.deleteTeacherButton);
+            this.panel1.Controls.Add(this.updateParentButton);
+            this.panel1.Controls.Add(this.deleteParentButton);
             this.panel1.Controls.Add(this.actualAccountNametextBox);
+            this.panel1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.panel1.Location = new System.Drawing.Point(12, 357);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 286);
             this.panel1.TabIndex = 27;
             this.panel1.Tag = "Aktuális jegy";
+            // 
+            // actualTeachercomboBox
+            // 
+            this.actualTeachercomboBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualTeachercomboBox.FormattingEnabled = true;
+            this.actualTeachercomboBox.Location = new System.Drawing.Point(596, 106);
+            this.actualTeachercomboBox.Name = "actualTeachercomboBox";
+            this.actualTeachercomboBox.Size = new System.Drawing.Size(142, 28);
+            this.actualTeachercomboBox.TabIndex = 23;
             // 
             // actualPasswordtextBox
             // 
@@ -102,7 +114,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(372, 124);
+            this.label1.Location = new System.Drawing.Point(347, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 20);
             this.label1.TabIndex = 21;
@@ -149,48 +161,49 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Szülő neve:";
             // 
-            // newTeacherButton
+            // newParentButton
             // 
-            this.newTeacherButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.newTeacherButton.Location = new System.Drawing.Point(328, 214);
-            this.newTeacherButton.Name = "newTeacherButton";
-            this.newTeacherButton.Size = new System.Drawing.Size(87, 42);
-            this.newTeacherButton.TabIndex = 15;
-            this.newTeacherButton.Text = "Új Szülő";
-            this.newTeacherButton.UseVisualStyleBackColor = true;
-            this.newTeacherButton.Click += new System.EventHandler(this.newMarkButton_Click);
+            this.newParentButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.newParentButton.Location = new System.Drawing.Point(431, 207);
+            this.newParentButton.Name = "newParentButton";
+            this.newParentButton.Size = new System.Drawing.Size(87, 42);
+            this.newParentButton.TabIndex = 15;
+            this.newParentButton.Text = "Új Szülő";
+            this.newParentButton.UseVisualStyleBackColor = true;
+            this.newParentButton.Click += new System.EventHandler(this.newParentButton_Click);
             // 
             // actualBornDateTimePicker
             // 
             this.actualBornDateTimePicker.Location = new System.Drawing.Point(176, 124);
             this.actualBornDateTimePicker.Name = "actualBornDateTimePicker";
-            this.actualBornDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.actualBornDateTimePicker.Size = new System.Drawing.Size(130, 26);
             this.actualBornDateTimePicker.TabIndex = 5;
             // 
-            // updateTeacherbutton
+            // updateParentButton
             // 
-            this.updateTeacherbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.updateTeacherbutton.Location = new System.Drawing.Point(215, 214);
-            this.updateTeacherbutton.Name = "updateTeacherbutton";
-            this.updateTeacherbutton.Size = new System.Drawing.Size(87, 42);
-            this.updateTeacherbutton.TabIndex = 14;
-            this.updateTeacherbutton.Text = "Modosítás";
-            this.updateTeacherbutton.UseVisualStyleBackColor = true;
-            this.updateTeacherbutton.Click += new System.EventHandler(this.updateMarkbutton_Click);
+            this.updateParentButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.updateParentButton.Location = new System.Drawing.Point(318, 207);
+            this.updateParentButton.Name = "updateParentButton";
+            this.updateParentButton.Size = new System.Drawing.Size(87, 42);
+            this.updateParentButton.TabIndex = 14;
+            this.updateParentButton.Text = "Modosítás";
+            this.updateParentButton.UseVisualStyleBackColor = true;
+            this.updateParentButton.Click += new System.EventHandler(this.updateParentbutton_Click);
             // 
-            // deleteTeacherButton
+            // deleteParentButton
             // 
-            this.deleteTeacherButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.deleteTeacherButton.Location = new System.Drawing.Point(97, 214);
-            this.deleteTeacherButton.Name = "deleteTeacherButton";
-            this.deleteTeacherButton.Size = new System.Drawing.Size(87, 42);
-            this.deleteTeacherButton.TabIndex = 13;
-            this.deleteTeacherButton.Text = "Törlés";
-            this.deleteTeacherButton.UseVisualStyleBackColor = true;
-            this.deleteTeacherButton.Click += new System.EventHandler(this.deleteMarkButton_Click);
+            this.deleteParentButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.deleteParentButton.Location = new System.Drawing.Point(200, 207);
+            this.deleteParentButton.Name = "deleteParentButton";
+            this.deleteParentButton.Size = new System.Drawing.Size(87, 42);
+            this.deleteParentButton.TabIndex = 13;
+            this.deleteParentButton.Text = "Törlés";
+            this.deleteParentButton.UseVisualStyleBackColor = true;
+            this.deleteParentButton.Click += new System.EventHandler(this.deleteParentButton_Click);
             // 
             // actualAccountNametextBox
             // 
+            this.actualAccountNametextBox.BackColor = System.Drawing.SystemColors.ControlDark;
             this.actualAccountNametextBox.Font = new System.Drawing.Font("Arial Narrow", 12F);
             this.actualAccountNametextBox.Location = new System.Drawing.Point(431, 69);
             this.actualAccountNametextBox.Name = "actualAccountNametextBox";
@@ -231,13 +244,16 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // actualTeachercomboBox
+            // label2
             // 
-            this.actualTeachercomboBox.FormattingEnabled = true;
-            this.actualTeachercomboBox.Location = new System.Drawing.Point(617, 69);
-            this.actualTeachercomboBox.Name = "actualTeachercomboBox";
-            this.actualTeachercomboBox.Size = new System.Drawing.Size(142, 21);
-            this.actualTeachercomboBox.TabIndex = 23;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(619, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Kapcsolattartó: ";
             // 
             // Parentoperator
             // 
@@ -274,14 +290,15 @@
         private System.Windows.Forms.DateTimePicker actualBornDateTimePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox actualAccountNametextBox;
-        private System.Windows.Forms.Button newTeacherButton;
-        private System.Windows.Forms.Button updateTeacherbutton;
-        private System.Windows.Forms.Button deleteTeacherButton;
+        private System.Windows.Forms.Button newParentButton;
+        private System.Windows.Forms.Button updateParentButton;
+        private System.Windows.Forms.Button deleteParentButton;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox actualPasswordtextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox actualParentNameTextBox;
         private System.Windows.Forms.ComboBox actualTeachercomboBox;
+        private System.Windows.Forms.Label label2;
     }
 }

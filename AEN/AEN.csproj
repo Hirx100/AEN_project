@@ -63,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Login.cs" />
     <Compile Include="DBConnect.cs" />
+    <Compile Include="NewParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewParent.Designer.cs">
+      <DependentUpon>NewParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,12 +131,21 @@
     <Compile Include="NewMark.Designer.cs">
       <DependentUpon>NewMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Userdatascreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Userdatascreen.Designer.cs">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="NewParent.resx">
+      <DependentUpon>NewParent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewTeacher.resx">
       <DependentUpon>NewTeacher.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewMark.resx">
       <DependentUpon>NewMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Userdatascreen.resx">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
@@ -214,6 +232,23 @@
   <ItemGroup>
     <None Include="Resources\control_book_button.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\omission_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\teacher_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\parent_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\student_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\subject_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\class_button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

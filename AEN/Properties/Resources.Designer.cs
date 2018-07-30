@@ -63,6 +63,16 @@ namespace AEN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap class_button {
+            get {
+                object obj = ResourceManager.GetObject("class_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap control_book_button {
             get {
                 object obj = ResourceManager.GetObject("control_book_button", resourceCulture);
@@ -96,6 +106,56 @@ namespace AEN.Properties {
         internal static System.Drawing.Bitmap minimize_button {
             get {
                 object obj = ResourceManager.GetObject("minimize_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap omission_button {
+            get {
+                object obj = ResourceManager.GetObject("omission_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap parent_button {
+            get {
+                object obj = ResourceManager.GetObject("parent_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap student_button {
+            get {
+                object obj = ResourceManager.GetObject("student_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap subject_button {
+            get {
+                object obj = ResourceManager.GetObject("subject_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teacher_button {
+            get {
+                object obj = ResourceManager.GetObject("teacher_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

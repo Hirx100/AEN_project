@@ -12,17 +12,18 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    public partial class NewTeacher : Form
+    public partial class NewParent : Form
     {
             DBConnect dbConnect = new DBConnect();
             Login userDataClaim= new Login();
             Markoperator markThings = new Markoperator();
-            Teacheroperator teacherThings = new Teacheroperator();
+            Parentoperator parentThings = new Parentoperator();
             
 
-        public NewTeacher()
+        public NewParent()
         {   
             InitializeComponent();
+            markThings.TeacherFill(TeachercomboBox);
         }
  
         private void exitButton_Click(object sender, EventArgs e)
@@ -35,20 +36,23 @@ namespace AEN
             this.WindowState = FormWindowState.Minimized;
         }
 
-        void TeahcerInsert()
+        void ParentInstert()
         {
+            KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)TeachercomboBox.SelectedItem;
 
             string[] parsedata = new string[4];
-            parsedata[0] = TeacherNameTextBox.Text;
-            parsedata[1] = AccountNametextBox.Text;
+            parsedata[0] = parentNameTextBox.Text;
+            parsedata[1] = accountNametextBox.Text;
             parsedata[2] = PasswordtextBox.Text;
-                                        //TODO: sql stored proced.
+            parsedata[3] = selectedTeacher.Key;
+                                        
             dbConnect.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenTeacherInsert", dbConnect.connection);
+            MySqlCommand cmd = new MySqlCommand("aenParentInsert", dbConnect.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_teacherName", parsedata[0]);
+            cmd.Parameters.AddWithValue("_parentName", parsedata[0]);
             cmd.Parameters.AddWithValue("_accName", parsedata[1]);
             cmd.Parameters.AddWithValue("_password", parsedata[2]);
+            cmd.Parameters.AddWithValue("_teacherName", parsedata[3]);
             cmd.Parameters.AddWithValue("_bornDate", DateTime.Parse(BornDateTimePicker.Value.ToString()));
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             cmd.ExecuteNonQuery();
@@ -78,17 +82,17 @@ namespace AEN
 
         private void TeacherInsertButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tanár felvéve.");
-            TeahcerInsert();
-            teacherThings.AllTeacherFill();
+            MessageBox.Show("Szülő felvéve.");
+            ParentInstert();
+            parentThings.AllParentFill();
             this.Close();
         }
 
-        private void TeacherNameTextBox_TextChanged(object sender, EventArgs e)
+        private void ParentNameTextBox_TextChanged(object sender, EventArgs e)
         {
             string parseAccname;
 
-                string[] parseName = TeacherNameTextBox.Text.Split(' ');
+                string[] parseName = parentNameTextBox.Text.Split(' ');
             if (parseName[0].Length > 2)
             {   string valami2;
                 string valami = parseName[0].Remove(2,(parseName[0].Length-2));
@@ -96,7 +100,7 @@ namespace AEN
                 {
                     valami2 = parseName[1].Remove(2, parseName[1].Length-2);
                     parseAccname = valami + valami2;
-                    AccountNametextBox.Text = parseAccname;
+                    accountNametextBox.Text = parseAccname;
                 }
 
             }

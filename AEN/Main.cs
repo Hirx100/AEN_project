@@ -56,12 +56,6 @@ namespace AEN
             userJump.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Testform jump = new Testform();
-            jump.Show();
-        }
-
         private void markOperatorButton_Click(object sender, EventArgs e)
         {
             Markoperator markJump = new Markoperator();
@@ -80,6 +74,13 @@ namespace AEN
         {
             Teacheroperator teacherJump = new Teacheroperator();
             teacherJump.Show();
+            this.Close();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            Parentoperator parentJump = new Parentoperator();
+            parentJump.Show();
             this.Close();
         }
     }

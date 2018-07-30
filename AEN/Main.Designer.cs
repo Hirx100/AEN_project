@@ -37,7 +37,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.omissionOperatorButton = new System.Windows.Forms.PictureBox();
             this.userDataButton = new System.Windows.Forms.PictureBox();
@@ -157,16 +156,6 @@
             this.label8.Text = "Felhasználó adatai";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(680, 231);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "testform";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // logOutButton
             // 
             this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
@@ -180,7 +169,7 @@
             // 
             // omissionOperatorButton
             // 
-            this.omissionOperatorButton.Image = global::AEN.Properties.Resources.exit_button;
+            this.omissionOperatorButton.Image = global::AEN.Properties.Resources.omission_button;
             this.omissionOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.omissionOperatorButton.Location = new System.Drawing.Point(510, 203);
             this.omissionOperatorButton.Name = "omissionOperatorButton";
@@ -202,7 +191,7 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Image = global::AEN.Properties.Resources.exit_button;
+            this.pictureBox9.Image = global::AEN.Properties.Resources.student_button;
             this.pictureBox9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox9.Location = new System.Drawing.Point(510, 91);
             this.pictureBox9.Name = "pictureBox9";
@@ -223,7 +212,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Image = global::AEN.Properties.Resources.exit_button;
+            this.pictureBox5.Image = global::AEN.Properties.Resources.subject_button;
             this.pictureBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox5.Location = new System.Drawing.Point(204, 315);
             this.pictureBox5.Name = "pictureBox5";
@@ -233,17 +222,18 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Image = global::AEN.Properties.Resources.exit_button;
+            this.pictureBox6.Image = global::AEN.Properties.Resources.parent_button;
             this.pictureBox6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox6.Location = new System.Drawing.Point(356, 91);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(65, 65);
             this.pictureBox6.TabIndex = 9;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::AEN.Properties.Resources.exit_button;
+            this.pictureBox3.Image = global::AEN.Properties.Resources.class_button;
             this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox3.Location = new System.Drawing.Point(202, 203);
             this.pictureBox3.Name = "pictureBox3";
@@ -253,7 +243,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::AEN.Properties.Resources.exit_button;
+            this.pictureBox2.Image = global::AEN.Properties.Resources.teacher_button;
             this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox2.Location = new System.Drawing.Point(204, 91);
             this.pictureBox2.Name = "pictureBox2";
@@ -290,7 +280,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.logOutButton);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -349,7 +338,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox logOutButton;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox minimizeButton;
     }
 }

@@ -23,9 +23,9 @@ namespace AEN
             teahcer.TeacherFill(actualTeachercomboBox);
             if (Loginscreen.permValue > 102)
             {
-                deleteTeacherButton.Visible = false;
-                updateTeacherbutton.Visible = false;
-                newTeacherButton.Visible = false;
+                deleteParentButton.Visible = false;
+                updateParentButton.Visible = false;
+                newParentButton.Visible = false;
                 actualAccountNametextBox.ReadOnly= true;
                 actualAccountNametextBox.BackColor = Color.DarkGray;
             }
@@ -51,16 +51,15 @@ namespace AEN
             logJump.Show();
         }
 
-        //markgrid fill 1.time method.
         public void AllParentFill()
         {  
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenParentSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
-            DataTable dtTeacher = new DataTable();
-            sqlDa.Fill(dtTeacher);
-            parentDataGridView.DataSource = dtTeacher;
+            DataTable dtParent = new DataTable();
+            sqlDa.Fill(dtParent);
+            parentDataGridView.DataSource = dtParent;
             parentDataGridView.Columns["parent_id"].Visible = false;
             dataviwe.CloseConnection();
         }
@@ -69,27 +68,28 @@ namespace AEN
         {
             DataGridViewRow selectedRows = parentDataGridView.Rows[SelectedRowIndex];
             string updateParentID = selectedRows.Cells["parent_id"].Value.ToString();
+            KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeachercomboBox.SelectedItem;
 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenTeacherUpdate", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenParentUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateName", actualParentNameTextBox.Text);
             cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox.Text);
-            cmd.Parameters.AddWithValue("_updateBornkDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
-            cmd.Parameters.AddWithValue("_updateTeacherName", updateParentID);
+            cmd.Parameters.AddWithValue("_updateBornDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_updateTeacherName", selectedTeacher.Key);
             cmd.Parameters.AddWithValue("_updateParentID", updateParentID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
 
-        void DeleteTeacher()
+        void DeleteParent()
         {
             DataGridViewRow selectedRows = parentDataGridView.Rows[SelectedRowIndex];
-            string deleteMarkID = selectedRows.Cells["teacher_id"].Value.ToString();
+            string deleteParentID = selectedRows.Cells["parent_id"].Value.ToString();
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenTeacherDelete", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenParentDelete", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_teacher_id", deleteMarkID);
+            cmd.Parameters.AddWithValue("_parent_id", deleteParentID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -112,7 +112,7 @@ namespace AEN
         #endregion
 
 
-        private void markDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void parentDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
@@ -126,12 +126,12 @@ namespace AEN
    
         }
 
-        private void deleteMarkButton_Click(object sender, EventArgs e)
+        private void deleteParentButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott tanárt?", "Megerősítés", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott szülőt?", "Megerősítés", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DeleteTeacher();
+                DeleteParent();
                 AllParentFill();
             }
             else if (dialogResult == DialogResult.No)
@@ -141,14 +141,14 @@ namespace AEN
  
         }
 
-        private void updateMarkbutton_Click(object sender, EventArgs e)
+        private void updateParentbutton_Click(object sender, EventArgs e)
         {
             UpdateParent();
             AllParentFill();
-            MessageBox.Show("A kiválasztott tanár adatai frissítve");
+            MessageBox.Show("A kiválasztott szülő adatai frissítve");
         }
 
-        private void newMarkButton_Click(object sender, EventArgs e)
+        private void newParentButton_Click(object sender, EventArgs e)
         {
             NewTeacher jump = new NewTeacher();
             jump.Show();

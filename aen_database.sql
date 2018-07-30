@@ -147,10 +147,34 @@ BEGIN
      WHERE `user_name` = _username;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenParentDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentDelete` (IN `_parent_id` INT(11))  NO SQL
+BEGIN
+DELETE FROM parent WHERE parent.parent_ID=_parent_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenParentInstert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentInstert` (IN `_parentName` VARCHAR(40), IN `_bornDate` DATE, IN `_accName` VARCHAR(4), IN `_password` VARCHAR(10), IN `_teacherName` VARCHAR(40))  NO SQL
+BEGIN
+INSERT INTO `parent`(`name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES (_parentName, _bornDate, _accName, _password,(SELECT teacher_ID FROM teacher WHERE teacher.name LIKE _teacherName));
+END$$
+
 DROP PROCEDURE IF EXISTS `aenParentPassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentPassSelect` (IN `_username` VARCHAR(40), IN `_password` VARCHAR(40))  NO SQL
 BEGIN
 Select * From `parent` where `user_name` = _username and `password` = _password; 
+END$$
+
+DROP PROCEDURE IF EXISTS `aenParentSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentSelect` ()  NO SQL
+BEGIN
+SELECT * FROM `parent`;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenParentUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentUpdate` (IN `_updateName` VARCHAR(40), IN `_updateBornDate` DATE, IN `_updatePassword` VARCHAR(10), IN `_updateTeacherName` VARCHAR(40), IN `_updateParentID` INT(11))  NO SQL
+BEGIN
+UPDATE `parent` SET `name`=_updateName,`born_date`=_updateBornDate,`password`=_updatePassword,`teacher_ID`=(SELECT teacher_ID FROM teacher WHERE teacher.name LIKE _updateTeacherName) WHERE parent_ID=_updateParentID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenStudentDataSelect`$$
@@ -301,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `parent` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `parent` (`parent_ID`, `name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES
-(1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', 'valami', 1),
+(1, 'Kasszás Erzsébet', '1968-02-12', 'KaEr', '1234', 2),
 (2, 'Boldog Árpád', '1969-02-12', 'BoÁr', 'akármi', 2);
 
 DROP TABLE IF EXISTS `student`;

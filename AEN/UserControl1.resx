@@ -117,38 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="student_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\student_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="parent_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\parent_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="teacher_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\teacher_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="exit_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minimize_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minimize_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="omission_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\omission_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="subject_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\subject_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="log_out_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\log_out_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="control_book_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\control_book_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="user_data_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_data_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="class_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\class_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
