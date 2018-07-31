@@ -30,6 +30,8 @@
         {
             this.omissionDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.actualCertifyCheckBox = new System.Windows.Forms.CheckBox();
+            this.actualDelayCheckBox = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.newOmissionButton = new System.Windows.Forms.Button();
@@ -48,11 +50,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.classComboBox = new System.Windows.Forms.ComboBox();
             this.studenNameCombobox = new System.Windows.Forms.ComboBox();
-            this.actualDelayCheckBox = new System.Windows.Forms.CheckBox();
-            this.actualCertifyCheckBox = new System.Windows.Forms.CheckBox();
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
+            this.userControl11 = new AEN.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.omissionDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.userControl11);
             this.panel1.Controls.Add(this.actualCertifyCheckBox);
             this.panel1.Controls.Add(this.actualDelayCheckBox);
             this.panel1.Controls.Add(this.label10);
@@ -95,6 +97,30 @@
             this.panel1.Size = new System.Drawing.Size(513, 286);
             this.panel1.TabIndex = 27;
             this.panel1.Tag = "Aktuális jegy";
+            // 
+            // actualCertifyCheckBox
+            // 
+            this.actualCertifyCheckBox.AutoSize = true;
+            this.actualCertifyCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualCertifyCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualCertifyCheckBox.Location = new System.Drawing.Point(56, 155);
+            this.actualCertifyCheckBox.Name = "actualCertifyCheckBox";
+            this.actualCertifyCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualCertifyCheckBox.TabIndex = 20;
+            this.actualCertifyCheckBox.Text = "Igazolt";
+            this.actualCertifyCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // actualDelayCheckBox
+            // 
+            this.actualDelayCheckBox.AutoSize = true;
+            this.actualDelayCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.actualDelayCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.actualDelayCheckBox.Location = new System.Drawing.Point(56, 111);
+            this.actualDelayCheckBox.Name = "actualDelayCheckBox";
+            this.actualDelayCheckBox.Size = new System.Drawing.Size(67, 24);
+            this.actualDelayCheckBox.TabIndex = 19;
+            this.actualDelayCheckBox.Text = "Késés";
+            this.actualDelayCheckBox.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -121,7 +147,7 @@
             // newOmissionButton
             // 
             this.newOmissionButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.newOmissionButton.Location = new System.Drawing.Point(287, 218);
+            this.newOmissionButton.Location = new System.Drawing.Point(287, 200);
             this.newOmissionButton.Name = "newOmissionButton";
             this.newOmissionButton.Size = new System.Drawing.Size(87, 42);
             this.newOmissionButton.TabIndex = 15;
@@ -132,7 +158,7 @@
             // updateOmissionbutton
             // 
             this.updateOmissionbutton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.updateOmissionbutton.Location = new System.Drawing.Point(174, 218);
+            this.updateOmissionbutton.Location = new System.Drawing.Point(174, 200);
             this.updateOmissionbutton.Name = "updateOmissionbutton";
             this.updateOmissionbutton.Size = new System.Drawing.Size(87, 42);
             this.updateOmissionbutton.TabIndex = 14;
@@ -143,7 +169,7 @@
             // deleteOmissionButton
             // 
             this.deleteOmissionButton.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.deleteOmissionButton.Location = new System.Drawing.Point(56, 218);
+            this.deleteOmissionButton.Location = new System.Drawing.Point(56, 200);
             this.deleteOmissionButton.Name = "deleteOmissionButton";
             this.deleteOmissionButton.Size = new System.Drawing.Size(87, 42);
             this.deleteOmissionButton.TabIndex = 13;
@@ -287,30 +313,6 @@
             this.studenNameCombobox.TabIndex = 0;
             this.studenNameCombobox.SelectionChangeCommitted += new System.EventHandler(this.studenNameCombobox_SelectionChangeCommitted);
             // 
-            // actualDelayCheckBox
-            // 
-            this.actualDelayCheckBox.AutoSize = true;
-            this.actualDelayCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualDelayCheckBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.actualDelayCheckBox.Location = new System.Drawing.Point(56, 111);
-            this.actualDelayCheckBox.Name = "actualDelayCheckBox";
-            this.actualDelayCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.actualDelayCheckBox.TabIndex = 19;
-            this.actualDelayCheckBox.Text = "Késés";
-            this.actualDelayCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // actualCertifyCheckBox
-            // 
-            this.actualCertifyCheckBox.AutoSize = true;
-            this.actualCertifyCheckBox.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.actualCertifyCheckBox.ForeColor = System.Drawing.SystemColors.Control;
-            this.actualCertifyCheckBox.Location = new System.Drawing.Point(56, 155);
-            this.actualCertifyCheckBox.Name = "actualCertifyCheckBox";
-            this.actualCertifyCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.actualCertifyCheckBox.TabIndex = 20;
-            this.actualCertifyCheckBox.Text = "Igazolt";
-            this.actualCertifyCheckBox.UseVisualStyleBackColor = true;
-            // 
             // logOutButton
             // 
             this.logOutButton.Image = global::AEN.Properties.Resources.log_out_button;
@@ -343,6 +345,13 @@
             this.exitButton.TabIndex = 23;
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(406, 218);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(104, 42);
+            this.userControl11.TabIndex = 21;
             // 
             // Omissionoperator
             // 
@@ -399,5 +408,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox actualCertifyCheckBox;
         private System.Windows.Forms.CheckBox actualDelayCheckBox;
+        private UserControl1 userControl11;
     }
 }

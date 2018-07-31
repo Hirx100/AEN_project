@@ -59,6 +59,7 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
+            this.userControl11 = new AEN.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.markDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.userControl11);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
@@ -415,6 +417,13 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(411, 240);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(99, 42);
+            this.userControl11.TabIndex = 20;
+            // 
             // Markoperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,5 +485,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private UserControl1 userControl11;
     }
 }

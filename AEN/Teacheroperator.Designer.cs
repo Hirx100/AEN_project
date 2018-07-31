@@ -44,6 +44,7 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
+            this.userControl11 = new AEN.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.teacherDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
@@ -70,6 +71,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.userControl11);
             this.panel1.Controls.Add(this.actualPasswordtextBox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.actualTeacherNameTextBox);
@@ -229,6 +231,13 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(509, 214);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(104, 42);
+            this.userControl11.TabIndex = 23;
+            // 
             // Teacheroperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,5 +281,6 @@
         private System.Windows.Forms.TextBox actualPasswordtextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox actualTeacherNameTextBox;
+        private UserControl1 userControl11;
     }
 }

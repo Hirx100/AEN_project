@@ -30,6 +30,7 @@
         {
             this.parentDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.actualTeachercomboBox = new System.Windows.Forms.ComboBox();
             this.actualPasswordtextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.userControl11 = new AEN.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.parentDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
@@ -72,6 +73,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.userControl11);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.actualTeachercomboBox);
             this.panel1.Controls.Add(this.actualPasswordtextBox);
@@ -91,6 +93,17 @@
             this.panel1.Size = new System.Drawing.Size(776, 286);
             this.panel1.TabIndex = 27;
             this.panel1.Tag = "Aktuális jegy";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(619, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Kapcsolattartó: ";
             // 
             // actualTeachercomboBox
             // 
@@ -244,16 +257,13 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // label2
+            // userControl11
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(619, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 20);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Kapcsolattartó: ";
+            this.userControl11.Location = new System.Drawing.Point(636, 194);
+            this.userControl11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(136, 73);
+            this.userControl11.TabIndex = 25;
             // 
             // Parentoperator
             // 
@@ -300,5 +310,6 @@
         private System.Windows.Forms.TextBox actualParentNameTextBox;
         private System.Windows.Forms.ComboBox actualTeachercomboBox;
         private System.Windows.Forms.Label label2;
+        private UserControl1 userControl11;
     }
 }
