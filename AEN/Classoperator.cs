@@ -11,27 +11,21 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    public partial class Studentoperator : Form
+    public partial class Classoperator : Form
     {
         DBConnect dataviwe = new DBConnect();
-        Markoperator markThings = new Markoperator();
         
-        public Studentoperator()
+        public Classoperator()
         {
             InitializeComponent();
 
-            markThings.ClassFill(actualClassComboBox);
-            markThings.TeacherFill(actualTeachercomboBox);
-            StudentFill();
-            ParentFill(actualParentComboBox);
 
             if (Loginscreen.permValue > 102)
             {
-                deleteStudentButton.Visible = false;
-                updateStudentButton.Visible = false;
-                newStudentButton.Visible = false;
-                actualAccountNametextBox.ReadOnly= true;
-                actualAccountNametextBox.BackColor = Color.DarkGray;
+                deleteClassButton.Visible = false;
+                updateClassButton.Visible = false;
+                newClassButton.Visible = false;
+
             }
             
         }
@@ -55,62 +49,34 @@ namespace AEN
             logJump.Show();
         }
 
-        public void StudentFill()
+        public void ClassFill()
         {
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenStudentSelect", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenClassSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtParent = new DataTable();
             sqlDa.Fill(dtParent);
             studentDataGridView.DataSource = dtParent;
-            studentDataGridView.Columns["student_id"].Visible = false;
+            studentDataGridView.Columns["class_id"].Visible = false;
             dataviwe.CloseConnection();
         }
 
-        public void ParentFill(ComboBox parentComboBox)
-        {
-            dataviwe.OpenConnection();
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenParentNameSelect", dataviwe.connection);
-            sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-            DataTable dtParent = new DataTable();
-            sqlDa.Fill(dtParent);
-            string[] allParent = new string[dtParent.Rows.Count];
-            for (int i = 0; i < allParent.Length; i++)
-            {
-                allParent[i] = dtParent.Rows[i][0].ToString();
-            }
-            for (int i = 0; i < allParent.Length; i++)
-            {
-                parentComboBox.Items.Add(new KeyValuePair<string, int>(allParent[i], i + 500));
-            }
-            parentComboBox.SelectedIndex = 0;
-            parentComboBox.DisplayMember = "key";
-            parentComboBox.ValueMember = "value";
-
-
-            dataviwe.CloseConnection();
-
-        }
-
-        void UpdateStudent()
+        void UpdateClass()
         {
             DataGridViewRow selectedRows = studentDataGridView.Rows[SelectedRowIndex];
-            string updateStudenID = selectedRows.Cells["student_id"].Value.ToString();
+            string updateClassId = selectedRows.Cells["class_id"].Value.ToString();
 
-            KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeachercomboBox.SelectedItem;
-            KeyValuePair<string, int> selectedParent = (KeyValuePair<string, int>)actualParentComboBox.SelectedItem;
+            
+           // KeyValuePair<string, int> selectedParent = (KeyValuePair<string, int>)actualParentComboBox.SelectedItem;
 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenStudentUpdate", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenClassUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_updateName", actualStudentNameTextBox.Text);
-            cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox.Text);
-            cmd.Parameters.AddWithValue("_updateBornDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
-            cmd.Parameters.AddWithValue("_updateTeacherName", selectedTeacher.Key);
-            cmd.Parameters.AddWithValue("_updateStudentID", updateStudenID);
-            cmd.Parameters.AddWithValue("_updateParentName", selectedParent.Key);
-            cmd.Parameters.AddWithValue("_updateClass", (actualClassComboBox.SelectedIndex + 1));
+            cmd.Parameters.AddWithValue("_updateClassSign", actualClassSignTextBox.Text);
+            cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(actualStartDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_updateClassID", updateClassId);
+            cmd.Parameters.AddWithValue("_updateClassNumber", (actualStartNumberComboBox.SelectedIndex + 1));
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -153,12 +119,12 @@ namespace AEN
                 string accName = selectedRows.Cells["user_name"].Value + string.Empty;
 
                 actualAccountNametextBox.Text = accName;
-                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
+                actualStartDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
                 actualPasswordtextBox.Text=selectedRows.Cells["password"].Value.ToString();
-                actualStudentNameTextBox.Text = selectedRows.Cells["name"].Value.ToString();
+                actualClassSignTextBox.Text = selectedRows.Cells["name"].Value.ToString();
                 actualTeachercomboBox.SelectedIndex = actualTeachercomboBox.FindStringExact(selectedRows.Cells["head teacher"].Value.ToString());
-                actualParentComboBox.SelectedIndex = actualParentComboBox.FindStringExact(selectedRows.Cells["parent"].Value.ToString());
-                actualClassComboBox.SelectedIndex = ((Int16.Parse(selectedRows.Cells["class_id"].Value.ToString()))-1);
+                actualClassYearComboBox.SelectedIndex = actualClassYearComboBox.FindStringExact(selectedRows.Cells["parent"].Value.ToString());
+                actualStartNumberComboBox.SelectedIndex = ((Int16.Parse(selectedRows.Cells["class_id"].Value.ToString()))-1);
         }
 
         private void deleteStudentButton_Click(object sender, EventArgs e)
@@ -167,7 +133,7 @@ namespace AEN
             if (dialogResult == DialogResult.Yes)
             {
                 DeleteStudent();
-                StudentFill();
+                ClassFill();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -178,8 +144,8 @@ namespace AEN
 
         private void updateStudentButton_Click(object sender, EventArgs e)
         {
-            UpdateStudent();
-            StudentFill();
+            UpdateClass();
+            ClassFill();
             MessageBox.Show("A kiválasztott szülő adatai frissítve");
         }
 
