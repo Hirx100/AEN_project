@@ -90,5 +90,12 @@ namespace AEN
             studentjump.Show();
             this.Close();
         }
+
+        private void classOperatorButton_Click(object sender, EventArgs e)
+        {
+            Classoperator classjump = new Classoperator();
+            classjump.Show();
+            this.Close();
+        }
     }
 }

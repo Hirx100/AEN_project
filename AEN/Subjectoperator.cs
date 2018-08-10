@@ -11,21 +11,21 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    public partial class Classoperator : Form
+    public partial class Subjectoperator : Form
     {
         DBConnect dataviwe = new DBConnect();
         
-        public Classoperator()
+        public Subjectoperator()
         {
             InitializeComponent();
-            ClassFill();
+            SubjectFill();
 
             if (Loginscreen.permValue > 102)
             {
                 deleteClassButton.Visible = false;
                 updateClassButton.Visible = false;
                 newClassButton.Visible = false;
-                actualClassSignTextBox.ReadOnly = true;
+                actualSubjectTextBox.ReadOnly = true;
             }
 
             for (int i = 1; i < 13; i++)
@@ -64,35 +64,31 @@ namespace AEN
             logJump.Show();
         }
 
-        public void ClassFill()
+        public void SubjectFill()
         {
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenClassSelect", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenSubjectSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtClass = new DataTable();
             sqlDa.Fill(dtClass);
             classDataGridView.DataSource = dtClass;
-            classDataGridView.Columns["class_id"].Visible = false;
+            classDataGridView.Columns["subject_id"].Visible = false;
             dataviwe.CloseConnection();
         }
 
         void UpdateClass()
         {
             DataGridViewRow selectedRows = classDataGridView.Rows[SelectedRowIndex];
-            string updateClassId = selectedRows.Cells["class_id"].Value.ToString();
+            string updateClassId = selectedRows.Cells["subjcet_id"].Value.ToString();
 
             
            // KeyValuePair<string, int> selectedParent = (KeyValuePair<string, int>)actualParentComboBox.SelectedItem;
 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenClassUpdate", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenSubjcetUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_updateClassSign", actualClassSignTextBox.Text);
-            cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(actualStartDateTimePicker.Value.ToString()));
-            cmd.Parameters.AddWithValue("_updateClassID", updateClassId);
-            cmd.Parameters.AddWithValue("_updateStartClassNumber", (actualStartNumberComboBox.SelectedIndex + 1));
-            cmd.Parameters.AddWithValue("_updateClassYear", (actualClassYearComboBox.SelectedIndex + 1));
+            cmd.Parameters.AddWithValue("_updateSubjectName", actualSubjectTextBox.Text);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -134,7 +130,7 @@ namespace AEN
                 DataGridViewRow selectedRows = classDataGridView.Rows[index];
 
                 actualStartDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["class_start"].Value.ToString());
-                actualClassSignTextBox.Text = selectedRows.Cells["character_sign"].Value.ToString();
+                actualSubjectTextBox.Text = selectedRows.Cells["character_sign"].Value.ToString();
                 actualClassYearComboBox.SelectedIndex = actualClassYearComboBox.FindStringExact(selectedRows.Cells["class_year"].Value.ToString());
                 actualStartNumberComboBox.SelectedIndex = actualStartNumberComboBox.FindStringExact(selectedRows.Cells["start_number"].Value.ToString());
         }
@@ -145,7 +141,7 @@ namespace AEN
             if (dialogResult == DialogResult.Yes)
             {
                 DeleteClass();
-                ClassFill();
+                SubjectFill();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -157,7 +153,7 @@ namespace AEN
         private void updateStudentButton_Click(object sender, EventArgs e)
         {
             UpdateClass();
-            ClassFill();
+            SubjectFill();
             MessageBox.Show("A kiválasztott osztály adatai frissítve");
         }
 

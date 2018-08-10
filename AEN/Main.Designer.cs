@@ -44,7 +44,7 @@
             this.markOperatorButton = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.parentOperatorButton = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.classOperatorButton = new System.Windows.Forms.PictureBox();
             this.teacherOperatorButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
@@ -55,7 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
@@ -238,16 +238,17 @@
             this.parentOperatorButton.TabStop = false;
             this.parentOperatorButton.Click += new System.EventHandler(this.parentOperatorButton_Click);
             // 
-            // pictureBox3
+            // classOperatorButton
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Image = global::AEN.Properties.Resources.class_button;
-            this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox3.Location = new System.Drawing.Point(202, 203);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
+            this.classOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.classOperatorButton.Image = global::AEN.Properties.Resources.class_button;
+            this.classOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.classOperatorButton.Location = new System.Drawing.Point(202, 203);
+            this.classOperatorButton.Name = "classOperatorButton";
+            this.classOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.classOperatorButton.TabIndex = 6;
+            this.classOperatorButton.TabStop = false;
+            this.classOperatorButton.Click += new System.EventHandler(this.classOperatorButton_Click);
             // 
             // teacherOperatorButton
             // 
@@ -304,7 +305,7 @@
             this.Controls.Add(this.parentOperatorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuButtonLabel1);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.classOperatorButton);
             this.Controls.Add(this.teacherOperatorButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
@@ -319,7 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
@@ -331,7 +332,7 @@
         #endregion
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.PictureBox teacherOperatorButton;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox classOperatorButton;
         private System.Windows.Forms.Label menuButtonLabel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
