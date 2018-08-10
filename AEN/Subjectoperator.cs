@@ -28,21 +28,6 @@ namespace AEN
                 actualSubjectTextBox.ReadOnly = true;
             }
 
-            for (int i = 1; i < 13; i++)
-            {
-                actualClassYearComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 800));
-                actualStartNumberComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 100));
-            }
-            actualClassYearComboBox.SelectedIndex = 0;
-            actualStartNumberComboBox.SelectedIndex = 0;
-
-            actualClassYearComboBox.DisplayMember = "key";
-            actualClassYearComboBox.ValueMember = "value";
-
-            actualStartNumberComboBox.DisplayMember = "key";
-            actualStartNumberComboBox.ValueMember = "value";
-
-
         }
         int SelectedRowIndex { get; set; }
         string StudentID { get; set; }
@@ -77,7 +62,7 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-        void UpdateClass()
+        void UpdateSubject()
         {
             DataGridViewRow selectedRows = classDataGridView.Rows[SelectedRowIndex];
             string updateClassId = selectedRows.Cells["subjcet_id"].Value.ToString();
@@ -93,14 +78,14 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-        void DeleteClass()
+        void DeleteSubject()
         {
             DataGridViewRow selectedRows = classDataGridView.Rows[SelectedRowIndex];
-            string deleteClassID = selectedRows.Cells["class_id"].Value.ToString();
+            string deleteClassID = selectedRows.Cells["subject_id"].Value.ToString();
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenClassDelete", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenSubjectDelete", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_class_id", deleteClassID);
+            cmd.Parameters.AddWithValue("_subject_id", deleteClassID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -129,18 +114,16 @@ namespace AEN
                 SelectedRowIndex = index;
                 DataGridViewRow selectedRows = classDataGridView.Rows[index];
 
-                actualStartDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["class_start"].Value.ToString());
-                actualSubjectTextBox.Text = selectedRows.Cells["character_sign"].Value.ToString();
-                actualClassYearComboBox.SelectedIndex = actualClassYearComboBox.FindStringExact(selectedRows.Cells["class_year"].Value.ToString());
-                actualStartNumberComboBox.SelectedIndex = actualStartNumberComboBox.FindStringExact(selectedRows.Cells["start_number"].Value.ToString());
+                actualSubjectTextBox.Text = selectedRows.Cells["subject_name"].Value.ToString();
+
         }
 
-        private void deleteStudentButton_Click(object sender, EventArgs e)
+        private void deleteSubjectButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott osztályt?", "Megerősítés", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott tangyárgyat?", "Megerősítés", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DeleteClass();
+                DeleteSubject();
                 SubjectFill();
             }
             else if (dialogResult == DialogResult.No)
@@ -150,11 +133,11 @@ namespace AEN
  
         }
 
-        private void updateStudentButton_Click(object sender, EventArgs e)
+        private void updateSubjectButton_Click(object sender, EventArgs e)
         {
-            UpdateClass();
+            UpdateSubject();
             SubjectFill();
-            MessageBox.Show("A kiválasztott osztály adatai frissítve");
+            MessageBox.Show("A kiválasztott tantárgy adatai frissítve");
         }
 
         private void newStudentButton_Click(object sender, EventArgs e)

@@ -126,7 +126,7 @@
             this.updateClassButton.TabIndex = 14;
             this.updateClassButton.Text = "Modosítás";
             this.updateClassButton.UseVisualStyleBackColor = true;
-            this.updateClassButton.Click += new System.EventHandler(this.updateStudentButton_Click);
+            this.updateClassButton.Click += new System.EventHandler(this.updateSubjectButton_Click);
             // 
             // deleteClassButton
             // 
@@ -137,7 +137,7 @@
             this.deleteClassButton.TabIndex = 13;
             this.deleteClassButton.Text = "Törlés";
             this.deleteClassButton.UseVisualStyleBackColor = true;
-            this.deleteClassButton.Click += new System.EventHandler(this.deleteStudentButton_Click);
+            this.deleteClassButton.Click += new System.EventHandler(this.deleteSubjectButton_Click);
             // 
             // logOutButton
             // 
