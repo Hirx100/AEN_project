@@ -40,23 +40,23 @@
             this.logOutButton = new System.Windows.Forms.PictureBox();
             this.omissionOperatorButton = new System.Windows.Forms.PictureBox();
             this.userDataButton = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.studentOperatorButton = new System.Windows.Forms.PictureBox();
             this.markOperatorButton = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.parentOperatorButton = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.teacherOperatorButton = new System.Windows.Forms.PictureBox();
             this.minimizeButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.omissionOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
@@ -169,6 +169,7 @@
             // 
             // omissionOperatorButton
             // 
+            this.omissionOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.omissionOperatorButton.Image = global::AEN.Properties.Resources.omission_button;
             this.omissionOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.omissionOperatorButton.Location = new System.Drawing.Point(510, 203);
@@ -180,6 +181,7 @@
             // 
             // userDataButton
             // 
+            this.userDataButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.userDataButton.Image = ((System.Drawing.Image)(resources.GetObject("userDataButton.Image")));
             this.userDataButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.userDataButton.Location = new System.Drawing.Point(510, 315);
@@ -189,18 +191,21 @@
             this.userDataButton.TabStop = false;
             this.userDataButton.Click += new System.EventHandler(this.userDataButton_Click);
             // 
-            // pictureBox9
+            // studentOperatorButton
             // 
-            this.pictureBox9.Image = global::AEN.Properties.Resources.student_button;
-            this.pictureBox9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox9.Location = new System.Drawing.Point(510, 91);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox9.TabIndex = 14;
-            this.pictureBox9.TabStop = false;
+            this.studentOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.studentOperatorButton.Image = global::AEN.Properties.Resources.student_button;
+            this.studentOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.studentOperatorButton.Location = new System.Drawing.Point(510, 91);
+            this.studentOperatorButton.Name = "studentOperatorButton";
+            this.studentOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.studentOperatorButton.TabIndex = 14;
+            this.studentOperatorButton.TabStop = false;
+            this.studentOperatorButton.Click += new System.EventHandler(this.studentOperatorButton_Click);
             // 
             // markOperatorButton
             // 
+            this.markOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.markOperatorButton.Image = global::AEN.Properties.Resources.control_book_button;
             this.markOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.markOperatorButton.Location = new System.Drawing.Point(356, 203);
@@ -212,6 +217,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox5.Image = global::AEN.Properties.Resources.subject_button;
             this.pictureBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox5.Location = new System.Drawing.Point(204, 315);
@@ -220,19 +226,21 @@
             this.pictureBox5.TabIndex = 10;
             this.pictureBox5.TabStop = false;
             // 
-            // pictureBox6
+            // parentOperatorButton
             // 
-            this.pictureBox6.Image = global::AEN.Properties.Resources.parent_button;
-            this.pictureBox6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox6.Location = new System.Drawing.Point(356, 91);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox6.TabIndex = 9;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            this.parentOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.parentOperatorButton.Image = global::AEN.Properties.Resources.parent_button;
+            this.parentOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.parentOperatorButton.Location = new System.Drawing.Point(356, 91);
+            this.parentOperatorButton.Name = "parentOperatorButton";
+            this.parentOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.parentOperatorButton.TabIndex = 9;
+            this.parentOperatorButton.TabStop = false;
+            this.parentOperatorButton.Click += new System.EventHandler(this.parentOperatorButton_Click);
             // 
             // pictureBox3
             // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Image = global::AEN.Properties.Resources.class_button;
             this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox3.Location = new System.Drawing.Point(202, 203);
@@ -241,16 +249,17 @@
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox2
+            // teacherOperatorButton
             // 
-            this.pictureBox2.Image = global::AEN.Properties.Resources.teacher_button;
-            this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox2.Location = new System.Drawing.Point(204, 91);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.teacherOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.teacherOperatorButton.Image = global::AEN.Properties.Resources.teacher_button;
+            this.teacherOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.teacherOperatorButton.Location = new System.Drawing.Point(204, 91);
+            this.teacherOperatorButton.Name = "teacherOperatorButton";
+            this.teacherOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.teacherOperatorButton.TabIndex = 4;
+            this.teacherOperatorButton.TabStop = false;
+            this.teacherOperatorButton.Click += new System.EventHandler(this.teacherOperatorButton_Click);
             // 
             // minimizeButton
             // 
@@ -287,16 +296,16 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.omissionOperatorButton);
             this.Controls.Add(this.userDataButton);
-            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.studentOperatorButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.markOperatorButton);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.parentOperatorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuButtonLabel1);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.teacherOperatorButton);
             this.Controls.Add(this.minimizeButton);
             this.Controls.Add(this.exitButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -306,12 +315,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.logOutButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.omissionOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).EndInit();
             this.ResumeLayout(false);
@@ -321,7 +330,7 @@
 
         #endregion
         private System.Windows.Forms.PictureBox exitButton;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox teacherOperatorButton;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label menuButtonLabel1;
         private System.Windows.Forms.Label label1;
@@ -329,12 +338,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox markOperatorButton;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox parentOperatorButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox omissionOperatorButton;
         private System.Windows.Forms.PictureBox userDataButton;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox studentOperatorButton;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox logOutButton;

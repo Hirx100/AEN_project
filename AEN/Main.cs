@@ -70,17 +70,24 @@ namespace AEN
             this.Close();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void teacherOperatorButton_Click(object sender, EventArgs e)
         {
             Teacheroperator teacherJump = new Teacheroperator();
             teacherJump.Show();
             this.Close();
         }
 
-        private void pictureBox6_Click(object sender, EventArgs e)
+        private void parentOperatorButton_Click(object sender, EventArgs e)
         {
             Parentoperator parentJump = new Parentoperator();
             parentJump.Show();
+            this.Close();
+        }
+
+        private void studentOperatorButton_Click(object sender, EventArgs e)
+        {
+            Studentoperator studentjump = new Studentoperator();
+            studentjump.Show();
             this.Close();
         }
     }

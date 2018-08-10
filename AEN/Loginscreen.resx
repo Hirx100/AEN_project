@@ -310,10 +310,10 @@
     <value>Arial Narrow, 11.25pt</value>
   </data>
   <data name="permissionSelecterComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 88</value>
+    <value>147, 88</value>
   </data>
   <data name="permissionSelecterComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 28</value>
+    <value>176, 28</value>
   </data>
   <data name="permissionSelecterComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

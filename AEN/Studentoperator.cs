@@ -11,21 +11,25 @@ using System.Windows.Forms;
 
 namespace AEN
 {
-    public partial class Parentoperator : Form
+    public partial class Studentoperator : Form
     {
         DBConnect dataviwe = new DBConnect();
-        Markoperator teahcer = new Markoperator();
-        public Parentoperator()
+        Markoperator markThings = new Markoperator();
+        
+        public Studentoperator()
         {
             InitializeComponent();
 
-            AllParentFill();
-            teahcer.TeacherFill(actualTeachercomboBox);
+            markThings.ClassFill(actualClassComboBox);
+            markThings.TeacherFill(actualTeachercomboBox);
+            StudentFill();
+            ParentFill(actualParentComboBox);
+
             if (Loginscreen.permValue > 102)
             {
-                deleteParentButton.Visible = false;
-                updateParentButton.Visible = false;
-                newParentButton.Visible = false;
+                deleteStudentButton.Visible = false;
+                updateStudentButton.Visible = false;
+                newStudentButton.Visible = false;
                 actualAccountNametextBox.ReadOnly= true;
                 actualAccountNametextBox.BackColor = Color.DarkGray;
             }
@@ -51,29 +55,54 @@ namespace AEN
             logJump.Show();
         }
 
-        public void AllParentFill()
-        {  
+        void StudentFill()
+        {
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenParentSelect", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenStudentSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtParent = new DataTable();
             sqlDa.Fill(dtParent);
-            parentDataGridView.DataSource = dtParent;
-            parentDataGridView.Columns["parent_id"].Visible = false;
+            studentDataGridView.DataSource = dtParent;
+            studentDataGridView.Columns["student_id"].Visible = false;
             dataviwe.CloseConnection();
         }
 
-        void UpdateParent()
+        void ParentFill(ComboBox parentComboBox)
         {
-            DataGridViewRow selectedRows = parentDataGridView.Rows[SelectedRowIndex];
-            string updateParentID = selectedRows.Cells["parent_id"].Value.ToString();
+            dataviwe.OpenConnection();
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter("aenParentNameSelect", dataviwe.connection);
+            sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dtParent = new DataTable();
+            sqlDa.Fill(dtParent);
+            string[] allParent = new string[dtParent.Rows.Count];
+            for (int i = 0; i < allParent.Length; i++)
+            {
+                allParent[i] = dtParent.Rows[i][0].ToString();
+            }
+            for (int i = 0; i < allParent.Length; i++)
+            {
+                parentComboBox.Items.Add(new KeyValuePair<string, int>(allParent[i], i + 500));
+            }
+            parentComboBox.SelectedIndex = 0;
+            parentComboBox.DisplayMember = "key";
+            parentComboBox.ValueMember = "value";
+
+
+            dataviwe.CloseConnection();
+
+        }
+
+        void UpdateStudent()
+        {
+            DataGridViewRow selectedRows = studentDataGridView.Rows[SelectedRowIndex];
+            string updateParentID = selectedRows.Cells["student_id"].Value.ToString();
             KeyValuePair<string, int> selectedTeacher = (KeyValuePair<string, int>)actualTeachercomboBox.SelectedItem;
 
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenParentUpdate", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenPakrentUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_updateName", actualParentNameTextBox.Text);
+            cmd.Parameters.AddWithValue("_updateName", actualStudentNameTextBox.Text);
             cmd.Parameters.AddWithValue("_updatePassword", actualPasswordtextBox.Text);
             cmd.Parameters.AddWithValue("_updateBornDate", DateTime.Parse(actualBornDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateTeacherName", selectedTeacher.Key);
@@ -82,14 +111,14 @@ namespace AEN
             dataviwe.CloseConnection();
         }
 
-        void DeleteParent()
+        void DeleteStudent()
         {
-            DataGridViewRow selectedRows = parentDataGridView.Rows[SelectedRowIndex];
-            string deleteParentID = selectedRows.Cells["parent_id"].Value.ToString();
+            DataGridViewRow selectedRows = studentDataGridView.Rows[SelectedRowIndex];
+            string deleteParentID = selectedRows.Cells["student_id"].Value.ToString();
             dataviwe.OpenConnection();
-            MySqlCommand cmd = new MySqlCommand("aenParentDelete", dataviwe.connection);
+            MySqlCommand cmd = new MySqlCommand("aenPardentDelete", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_parent_id", deleteParentID);
+            cmd.Parameters.AddWithValue("_student_id", deleteParentID);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
@@ -112,28 +141,28 @@ namespace AEN
         #endregion
 
 
-        private void parentDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void studentDataGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
-                DataGridViewRow selectedRows = parentDataGridView.Rows[index];
-                string accName = selectedRows.Cells["Felhasználónév"].Value + string.Empty;
+                DataGridViewRow selectedRows = studentDataGridView.Rows[index];
+                string accName = selectedRows.Cells["password"].Value + string.Empty;
 
                 actualAccountNametextBox.Text = accName;
-                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["Születési idő"].Value.ToString());
-                actualPasswordtextBox.Text=selectedRows.Cells["Jelszó"].Value.ToString();
-                actualParentNameTextBox.Text = selectedRows.Cells["Név"].Value.ToString();
-                actualTeachercomboBox.SelectedIndex= actualTeachercomboBox.FindStringExact(selectedRows.Cells["Kapcsolattartó"].Value.ToString());
-
+                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
+                actualPasswordtextBox.Text=selectedRows.Cells["password"].Value.ToString();
+                actualStudentNameTextBox.Text = selectedRows.Cells["name"].Value.ToString();
+                actualTeachercomboBox.SelectedIndex =(Convert.ToInt32(selectedRows.Cells["head teacher"].Value)-1);
+   
         }
 
-        private void deleteParentButton_Click(object sender, EventArgs e)
+        private void deleteStudentButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott szülőt?", "Megerősítés", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DeleteParent();
-                AllParentFill();
+                DeleteStudent();
+                
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -142,14 +171,14 @@ namespace AEN
  
         }
 
-        private void updateParentbutton_Click(object sender, EventArgs e)
+        private void updateStudentButton_Click(object sender, EventArgs e)
         {
-            UpdateParent();
-            AllParentFill();
+            UpdateStudent();
+           
             MessageBox.Show("A kiválasztott szülő adatai frissítve");
         }
 
-        private void newParentButton_Click(object sender, EventArgs e)
+        private void newStudentButton_Click(object sender, EventArgs e)
         {
             NewTeacher jump = new NewTeacher();
             jump.Show();
