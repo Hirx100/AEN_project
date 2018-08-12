@@ -117,13 +117,13 @@ namespace AEN
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
                 DataGridViewRow selectedRows = parentDataGridView.Rows[index];
-                string accName = selectedRows.Cells["Felhasználónév"].Value + string.Empty;
+                string accName = selectedRows.Cells["user_name"].Value + string.Empty;
 
                 actualAccountNametextBox.Text = accName;
-                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["Születési idő"].Value.ToString());
-                actualPasswordtextBox.Text=selectedRows.Cells["Jelszó"].Value.ToString();
-                actualParentNameTextBox.Text = selectedRows.Cells["Név"].Value.ToString();
-                actualTeachercomboBox.SelectedIndex= actualTeachercomboBox.FindStringExact(selectedRows.Cells["Kapcsolattartó"].Value.ToString());
+                actualBornDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["born_date"].Value.ToString());
+                actualPasswordtextBox.Text=selectedRows.Cells["password"].Value.ToString();
+                actualParentNameTextBox.Text = selectedRows.Cells["name"].Value.ToString();
+                actualTeachercomboBox.SelectedIndex= actualTeachercomboBox.FindStringExact(selectedRows.Cells["teacher"].Value.ToString());
 
         }
 
@@ -151,7 +151,7 @@ namespace AEN
 
         private void newParentButton_Click(object sender, EventArgs e)
         {
-            NewTeacher jump = new NewTeacher();
+            NewParent jump = new NewParent();
             jump.Show();
         }
 

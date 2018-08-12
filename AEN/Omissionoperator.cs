@@ -79,7 +79,7 @@ namespace AEN
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand(" aenOmissionStartSelect", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("_classNummer", selectClassNummer);
+            cmd.Parameters.AddWithValue("_classNumber", selectClassNummer);
             cmd.Parameters.AddWithValue("_classSign", selectClassSign);
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtOmission = new DataTable();

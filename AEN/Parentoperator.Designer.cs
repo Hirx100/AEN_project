@@ -280,7 +280,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Parentoperator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Parentoperator";
             ((System.ComponentModel.ISupportInitialize)(this.parentDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
