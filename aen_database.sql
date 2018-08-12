@@ -12,10 +12,29 @@ CREATE DATABASE IF NOT EXISTS `aen_database` DEFAULT CHARACTER SET latin1 COLLAT
 USE `aen_database`;
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS `aenClassDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenClassDelete` (IN `_class_id` INT(11))  NO SQL
+BEGIN
+DELETE FROM class WHERE class.class_ID=_class_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenClassInsert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenClassInsert` (IN `_insertSign` VARCHAR(2), IN `_insertYear` INT(1), IN `_insertStartNumer` INT(1), IN `_insertStartDate` DATE)  NO SQL
+BEGIN
+INSERT INTO `class`(`class_start`, `start_number`, `character_sign`, `class_year`) VALUES (_insertStartDate,_insertStartNumer,_insertSign,_insertYear);
+END$$
+
 DROP PROCEDURE IF EXISTS `aenClassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenClassSelect` ()  NO SQL
 BEGIN
 Select * from class;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenClassUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenClassUpdate` (IN `_updateClassID` INT(11), IN `_startDate` DATE, IN `_updateStartClassNumber` INT(2), IN `_updateClassSign` VARCHAR(2), IN `_updateClassYear` INT(2))  NO SQL
+BEGIN
+UPDATE `class` SET `class_start`=_startDate,`start_number`=_updateStartClassNumber,`character_sign`=_updateClassSign,
+`class_year`=_updateClassYear WHERE class_ID= _updateClassID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenMarkDelete`$$
@@ -111,24 +130,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionRuningSelect` (IN `_clas
 BEGIN
 SELECT omission_ID,omission.date, student.name as student, teacher.name as teacher, hour,delay, certify FROM `omission` 
 INNER JOIN student ON omission.student_ID= student.student_ID
-INNER JOIN class on student.class_ID= class.class_ID
 INNER JOIN teacher ON teacher.teacher_ID=omission.omission_ID
-WHERE omission.student_ID=
+WHERE omission.student_ID IN
 (SELECT student_ID FROM student WHERE student.class_ID=
 (SELECT class.class_ID FROM class WHERE class.character_sign=_classSign AND class.class_year= _classNummer and student.name LIKE _selectedStudent AND
 omission.date BETWEEN _startDate AND _endDate));
 END$$
 
 DROP PROCEDURE IF EXISTS `aenOmissionStartSelect`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNummer` INT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenOmissionStartSelect` (IN `_classSign` VARCHAR(2), IN `_classNumber` INT(11))  NO SQL
 BEGIN
-SELECT omission_ID,omission.date, student.name as student, teacher.name as teacher, hour,delay, certify FROM `omission` 
+SELECT omission_ID,omission.date, student.name as student, teacher.name as teacher, omission.hour,omission.delay,omission.certify FROM `omission` 
 INNER JOIN student ON omission.student_ID= student.student_ID
-INNER JOIN class on student.class_ID= class.class_ID
-INNER JOIN teacher ON teacher.teacher_ID=omission.omission_ID
-WHERE omission.student_ID=
+INNER JOIN teacher ON omission.teacher_ID=teacher.teacher_ID
+WHERE omission.student_ID IN
 (SELECT student_ID FROM student WHERE student.class_ID=
-(SELECT class.class_ID FROM class WHERE class.character_sign=_classSign AND class.class_year= _classNummer));
+(SELECT class.class_ID FROM class WHERE class.character_sign=_classSign AND class.class_year= _classNumber));
 END$$
 
 DROP PROCEDURE IF EXISTS `aenParentDataSelect`$$
@@ -159,6 +176,10 @@ BEGIN
 INSERT INTO `parent`(`name`, `born_date`, `user_name`, `password`, `teacher_ID`) VALUES (_parentName, _bornDate, _accName, _password,(SELECT teacher_ID FROM teacher WHERE teacher.name LIKE _teacherName));
 END$$
 
+DROP PROCEDURE IF EXISTS `aenParentNameSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentNameSelect` ()  NO SQL
+SELECT parent.name FROM parent$$
+
 DROP PROCEDURE IF EXISTS `aenParentPassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentPassSelect` (IN `_username` VARCHAR(40), IN `_password` VARCHAR(40))  NO SQL
 BEGIN
@@ -168,7 +189,7 @@ END$$
 DROP PROCEDURE IF EXISTS `aenParentSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenParentSelect` ()  NO SQL
 BEGIN
-SELECT * FROM `parent`;
+SELECT `parent_ID`,parent.name ,parent.born_date,parent.user_name ,parent.password ,teacher.name as teacher FROM `parent` INNER JOIN teacher on parent.teacher_ID= teacher.teacher_ID;
 END$$
 
 DROP PROCEDURE IF EXISTS `aenParentUpdate`$$
@@ -193,16 +214,65 @@ BEGIN
      WHERE `user_name` = _username;
 END$$
 
+DROP PROCEDURE IF EXISTS `aenStudentDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentDelete` (IN `_student_id` INT(11))  NO SQL
+BEGIN
+DELETE FROM student WHERE student.student_ID=_student_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenStudentInsert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentInsert` (IN `_studentName` VARCHAR(40), IN `_bornDate` DATE, IN `_accName` VARCHAR(4), IN `_password` VARCHAR(12), IN `_parentName` VARCHAR(40), IN `_teacherName` VARCHAR(40), IN `_classID` INT(11))  NO SQL
+BEGIN
+INSERT INTO `student`(`name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`) 
+VALUES (_studentName,_bornDate,_accName,_password,(SELECT parent_ID FROM parent WHERE parent.name LIKE _parentName),(SELECT teacher_ID FROM teacher WHERE teacher.name LIKE _teacherName),_classID);
+END$$
+
 DROP PROCEDURE IF EXISTS `aenStudentPassSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentPassSelect` (IN `_username` VARCHAR(40), IN `_password` VARCHAR(40))  NO SQL
 BEGIN
 Select * From `student` where `user_name` = _username and `password` = _password; 
 END$$
 
+DROP PROCEDURE IF EXISTS `aenStudentSelect`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentSelect` ()  NO SQL
+BEGIN
+SELECT `student_ID`,student.`name`,student.`born_date` ,student.`user_name`,student.`password`, parent.name as "parent", teacher.name as "head teacher", class.class_ID as "class_id" FROM `student`
+INNER JOIN parent on student.parent_ID= parent.parent_ID
+INNER JOIN teacher ON student.teacher_ID= teacher.teacher_ID
+INNER JOIN class on student.class_ID= class.class_ID;
+END$$
+
 DROP PROCEDURE IF EXISTS `aenStudentsSelect`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentsSelect` (IN `_classSign` VARCHAR(40), IN `_classNummer` INT(11))  NO SQL
 BEGIN
 Select * From student Where student.class_ID = (SELECT `class_ID` FROM `class` WHERE class.character_sign= _classSign AND class.class_year= _classNummer);
+END$$
+
+DROP PROCEDURE IF EXISTS `aenStudentUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenStudentUpdate` (IN `_updateName` VARCHAR(40), IN `_updatePassword` VARCHAR(10), IN `_updateBornDate` DATE, IN `_updateTeacherName` VARCHAR(40), IN `_updateStudentID` INT(11), IN `_updateParentName` VARCHAR(40), IN `_updateClass` INT(11))  NO SQL
+BEGIN
+UPDATE `student` SET `name`=_updateName,`born_date`=_updateBornDate,`password`=_updatePassword,`teacher_ID`=(SELECT teacher_ID FROM teacher WHERE teacher.name LIKE _updateTeacherName),
+`parent_ID`=(SELECT parent_ID FROM parent WHERE parent.name LIKE _updateParentName),
+class_ID=_updateClass
+WHERE student.student_ID=_updateStudentID;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenSubjcetUpdate`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenSubjcetUpdate` (IN `_updateSubjectName` VARCHAR(40), IN `_updateSubjcetID` INT(11))  NO SQL
+BEGIN
+UPDATE `subject` SET `subject_name`=_updateSubjectName WHERE `subject_ID`=_updateSubjcetID;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenSubjectDelete`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenSubjectDelete` (IN `_subject_id` INT(11))  NO SQL
+BEGIN
+DELETE FROM subject WHERE subject.subject_ID=_subject_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `aenSubjectInsert`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `aenSubjectInsert` (IN `_insertSubject` VARCHAR(40))  NO SQL
+BEGIN
+INSERT INTO `subject`(`subject_name`) VALUES (_insertSubject);
 END$$
 
 DROP PROCEDURE IF EXISTS `aenSubjectSelect`$$
@@ -266,11 +336,12 @@ CREATE TABLE IF NOT EXISTS `class` (
   `character_sign` varchar(2) COLLATE utf8_hungarian_ci NOT NULL,
   `class_year` int(11) NOT NULL,
   PRIMARY KEY (`class_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `class` (`class_ID`, `class_start`, `start_number`, `character_sign`, `class_year`) VALUES
 (1, '2010-09-01', 1, 'A', 1),
-(2, '2017-09-01', 1, 'B', 1);
+(2, '2017-09-01', 1, 'B', 1),
+(3, '2011-09-01', 2, 'C', 4);
 
 DROP TABLE IF EXISTS `mark`;
 CREATE TABLE IF NOT EXISTS `mark` (
@@ -342,11 +413,12 @@ CREATE TABLE IF NOT EXISTS `student` (
   KEY `parent_ID` (`parent_ID`,`teacher_ID`,`class_ID`),
   KEY `class_ID` (`class_ID`),
   KEY `teacher_ID` (`teacher_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 INSERT INTO `student` (`student_ID`, `name`, `born_date`, `user_name`, `password`, `parent_ID`, `teacher_ID`, `class_ID`) VALUES
-(1, 'Jon Snow', '1996-04-08', 'JoSn', 'nem', 1, 1, 1),
-(2, 'Minimum Sára', '1995-05-28', 'MiSá', 'igen1', 2, 2, 2);
+(1, 'Jon Snow', '1996-04-08', 'JoSn', 'akad', 1, 1, 1),
+(2, 'Minimum Sára', '1995-05-28', 'MiSá', 'igen1', 2, 2, 2),
+(3, 'Fási Ádám', '2000-06-19', 'FáÁd', 'Cica', 2, 2, 1);
 
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (

