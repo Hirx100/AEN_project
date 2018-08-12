@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AEN.Classoperator" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="actualClassSignTextBox" Hidden="true" />
+      <Field Name="actualClassYearComboBox" Hidden="true" />
+      <Field Name="actualStartNumberComboBox" Hidden="true" />
+      <Field Name="classDataGridView" Hidden="true" />
+      <Method Name="classDataGridView_RowEnter" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="deleteClassButton" Hidden="true" />
+      <Method Name="deleteClassButton_Click" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="exitButton" Hidden="true" />
+      <Method Name="exitButton_Click" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label6" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="logOutButton" Hidden="true" />
+      <Method Name="logOutButton_Click" Hidden="true" />
+      <Field Name="minimizeButton" Hidden="true" />
+      <Method Name="minimizeButton_Click" Hidden="true" />
+      <Field Name="newClassButton" Hidden="true" />
+      <Method Name="newClassButton_Click" Hidden="true" />
+      <Field Name="panel1" Hidden="true" />
+      <Property Name="SelectedRowIndex" Hidden="true" />
+      <Field Name="startDateTimePicker" Hidden="true" />
+      <Property Name="StudentID" Hidden="true" />
+      <Field Name="updateClassButton" Hidden="true" />
+      <Method Name="updateClassButton_Click" Hidden="true" />
+      <Field Name="userControl11" Hidden="true" />
+      <Method Name="WndProc" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>WIRiAQAgACACBBAEIAKAQAgCAAAAKAAAAAIwQQCCAAQ=</HashCode>
+      <FileName>Classoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.DBConnect">
+    <Position X="1.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="Initialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAEQBAAAABABAAAQAAAAAAAAAAAgAAAAI=</HashCode>
+      <FileName>DBConnect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Login">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAQBAAAAEAAAACACAAAAAQAAAAAAA=</HashCode>
+      <FileName>Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Loginscreen" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Field Name="exitButton" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="logInButton" Hidden="true" />
+      <Field Name="minimizeButton" Hidden="true" />
+      <Field Name="passwordLabel" Hidden="true" />
+      <Field Name="passwordTextBox" Hidden="true" />
+      <Field Name="permissionSelecterComboBox" Hidden="true" />
+      <Field Name="userNameLabel" Hidden="true" />
+      <Field Name="userNameTextBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAABAAAACAAABEAICCAQAgCAAAAAEAiAAIAQAACAIQ=</HashCode>
+      <FileName>Loginscreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Main" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="classOperatorButton" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="exitButton" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="label7" Hidden="true" />
+      <Field Name="label8" Hidden="true" />
+      <Field Name="logOutButton" Hidden="true" />
+      <Method Name="Main" Hidden="true" />
+      <Field Name="markOperatorButton" Hidden="true" />
+      <Field Name="menuButtonLabel1" Hidden="true" />
+      <Field Name="minimizeButton" Hidden="true" />
+      <Field Name="omissionOperatorButton" Hidden="true" />
+      <Field Name="parentOperatorButton" Hidden="true" />
+      <Field Name="pictureBox5" Hidden="true" />
+      <Field Name="studentOperatorButton" Hidden="true" />
+      <Field Name="teacherOperatorButton" Hidden="true" />
+      <Field Name="userDataButton" Hidden="true" />
+      <Method Name="WndProc" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAUABAACAKAJAAIACAQAECCgAAAAAQAAIAQgAABAQ=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Markoperator" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Property Name="SelectedRowIndex" Hidden="true" />
+      <Property Name="StudentID" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>MA5AQIAlAWkCCJCAIASAwAOCgAgJIAKAAAc0QYACBAQ=</HashCode>
+      <FileName>Markoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewClass" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAABgAeACAQAACAAYAAAAAAAIIQAAAAAQ=</HashCode>
+      <FileName>NewClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewMark" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAABIAKASCwAACEEAIAAAAAAIMQgIAIAQ=</HashCode>
+      <FileName>NewMark.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewOmission" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADAAACAAABIAKASCwAACQAAICAAAAAIIUAIQAAU=</HashCode>
+      <FileName>NewOmission.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewParent" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAIAEAACAIABIAKACCQAIiCAAAAAAAAEIAQAAAIEQ=</HashCode>
+      <FileName>NewParent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewStudent" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAAEAACAAERIALQCCQAIiAAEAABAAAEIIQAAAAAQ=</HashCode>
+      <FileName>NewStudent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewSubject" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAEAACAAABAAKACAQAACEAAAAAAAAAMCQAAAAAQ=</HashCode>
+      <FileName>NewSubject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.NewTeacher" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAAAAAACAAEBIAKACCQANigAAAAAAAAEIAQAAABAQ=</HashCode>
+      <FileName>NewTeacher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Omissionoperator" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAaAQCAgAGkCCBCAYATAxAACAAAIIAIgAAMQQYATBAY=</HashCode>
+      <FileName>Omissionoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Parentoperator" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQCAAAgACACABIEJAGCQRgWAAIAJAAAAAIAQUAGAAQ=</HashCode>
+      <FileName>Parentoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Program" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Studentoperator" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IARCAAAgACQGEhAEJAyCQAkCCAAAIACAAQIIUQACAAQ=</HashCode>
+      <FileName>Studentoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Subjectoperator" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAUCAEAgACACABAAIACAYAICAAACJEAAAAKAQQACAAQ=</HashCode>
+      <FileName>Subjectoperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Teacheroperator" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IA4BAAA1ACACABEAJACCRAgDCAAAIAAAAAMAQQQCAAw=</HashCode>
+      <FileName>Teacheroperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.UserControl1">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>UserControl1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Userdatascreen" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="components" Hidden="true" />
+      <Field Name="exitButton" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="minimizeButton" Hidden="true" />
+      <Method Name="userDataScreenCurrentPasswordTextBox_KeyDown" Hidden="true" />
+      <Method Name="userDataScreenDataChangeButton_Click" Hidden="true" />
+      <Method Name="userDataScreenNewPasswordTextBox_KeyDown" Hidden="true" />
+      <Method Name="WndProc" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>VAAAABRAACAAABIAIACAQAACAAAiAAAAAAIBQAAAAEQ=</HashCode>
+      <FileName>Userdatascreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAQIAIAAAEAAABEAAAAQAAAABAAIEAACAAAKA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AEN.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

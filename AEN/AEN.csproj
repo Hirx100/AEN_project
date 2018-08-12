@@ -237,6 +237,7 @@
     <EmbeddedResource Include="Userdatascreen.resx">
       <DependentUpon>Userdatascreen.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
