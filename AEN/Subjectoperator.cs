@@ -22,9 +22,9 @@ namespace AEN
 
             if (Loginscreen.permValue > 102)
             {
-                deleteClassButton.Visible = false;
-                updateClassButton.Visible = false;
-                newClassButton.Visible = false;
+                deleteSubjcetButton.Visible = false;
+                updateSubjectButton.Visible = false;
+                newSubjectButton.Visible = false;
                 actualSubjectTextBox.ReadOnly = true;
             }
 
@@ -57,15 +57,15 @@ namespace AEN
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(cmd);
             DataTable dtClass = new DataTable();
             sqlDa.Fill(dtClass);
-            classDataGridView.DataSource = dtClass;
-            classDataGridView.Columns["subject_id"].Visible = false;
+            subjectDataGridView.DataSource = dtClass;
+            subjectDataGridView.Columns["subject_id"].Visible = false;
             dataviwe.CloseConnection();
         }
 
         void UpdateSubject()
         {
-            DataGridViewRow selectedRows = classDataGridView.Rows[SelectedRowIndex];
-            string updateClassId = selectedRows.Cells["subjcet_id"].Value.ToString();
+            DataGridViewRow selectedRows = subjectDataGridView.Rows[SelectedRowIndex];
+            string updateSubjectId = selectedRows.Cells["subjcet_id"].Value.ToString();
 
             
            // KeyValuePair<string, int> selectedParent = (KeyValuePair<string, int>)actualParentComboBox.SelectedItem;
@@ -74,13 +74,14 @@ namespace AEN
             MySqlCommand cmd = new MySqlCommand("aenSubjcetUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateSubjectName", actualSubjectTextBox.Text);
+            cmd.Parameters.AddWithValue("_updateSubjcetID", updateSubjectId);
             cmd.ExecuteNonQuery();
             dataviwe.CloseConnection();
         }
 
         void DeleteSubject()
         {
-            DataGridViewRow selectedRows = classDataGridView.Rows[SelectedRowIndex];
+            DataGridViewRow selectedRows = subjectDataGridView.Rows[SelectedRowIndex];
             string deleteClassID = selectedRows.Cells["subject_id"].Value.ToString();
             dataviwe.OpenConnection();
             MySqlCommand cmd = new MySqlCommand("aenSubjectDelete", dataviwe.connection);
@@ -112,7 +113,7 @@ namespace AEN
         {
                 int index = e.RowIndex;
                 SelectedRowIndex = index;
-                DataGridViewRow selectedRows = classDataGridView.Rows[index];
+                DataGridViewRow selectedRows = subjectDataGridView.Rows[index];
 
                 actualSubjectTextBox.Text = selectedRows.Cells["subject_name"].Value.ToString();
 
@@ -142,7 +143,7 @@ namespace AEN
 
         private void newStudentButton_Click(object sender, EventArgs e)
         {
-            NewStudent jump = new NewStudent();
+            NewSubject jump = new NewSubject();
             jump.Show();
         }
 

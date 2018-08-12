@@ -19,6 +19,7 @@ namespace AEN
         {
             InitializeComponent();
             ClassFill();
+            Numberfill(actualClassYearComboBox, actualStartNumberComboBox);
 
             if (Loginscreen.permValue > 102)
             {
@@ -28,19 +29,8 @@ namespace AEN
                 actualClassSignTextBox.ReadOnly = true;
             }
 
-            for (int i = 1; i < 13; i++)
-            {
-                actualClassYearComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 800));
-                actualStartNumberComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 100));
-            }
-            actualClassYearComboBox.SelectedIndex = 0;
-            actualStartNumberComboBox.SelectedIndex = 0;
 
-            actualClassYearComboBox.DisplayMember = "key";
-            actualClassYearComboBox.ValueMember = "value";
-
-            actualStartNumberComboBox.DisplayMember = "key";
-            actualStartNumberComboBox.ValueMember = "value";
+            
 
 
         }
@@ -89,7 +79,7 @@ namespace AEN
             MySqlCommand cmd = new MySqlCommand("aenClassUpdate", dataviwe.connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("_updateClassSign", actualClassSignTextBox.Text);
-            cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(actualStartDateTimePicker.Value.ToString()));
+            cmd.Parameters.AddWithValue("_startDate", DateTime.Parse(startDateTimePicker.Value.ToString()));
             cmd.Parameters.AddWithValue("_updateClassID", updateClassId);
             cmd.Parameters.AddWithValue("_updateStartClassNumber", (actualStartNumberComboBox.SelectedIndex + 1));
             cmd.Parameters.AddWithValue("_updateClassYear", (actualClassYearComboBox.SelectedIndex + 1));
@@ -133,13 +123,13 @@ namespace AEN
                 SelectedRowIndex = index;
                 DataGridViewRow selectedRows = classDataGridView.Rows[index];
 
-                actualStartDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["class_start"].Value.ToString());
+                startDateTimePicker.Value = DateTime.Parse(selectedRows.Cells["class_start"].Value.ToString());
                 actualClassSignTextBox.Text = selectedRows.Cells["character_sign"].Value.ToString();
                 actualClassYearComboBox.SelectedIndex = actualClassYearComboBox.FindStringExact(selectedRows.Cells["class_year"].Value.ToString());
                 actualStartNumberComboBox.SelectedIndex = actualStartNumberComboBox.FindStringExact(selectedRows.Cells["start_number"].Value.ToString());
         }
 
-        private void deleteStudentButton_Click(object sender, EventArgs e)
+        private void deleteClassButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Biztos törölni szeretnéd a kiválasztott osztályt?", "Megerősítés", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -154,18 +144,35 @@ namespace AEN
  
         }
 
-        private void updateStudentButton_Click(object sender, EventArgs e)
+        private void updateClassButton_Click(object sender, EventArgs e)
         {
             UpdateClass();
             ClassFill();
             MessageBox.Show("A kiválasztott osztály adatai frissítve");
         }
 
-        private void newStudentButton_Click(object sender, EventArgs e)
+        private void newClassButton_Click(object sender, EventArgs e)
         {
-            NewStudent jump = new NewStudent();
+            NewClass jump = new NewClass();
             jump.Show();
         }
 
+        public void Numberfill(ComboBox classYearComboBox,ComboBox startNumberComboBox)
+        {
+            for (int i = 1; i < 13; i++)
+            {
+                classYearComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 800));
+                startNumberComboBox.Items.Add(new KeyValuePair<string, int>(i.ToString(), 100));
+
+                classYearComboBox.SelectedIndex = 0;
+                startNumberComboBox.SelectedIndex = 0;
+
+                classYearComboBox.DisplayMember = "key";
+                classYearComboBox.ValueMember = "value";
+
+                startNumberComboBox.DisplayMember = "key";
+                startNumberComboBox.ValueMember = "value";
+            }
+        }
     }
 }

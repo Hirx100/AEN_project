@@ -39,7 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.newClassButton = new System.Windows.Forms.Button();
-            this.actualStartDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.updateClassButton = new System.Windows.Forms.Button();
             this.deleteClassButton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.PictureBox();
@@ -80,7 +80,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.newClassButton);
-            this.panel1.Controls.Add(this.actualStartDateTimePicker);
+            this.panel1.Controls.Add(this.startDateTimePicker);
             this.panel1.Controls.Add(this.updateClassButton);
             this.panel1.Controls.Add(this.deleteClassButton);
             this.panel1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -180,14 +180,14 @@
             this.newClassButton.TabIndex = 15;
             this.newClassButton.Text = "Új Osztály";
             this.newClassButton.UseVisualStyleBackColor = true;
-            this.newClassButton.Click += new System.EventHandler(this.newStudentButton_Click);
+            this.newClassButton.Click += new System.EventHandler(this.newClassButton_Click);
             // 
-            // actualStartDateTimePicker
+            // startDateTimePicker
             // 
-            this.actualStartDateTimePicker.Location = new System.Drawing.Point(168, 102);
-            this.actualStartDateTimePicker.Name = "actualStartDateTimePicker";
-            this.actualStartDateTimePicker.Size = new System.Drawing.Size(130, 26);
-            this.actualStartDateTimePicker.TabIndex = 5;
+            this.startDateTimePicker.Location = new System.Drawing.Point(168, 102);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(130, 26);
+            this.startDateTimePicker.TabIndex = 5;
             // 
             // updateClassButton
             // 
@@ -198,7 +198,7 @@
             this.updateClassButton.TabIndex = 14;
             this.updateClassButton.Text = "Modosítás";
             this.updateClassButton.UseVisualStyleBackColor = true;
-            this.updateClassButton.Click += new System.EventHandler(this.updateStudentButton_Click);
+            this.updateClassButton.Click += new System.EventHandler(this.updateClassButton_Click);
             // 
             // deleteClassButton
             // 
@@ -209,7 +209,7 @@
             this.deleteClassButton.TabIndex = 13;
             this.deleteClassButton.Text = "Törlés";
             this.deleteClassButton.UseVisualStyleBackColor = true;
-            this.deleteClassButton.Click += new System.EventHandler(this.deleteStudentButton_Click);
+            this.deleteClassButton.Click += new System.EventHandler(this.deleteClassButton_Click);
             // 
             // logOutButton
             // 
@@ -276,7 +276,7 @@
         private System.Windows.Forms.PictureBox exitButton;
         private System.Windows.Forms.DataGridView classDataGridView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker actualStartDateTimePicker;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button newClassButton;
         private System.Windows.Forms.Button updateClassButton;
