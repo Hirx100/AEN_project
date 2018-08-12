@@ -12,6 +12,8 @@ namespace AEN
 {
     public partial class Main : Form
     {
+
+
         public Main()
         {
             InitializeComponent();
@@ -72,30 +74,52 @@ namespace AEN
 
         private void teacherOperatorButton_Click(object sender, EventArgs e)
         {
-            Teacheroperator teacherJump = new Teacheroperator();
-            teacherJump.Show();
-            this.Close();
+            if (Loginscreen.permValue < 103)
+            {
+                Teacheroperator teacherJump = new Teacheroperator();
+                teacherJump.Show();
+                this.Close();
+            }
         }
 
         private void parentOperatorButton_Click(object sender, EventArgs e)
         {
-            Parentoperator parentJump = new Parentoperator();
-            parentJump.Show();
-            this.Close();
+            if (Loginscreen.permValue < 102)
+            {
+                Parentoperator parentJump = new Parentoperator();
+                parentJump.Show();
+                this.Close();
+            }
         }
 
         private void studentOperatorButton_Click(object sender, EventArgs e)
         {
-            Studentoperator studentjump = new Studentoperator();
-            studentjump.Show();
-            this.Close();
+            if (Loginscreen.permValue < 103)
+            {
+                Studentoperator studentjump = new Studentoperator();
+                studentjump.Show();
+                this.Close();
+            }
         }
 
         private void classOperatorButton_Click(object sender, EventArgs e)
         {
-            Classoperator classjump = new Classoperator();
-            classjump.Show();
-            this.Close();
+            if (Loginscreen.permValue < 102)
+            {
+                Classoperator classjump = new Classoperator();
+                classjump.Show();
+                this.Close();
+            }
+        }
+
+        private void subjectOperatorButton_Click(object sender, EventArgs e)
+        {
+            if (Loginscreen.permValue < 102)
+            {
+                Subjectoperator subjectJump = new Subjectoperator();
+                subjectJump.Show();
+                this.Close();
+            }
         }
     }
 }

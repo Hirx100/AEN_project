@@ -42,7 +42,7 @@
             this.userDataButton = new System.Windows.Forms.PictureBox();
             this.studentOperatorButton = new System.Windows.Forms.PictureBox();
             this.markOperatorButton = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.subjectOperatorButton = new System.Windows.Forms.PictureBox();
             this.parentOperatorButton = new System.Windows.Forms.PictureBox();
             this.classOperatorButton = new System.Windows.Forms.PictureBox();
             this.teacherOperatorButton = new System.Windows.Forms.PictureBox();
@@ -53,7 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classOperatorButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).BeginInit();
@@ -215,16 +215,17 @@
             this.markOperatorButton.TabStop = false;
             this.markOperatorButton.Click += new System.EventHandler(this.markOperatorButton_Click);
             // 
-            // pictureBox5
+            // subjectOperatorButton
             // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Image = global::AEN.Properties.Resources.subject_button;
-            this.pictureBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox5.Location = new System.Drawing.Point(204, 315);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(65, 65);
-            this.pictureBox5.TabIndex = 10;
-            this.pictureBox5.TabStop = false;
+            this.subjectOperatorButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.subjectOperatorButton.Image = global::AEN.Properties.Resources.subject_button;
+            this.subjectOperatorButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.subjectOperatorButton.Location = new System.Drawing.Point(204, 315);
+            this.subjectOperatorButton.Name = "subjectOperatorButton";
+            this.subjectOperatorButton.Size = new System.Drawing.Size(65, 65);
+            this.subjectOperatorButton.TabIndex = 10;
+            this.subjectOperatorButton.TabStop = false;
+            this.subjectOperatorButton.Click += new System.EventHandler(this.subjectOperatorButton_Click);
             // 
             // parentOperatorButton
             // 
@@ -301,7 +302,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.markOperatorButton);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.subjectOperatorButton);
             this.Controls.Add(this.parentOperatorButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuButtonLabel1);
@@ -318,7 +319,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userDataButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.markOperatorButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subjectOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.parentOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.classOperatorButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teacherOperatorButton)).EndInit();
@@ -338,7 +339,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox markOperatorButton;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox subjectOperatorButton;
         private System.Windows.Forms.PictureBox parentOperatorButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
